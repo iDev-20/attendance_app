@@ -18,6 +18,7 @@ class FullScreenQRCode extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         backgroundColor: Colors.blue,
         onPressed: () {
           Navigator.pop(context);

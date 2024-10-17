@@ -18,9 +18,12 @@ class _QrCodePageState extends State<QrCodePage> {
     {'studentName': 'Jane Smith', 'timestamp': DateTime.now().toString()},
   ];
 
+  // bool isVisible = false;
+
   void generateQRCode() {
     setState(() {
       qrData = DateTime.now().toString();
+
       // attendanceData1 = [
       //   {'studentName': 'John Doe', 'timestamp': DateTime.now().toString()},
       //   {'studentName': 'Jane Smith', 'timestamp': DateTime.now().toString()},
@@ -86,15 +89,36 @@ class _QrCodePageState extends State<QrCodePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            openFullScreenQRCode(context);
-                          },
-                          child: QrImageView(
-                            data: qrData,
-                            version: QrVersions.auto,
-                            size: 150,
-                            // gapless: false,
+                        Visibility(
+                          // visible: isVisible,
+                          replacement: const Text(
+                            'Your QR code will show here!',
+                            style: TextStyle(
+                              fontFamily: 'Lato',
+                              fontSize: 14,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  openFullScreenQRCode(context);
+                                },
+                                child: QrImageView(
+                                  data: qrData,
+                                  version: QrVersions.auto,
+                                  size: 150,
+                                  // gapless: false,
+                                ),
+                              ),
+                              const Text(
+                                'Tap the QR code to display fullscreen',
+                                style: TextStyle(
+                                  fontFamily: 'Lato',
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -135,16 +159,16 @@ class _QrCodePageState extends State<QrCodePage> {
                       fontSize: 14,
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: SecondaryButton(
+                      backgroundColor: Colors.grey.shade300,
+                      foregroundColor: Colors.black,
+                      onTap: () => viewAttendanceLog(context),
+                      child: const Text('View Attendance Log'),
+                    ),
+                  ),
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SecondaryButton(
-                backgroundColor: Colors.grey.shade300,
-                foregroundColor: Colors.black,
-                onTap: () => viewAttendanceLog(context),
-                child: const Text('View Attendance Log'),
               ),
             ),
           ],
