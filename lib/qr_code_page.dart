@@ -1,9 +1,32 @@
 import 'package:attendance_app/components/buttons.dart';
+import 'package:attendance_app/full_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class QrCodePage extends StatelessWidget {
+class QrCodePage extends StatefulWidget {
   const QrCodePage({super.key});
+
+  @override
+  State<QrCodePage> createState() => _QrCodePageState();
+}
+
+class _QrCodePageState extends State<QrCodePage> {
+  String qrData = 'Generate your lecture QR code';
+
+  void generateQRCode() {
+    setState(() {
+      qrData = DateTime.now().toString();
+    });
+  }
+
+  void openFullScreenQRCode(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FullScreenQRCode(qrData: qrData),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +62,16 @@ class QrCodePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  QrImageView(
-                    data: 'This QR code has an embedded image as well',
-                    version: QrVersions.auto,
-                    size: 250,
-                    gapless: false,
+                  GestureDetector(
+                    onTap: () {
+                      openFullScreenQRCode(context);
+                    },
+                    child: QrImageView(
+                      data: qrData,
+                      version: QrVersions.auto,
+                      size: 250,
+                      gapless: false,
+                    ),
                   ),
                 ],
               ),
@@ -55,7 +83,14 @@ class QrCodePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 children: [
-                  const Expanded(child: PrimaryButton(child: Text('Refresh'))),
+                  Expanded(
+                    child: PrimaryButton(
+                      onTap: () {
+                        generateQRCode();
+                      },
+                      child: const Text('Generate QR Code'),
+                    ),
+                  ),
                   const SizedBox(
                     width: 25,
                   ),
@@ -67,28 +102,11 @@ class QrCodePage extends StatelessWidget {
                   ),
                 ],
               ),
-              // Container(
-              //   decoration: BoxDecoration(
-              //       color: Colors.white,
-              //       borderRadius: BorderRadius.circular(16),
-              //       border: Border.all(color: Colors.black)),
-              //   padding:
-              //       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       shareRow(
-              //           icon: Icon(Icons.copy, color: Colors.grey.shade600),
-              //           text: 'Copy link'),
-              //       shareRow(
-              //           icon: Icon(Icons.refresh, color: Colors.grey.shade600),
-              //           text: 'Refresh'),
-              //       shareRow(
-              //           icon: Icon(Icons.download, color: Colors.grey.shade600),
-              //           text: 'Download')
-              //     ],
-              //   ),
-              // ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'QR Code Data: $qrData',
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
           ],
         ),
