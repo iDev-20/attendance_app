@@ -1,5 +1,5 @@
-// import 'package:attendance_app/demo.dart';
-import 'package:attendance_app/home_page.dart';
+// import 'package:attendance_app/home_page.dart';
+import 'package:attendance_app/qr_code_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-        home: HomePage(),
+        home: const QrCodePage(),
     );
   }
 }

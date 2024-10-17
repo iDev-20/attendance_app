@@ -9,21 +9,20 @@ class FullScreenQRCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Dark background for better contrast
+      backgroundColor: Colors.white,
       body: Center(
         child: QrImageView(
           data: qrData,
           version: QrVersions.auto,
-          size: MediaQuery.of(context).size.width * 0.8, // Large size for projection
-          backgroundColor: Colors.white, // Ensures QR code visibility
+          size: MediaQuery.of(context).size.width * 0.8,
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         onPressed: () {
-          Navigator.pop(context); // Close full-screen mode
+          Navigator.pop(context);
         },
-        child: Icon(Icons.close),
+        child: const Icon(Icons.close),
       ),
     );
   }

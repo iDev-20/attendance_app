@@ -1,3 +1,4 @@
+import 'package:attendance_app/attendance_log.dart';
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/full_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,18 @@ class QrCodePage extends StatefulWidget {
 
 class _QrCodePageState extends State<QrCodePage> {
   String qrData = 'Generate your lecture QR code';
+  List<Map<String, String>> attendanceData1 = [
+    {'studentName': 'John Doe', 'timestamp': DateTime.now().toString()},
+    {'studentName': 'Jane Smith', 'timestamp': DateTime.now().toString()},
+  ];
 
   void generateQRCode() {
     setState(() {
       qrData = DateTime.now().toString();
+      // attendanceData1 = [
+      //   {'studentName': 'John Doe', 'timestamp': DateTime.now().toString()},
+      //   {'studentName': 'Jane Smith', 'timestamp': DateTime.now().toString()},
+      // ];
     });
   }
 
@@ -24,6 +33,16 @@ class _QrCodePageState extends State<QrCodePage> {
       context,
       MaterialPageRoute(
         builder: (context) => FullScreenQRCode(qrData: qrData),
+      ),
+    );
+  }
+
+  void viewAttendanceLog(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            AttendanceLogScreen(attendanceData: attendanceData1),
       ),
     );
   }
@@ -51,62 +70,80 @@ class _QrCodePageState extends State<QrCodePage> {
       ),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.black)),
-              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+            Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      openFullScreenQRCode(context);
-                    },
-                    child: QrImageView(
-                      data: qrData,
-                      version: QrVersions.auto,
-                      size: 250,
-                      gapless: false,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: PrimaryButton(
-                      onTap: () {
-                        generateQRCode();
-                      },
-                      child: const Text('Generate QR Code'),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.black)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 35, vertical: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            openFullScreenQRCode(context);
+                          },
+                          child: QrImageView(
+                            data: qrData,
+                            version: QrVersions.auto,
+                            size: 150,
+                            // gapless: false,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(
-                    width: 25,
+                    height: 20,
                   ),
-                  Expanded(
-                    child: PrimaryButton(
-                        backgroundColor: Colors.grey.shade300,
-                        foregroundColor: Colors.black,
-                        child: const Text('Download')),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: PrimaryButton(
+                            onTap: () {
+                              generateQRCode();
+                            },
+                            child: const Text('Generate QR Code'),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 25,
+                        ),
+                        Expanded(
+                          child: PrimaryButton(
+                              backgroundColor: Colors.grey.shade300,
+                              foregroundColor: Colors.black,
+                              child: const Text('Download')),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'QR Code Data: $qrData',
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
-            Text(
-              'QR Code Data: $qrData',
-              style: const TextStyle(fontSize: 14, color: Colors.grey),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SecondaryButton(
+                backgroundColor: Colors.grey.shade300,
+                foregroundColor: Colors.black,
+                onTap: () => viewAttendanceLog(context),
+                child: const Text('View Attendance Log'),
+              ),
             ),
           ],
         ),

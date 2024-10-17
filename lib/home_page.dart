@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
-                'Attendance Records',
+                'Attendance Log',
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Figtree',
