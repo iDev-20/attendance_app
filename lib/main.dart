@@ -14,8 +14,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Lato'),
-        home:  LoginPage(),
+      theme: ThemeData(
+        useMaterial3: false,
+        primarySwatch: Colors.blue,
+        fontFamily: 'Lato',
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        }),
+      ),
+      home: const LoginPage(),
     );
   }
 }
