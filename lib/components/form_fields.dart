@@ -79,7 +79,7 @@ class PrimaryTextFormField extends StatelessWidget {
             child: TextFormField(
               autofocus: autofocus,
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),
               cursorColor: Colors.black,

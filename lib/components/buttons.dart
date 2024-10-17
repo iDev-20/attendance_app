@@ -37,7 +37,7 @@ class PrimaryButton extends StatelessWidget {
       textStyle: MaterialStateProperty.all(
         const TextStyle(
           fontFamily: 'Figtree',
-          fontSize: 18,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),

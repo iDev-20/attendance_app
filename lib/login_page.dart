@@ -65,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     'Class Control',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: 'Merriweather',
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
                     ),
@@ -103,11 +104,11 @@ class _LoginPageState extends State<LoginPage> {
                             controller: passwordController,
                             keyboardType: TextInputType.visiblePassword,
                             textInputAction: TextInputAction.done,
-                            // onChanged: (value) {
-                            //   setState(() {
-                            //     password = value;
-                            //   });
-                            // },
+                            onChanged: (value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
                             prefixWidget: Icon(
                               Icons.lock_outline_rounded,
                               color: Colors.grey.shade700,
