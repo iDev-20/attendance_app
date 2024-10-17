@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: AbsorbPointer(
-        absorbing: false,//this hides the keyboard anytime the screen is tapped
+        absorbing: false, //this hides the keyboard anytime the screen is tapped
         child: Scaffold(
           resizeToAvoidBottomInset: false, //this stops the background image from moving anytime the keyboard is initiated
           body: Container(
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(
-                          left: 45, top: 100, right: 16, bottom: 150),
+                          left: 45, top: 100, right: 16, bottom: 100),
                       child: Text(
                         'Class Control',
                         style: TextStyle(

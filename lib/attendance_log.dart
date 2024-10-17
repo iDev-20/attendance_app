@@ -10,6 +10,7 @@ class AttendanceLogScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: back(context),
         backgroundColor: Colors.grey.shade300,
         shape: RoundedRectangleBorder(
             side: const BorderSide(
@@ -21,7 +22,7 @@ class AttendanceLogScreen extends StatelessWidget {
         centerTitle: true,
         titleTextStyle: const TextStyle(
           color: Colors.black,
-          fontFamily: 'Figtree',
+          fontFamily: 'Lato',
           fontSize: 25,
           fontWeight: FontWeight.bold,
         ),
@@ -37,9 +38,33 @@ class AttendanceLogScreen extends StatelessWidget {
                   title: Text(record['studentName'] ?? 'Unknown Student'),
                   subtitle: Text('Marked at: ${record['timestamp']}'),
                   leading: const Icon(Icons.check_circle, color: Colors.green),
+                  titleTextStyle: const TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Lato',
+                    fontSize: 18
+                  ),
+                  subtitleTextStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Lato',
+                  ),
                 );
               },
             ),
     );
+  }
+
+  Widget back(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.only(left: 0),
+        child: InkResponse(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.chevron_left,
+            size: 32.0,
+            color: Colors.black,
+          ),
+        ));
   }
 }

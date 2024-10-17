@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         surfaceTintColor: Colors.black,
         titleTextStyle: const TextStyle(
           color: Colors.black,
-          fontFamily: 'Figtree',
+          fontFamily: 'Lato',
           fontSize: 25,
           fontWeight: FontWeight.bold,
         ),
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 'Attendance Log',
                 style: TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Figtree',
+                  fontFamily: 'Lato',
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
                 ),

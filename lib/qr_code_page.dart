@@ -51,6 +51,7 @@ class _QrCodePageState extends State<QrCodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.grey.shade300,
         shape: RoundedRectangleBorder(
             side: const BorderSide(
@@ -62,7 +63,7 @@ class _QrCodePageState extends State<QrCodePage> {
         centerTitle: true,
         titleTextStyle: const TextStyle(
           color: Colors.black,
-          fontFamily: 'Figtree',
+          fontFamily: 'Lato',
           fontSize: 25,
           fontWeight: FontWeight.bold,
         ),
@@ -130,6 +131,7 @@ class _QrCodePageState extends State<QrCodePage> {
                   Text(
                     'QR Code Data: $qrData',
                     style: const TextStyle(
+                      fontFamily: 'Lato',
                       fontSize: 14,
                     ),
                   ),

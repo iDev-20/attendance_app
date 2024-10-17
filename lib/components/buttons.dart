@@ -36,7 +36,7 @@ class PrimaryButton extends StatelessWidget {
       ),
       textStyle: MaterialStateProperty.all(
         const TextStyle(
-          fontFamily: 'Figtree',
+          fontFamily: 'Lato',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
@@ -121,7 +121,7 @@ class SecondaryButton extends StatelessWidget {
       ),
       textStyle: MaterialStateProperty.all(
         const TextStyle(
-          fontFamily: 'Figtree',
+          fontFamily: 'Lato',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
