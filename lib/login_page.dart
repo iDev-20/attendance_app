@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() {
     String email = emailController.text.trim();
-    // String password = passwordController.text.trim();
+    String password = passwordController.text.trim();
 
     // Placeholder logic for login authentication
     if (email == 'lecturer@example.com' && password == 'password123') {
