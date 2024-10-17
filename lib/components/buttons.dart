@@ -37,13 +37,13 @@ class PrimaryButton extends StatelessWidget {
       textStyle: MaterialStateProperty.all(
         const TextStyle(
           fontFamily: 'Figtree',
-          fontSize: 16,
+          fontSize: 18,
           fontWeight: FontWeight.w500,
         ),
       ),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(48),
           side: BorderSide(
             color: borderColor,
           ),

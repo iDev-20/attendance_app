@@ -12,6 +12,7 @@ class PrimaryTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
   final int maxLines;
   final int? maxLength;
   final bool? obscureText;
@@ -30,6 +31,7 @@ class PrimaryTextFormField extends StatelessWidget {
       this.validator,
       this.inputFormatters,
       this.keyboardType,
+      this.textInputAction,
       this.maxLines = 1,
       this.autofocus = false,
       this.maxLength,
