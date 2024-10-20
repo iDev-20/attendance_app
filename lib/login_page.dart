@@ -63,11 +63,11 @@ class _LoginPageState extends State<LoginPage> {
             child: ListView(
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(
-                          left: 45, top: 100, right: 16, bottom: 100),
+                          left: 16, top: 100, right: 16, bottom: 100),
                       child: Text(
                         'Class Control',
                         style: TextStyle(
@@ -76,7 +76,6 @@ class _LoginPageState extends State<LoginPage> {
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
                         ),
-                        textDirection: TextDirection.rtl,
                       ),
                     ),
                     Padding(
