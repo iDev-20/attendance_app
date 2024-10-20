@@ -15,7 +15,7 @@ class PrimaryTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final int maxLines;
   final int? maxLength;
-  final bool? obscureText;
+  final bool obscureText;
   final bool required;
   final bool autofocus;
   final bool enabled;
@@ -35,7 +35,7 @@ class PrimaryTextFormField extends StatelessWidget {
       this.maxLines = 1,
       this.autofocus = false,
       this.maxLength,
-      this.obscureText,
+      this.obscureText = false,
       this.onTap,
       this.enabled = true,
       this.required = false});
@@ -78,6 +78,7 @@ class PrimaryTextFormField extends StatelessWidget {
             height: 48,
             child: TextFormField(
               autofocus: autofocus,
+              obscureText: obscureText,
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
