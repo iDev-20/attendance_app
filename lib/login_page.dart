@@ -18,6 +18,11 @@ class _LoginPageState extends State<LoginPage> {
   bool isPasswordVisible = false;
   String password = '';
 
+  late String _email;
+  late String _password;
+
+  final formKey = GlobalKey<FormState>();
+
   void togglePasswordVisibility() {
     setState(() {
       isPasswordVisible = !isPasswordVisible;
@@ -50,7 +55,8 @@ class _LoginPageState extends State<LoginPage> {
       child: AbsorbPointer(
         absorbing: false, //this hides the keyboard anytime the screen is tapped
         child: Scaffold(
-          resizeToAvoidBottomInset: false, //this stops the background image from moving anytime the keyboard is initiated
+          resizeToAvoidBottomInset:
+              false, //this stops the background image from moving anytime the keyboard is initiated
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -94,51 +100,61 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.white),
                               ),
                               const SizedBox(height: 20),
-                              PrimaryTextFormField(
-                                labelText: 'Email',
-                                controller: emailController,
-                                keyboardType: TextInputType.emailAddress,
-                                prefixWidget: Icon(
-                                  Icons.email_outlined,
-                                  color: Colors.grey.shade700,
+                              Form(
+                                key: formKey,
+                                child: Column(
+                                  children: [
+                                    PrimaryTextFormField(
+                                      labelText: 'Email',
+                                      controller: emailController,
+                                      keyboardType: TextInputType.emailAddress,
+                                      prefixWidget: Icon(
+                                        Icons.email_outlined,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                      hintText: 'example@gmail.com',
+                                      onSaved: (value) => _email = value!,
+                                    ),
+                                    PrimaryTextFormField(
+                                      labelText: 'Pasword',
+                                      obscureText: !isPasswordVisible,
+                                      controller: passwordController,
+                                      keyboardType:
+                                          TextInputType.visiblePassword,
+                                      textInputAction: TextInputAction.done,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          password = value;
+                                        });
+                                      },
+                                      prefixWidget: Icon(
+                                        Icons.lock_outline_rounded,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                      suffixWidget: IconButton(
+                                        icon: Icon(
+                                          isPasswordVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: Colors.grey.shade700,
+                                        ),
+                                        onPressed: togglePasswordVisibility,
+                                      ),
+                                      hintText: 'Enter your Password',
+                                      onSaved: (value) => _password = value!,
+                                    ),
+                                  ],
                                 ),
-                                hintText: 'example@gmail.com',
-                              ),
-                              PrimaryTextFormField(
-                                labelText: 'Pasword',
-                                obscureText: !isPasswordVisible,
-                                controller: passwordController,
-                                keyboardType: TextInputType.visiblePassword,
-                                textInputAction: TextInputAction.done,
-                                onChanged: (value) {
-                                  setState(() {
-                                    password = value;
-                                  });
-                                },
-                                prefixWidget: Icon(
-                                  Icons.lock_outline_rounded,
-                                  color: Colors.grey.shade700,
-                                ),
-                                suffixWidget: IconButton(
-                                  icon: Icon(
-                                    isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: Colors.grey.shade700,
-                                  ),
-                                  onPressed: togglePasswordVisibility,
-                                ),
-                                hintText: 'Enter your Password',
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
                               PrimaryButton(
                                 onTap: () {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const QrCodePage()));
+                                  // FocusManager.instance.primaryFocus?.unfocus();
+                                  // Navigator.of(context).push(MaterialPageRoute(
+                                  //     builder: (BuildContext context) =>
+                                  //         const QrCodePage()));
                                 },
                                 child: const Text('Login'),
                               )

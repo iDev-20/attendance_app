@@ -19,6 +19,7 @@ class PrimaryTextFormField extends StatelessWidget {
   final bool required;
   final bool autofocus;
   final bool enabled;
+  final void Function(String?)? onSaved;
 
   const PrimaryTextFormField(
       {super.key,
@@ -38,7 +39,8 @@ class PrimaryTextFormField extends StatelessWidget {
       this.obscureText = false,
       this.onTap,
       this.enabled = true,
-      this.required = false});
+      this.required = false,
+      this.onSaved});
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +117,7 @@ class PrimaryTextFormField extends StatelessWidget {
               validator: validator,
               controller: controller,
               onChanged: onChanged,
+              onSaved: onSaved,
             ),
           ),
         ],
