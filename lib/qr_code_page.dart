@@ -1,6 +1,7 @@
 import 'package:attendance_app/attendance_log.dart';
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/full_screen.dart';
+import 'package:attendance_app/scan_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -29,7 +30,7 @@ class _QrCodePageState extends State<QrCodePage> {
       final user = await _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser?.email);
+        // print(loggedInUser?.email);
       }
     } catch (e) {
       print(e);
@@ -159,7 +160,9 @@ class _QrCodePageState extends State<QrCodePage> {
                           child: PrimaryButton(
                             backgroundColor: Colors.blueGrey.shade900,
                             onTap: () {
-                              generateQRCode();
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ScanPage()));
                             },
                             child: const Text('Generate QR Code'),
                           ),

@@ -5,9 +5,16 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    // options: DefaultFirebaseOptions.currentplatform,
-  );
+  try {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: 'AIzaSyAl1DBprDxmRRksJXXXOZwGv1mnxfJUmkA',
+            appId: '1:539127475744:android:6deb6ddbfdea9a6e05d645',
+            messagingSenderId: '',
+            projectId: 'attendance-app-2759d'));
+  } catch (e) {
+    print(e);
+  }
   runApp(const MyApp());
 }
 
