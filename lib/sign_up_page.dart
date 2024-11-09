@@ -1,9 +1,11 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, use_build_context_synchronously
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
 import 'package:attendance_app/login_page.dart';
+import 'package:attendance_app/qr_code_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -13,13 +15,14 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _auth = FirebaseAuth.instance;
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isPasswordVisible = false;
-  String password = '';
 
-  late String _email;
-  late String _password;
+  late String email;
+  late String password;
 
   final formKey = GlobalKey<FormState>();
 
@@ -91,9 +94,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               labelText: 'Email',
                               controller: emailController,
                               keyboardType: TextInputType.emailAddress,
-                            
                               hintText: 'example@gmail.com',
-                              onSaved: (value) => _email = value!,
+                              onChanged: (value) {
+                                email = value;
+                              },
                             ),
                             CustomPrimaryTextFormField(
                               labelText: 'Password',
@@ -116,7 +120,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                 onPressed: togglePasswordVisibility,
                               ),
                               hintText: 'Enter your Password',
-                              onSaved: (value) => _password = value!,
                             ),
                             CustomPrimaryTextFormField(
                               labelText: 'Confirm password',
@@ -139,18 +142,30 @@ class _SignUpPageState extends State<SignUpPage> {
                                 onPressed: togglePasswordVisibility,
                               ),
                               hintText: 'Re-enter your Password',
-                              onSaved: (value) => _password = value!,
                             ),
                             const SizedBox(
                               height: 20,
                             ),
                             PrimaryButton(
                               backgroundColor: Colors.blueGrey.shade900,
-                              onTap: () {
-                                // FocusManager.instance.primaryFocus?.unfocus();
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (BuildContext context) =>
-                                //         const QrCodePage()));
+                              onTap: () async {
+                                try {
+                                  var newUser = await _auth
+                                      .createUserWithEmailAndPassword(
+                                          email: email, password: password);
+                                  if (newUser != null) {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                const QrCodePage()));
+                                  }
+                                } catch (e) {
+                                  print(e);
+                                }
+                                // print(_email);
+                                // print(password);
                               },
                               child: const Text('Sign Up'),
                             ),
@@ -160,10 +175,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             Center(
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              const LoginPage()));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const LoginPage()));
                                 },
                                 child: RichText(
                                   text: TextSpan(
@@ -171,8 +185,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         color: Colors.black, fontSize: 13),
                                     children: <TextSpan>[
                                       const TextSpan(
-                                          text:
-                                              'Already have an account? '),
+                                          text: 'Already have an account? '),
                                       TextSpan(
                                         text: 'Sign In',
                                         style: TextStyle(

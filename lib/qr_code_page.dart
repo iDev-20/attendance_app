@@ -1,6 +1,7 @@
 import 'package:attendance_app/attendance_log.dart';
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/full_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -12,6 +13,29 @@ class QrCodePage extends StatefulWidget {
 }
 
 class _QrCodePageState extends State<QrCodePage> {
+  final _auth = FirebaseAuth.instance;
+  User? loggedInUser;
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser;
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser?.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   String qrData = 'Generate your lecture QR code';
   List<Map<String, String>> attendanceData1 = [
     {'studentName': 'John Doe', 'timestamp': DateTime.now().toString()},
