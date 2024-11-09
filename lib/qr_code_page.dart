@@ -133,6 +133,7 @@ class _QrCodePageState extends State<QrCodePage> {
                       children: [
                         Expanded(
                           child: PrimaryButton(
+                            backgroundColor: Colors.blueGrey.shade900,
                             onTap: () {
                               generateQRCode();
                             },

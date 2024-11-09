@@ -43,142 +43,155 @@ class _SignUpPageState extends State<SignUpPage> {
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: const AssetImage('images/sample_image2.jpg'),
+                image: const AssetImage('images/background_image.png'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.5), BlendMode.darken),
+                    Colors.black.withOpacity(0.7), BlendMode.darken),
               ),
             ),
             child: ListView(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
-                          left: 16, top: 100, right: 16, bottom: 100),
-                      child: Text(
-                        'Class Control',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Merriweather',
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 30, bottom: 50),
+                  child: Center(
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Merriweather',
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Center(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Register',
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                              const SizedBox(height: 20),
-                              Form(
-                                key: formKey,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    PrimaryTextFormField(
-                                      labelText: 'Email',
-                                      controller: emailController,
-                                      keyboardType: TextInputType.emailAddress,
-                                      prefixWidget: Icon(
-                                        Icons.email_outlined,
-                                        color: Colors.grey.shade700,
-                                      ),
-                                      hintText: 'example@gmail.com',
-                                      onSaved: (value) => _email = value!,
-                                    ),
-                                    PrimaryTextFormField(
-                                      labelText: 'Pasword',
-                                      obscureText: !isPasswordVisible,
-                                      controller: passwordController,
-                                      keyboardType:
-                                          TextInputType.visiblePassword,
-                                      textInputAction: TextInputAction.done,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          password = value;
-                                        });
-                                      },
-                                      prefixWidget: Icon(
-                                        Icons.lock_outline_rounded,
-                                        color: Colors.grey.shade700,
-                                      ),
-                                      suffixWidget: IconButton(
-                                        icon: Icon(
-                                          isPasswordVisible
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                          color: Colors.grey.shade700,
-                                        ),
-                                        onPressed: togglePasswordVisibility,
-                                      ),
-                                      hintText: 'Enter your Password',
-                                      onSaved: (value) => _password = value!,
-                                    ),
-                                  ],
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadiusDirectional.only(
+                            topStart: Radius.circular(85))),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 40.0, top: 55.0, right: 40.0),
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const CustomPrimaryTextFormField(
+                              labelText: 'First name',
+                              hintText: 'John',
+                            ),
+                            const CustomPrimaryTextFormField(
+                              labelText: 'Last name',
+                              hintText: 'Doe',
+                            ),
+                            CustomPrimaryTextFormField(
+                              labelText: 'Email',
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                            
+                              hintText: 'example@gmail.com',
+                              onSaved: (value) => _email = value!,
+                            ),
+                            CustomPrimaryTextFormField(
+                              labelText: 'Password',
+                              obscureText: !isPasswordVisible,
+                              controller: passwordController,
+                              keyboardType: TextInputType.visiblePassword,
+                              textInputAction: TextInputAction.done,
+                              onChanged: (value) {
+                                setState(() {
+                                  password = value;
+                                });
+                              },
+                              suffixWidget: IconButton(
+                                icon: Icon(
+                                  isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.grey.shade700,
                                 ),
+                                onPressed: togglePasswordVisibility,
                               ),
-                              const SizedBox(
-                                height: 20,
+                              hintText: 'Enter your Password',
+                              onSaved: (value) => _password = value!,
+                            ),
+                            CustomPrimaryTextFormField(
+                              labelText: 'Confirm password',
+                              obscureText: !isPasswordVisible,
+                              controller: passwordController,
+                              keyboardType: TextInputType.visiblePassword,
+                              textInputAction: TextInputAction.done,
+                              onChanged: (value) {
+                                setState(() {
+                                  password = value;
+                                });
+                              },
+                              suffixWidget: IconButton(
+                                icon: Icon(
+                                  isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.grey.shade700,
+                                ),
+                                onPressed: togglePasswordVisibility,
                               ),
-                              PrimaryButton(
+                              hintText: 'Re-enter your Password',
+                              onSaved: (value) => _password = value!,
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            PrimaryButton(
+                              backgroundColor: Colors.blueGrey.shade900,
+                              onTap: () {
+                                // FocusManager.instance.primaryFocus?.unfocus();
+                                // Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (BuildContext context) =>
+                                //         const QrCodePage()));
+                              },
+                              child: const Text('Sign Up'),
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Center(
+                              child: InkWell(
                                 onTap: () {
-                                  // FocusManager.instance.primaryFocus?.unfocus();
-                                  // Navigator.of(context).push(MaterialPageRoute(
-                                  //     builder: (BuildContext context) =>
-                                  //         const QrCodePage()));
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              const LoginPage()));
                                 },
-                                child: const Text('Sign Up'),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const LoginPage()));
-                                  },
-                                  child: RichText(
-                                    text: const TextSpan(
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 13),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text: 'Already have an account? '),
-                                        TextSpan(
-                                          text: 'Login',
-                                          style: TextStyle(
-                                              color: Colors.blue,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w600,
-                                              decoration:
-                                                  TextDecoration.underline),
-                                        ),
-                                      ],
-                                    ),
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 13),
+                                    children: <TextSpan>[
+                                      const TextSpan(
+                                          text:
+                                              'Already have an account? '),
+                                      TextSpan(
+                                        text: 'Sign In',
+                                        style: TextStyle(
+                                            color: Colors.blueGrey.shade900,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                            decoration:
+                                                TextDecoration.underline),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
