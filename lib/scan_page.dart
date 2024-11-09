@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attendance_app/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -32,8 +33,12 @@ class _ScanPageState extends State<ScanPage> {
     controller.scannedDataStream.listen(
       (scanData) async {
         result = scanData;
-        print(result!.code);
+        print(result?.code);
         controller.stopCamera();
+        if (result?.code == 'res') {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => LoginPage()));
+        }
         // customNavigation(
         //   context,
         //   ScanResult(

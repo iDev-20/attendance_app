@@ -59,37 +59,19 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 80, bottom: 50),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 80, bottom: 50),
                     child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Icon(
-                                Icons.keyboard_backspace_outlined,
-                                color: Colors.white,
-                                size: 32,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 80,
-                            ),
-                            const Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: Colors.white,
-                                // fontFamily: 'Merriweather',
-                                fontSize: 43,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          'Class Control',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Merriweather',
+                            fontSize: 45,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -102,140 +84,160 @@ class _SignUpPageState extends State<SignUpPage> {
                               topStart: Radius.circular(85))),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 40.0, top: 55.0, right: 40.0),
-                        child: Form(
-                          key: formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const CustomPrimaryTextFormField(
-                                labelText: 'First name',
-                                hintText: 'John',
+                            left: 40.0, top: 40.0, right: 40.0),
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blueGrey.shade900),
                               ),
-                              const CustomPrimaryTextFormField(
-                                labelText: 'Last name',
-                                hintText: 'Doe',
-                              ),
-                              CustomPrimaryTextFormField(
-                                labelText: 'Email',
-                                controller: emailController,
-                                keyboardType: TextInputType.emailAddress,
-                                hintText: 'example@gmail.com',
-                                onChanged: (value) {
-                                  email = value;
-                                },
-                              ),
-                              CustomPrimaryTextFormField(
-                                labelText: 'Password',
-                                obscureText: !isPasswordVisible,
-                                controller: passwordController,
-                                keyboardType: TextInputType.visiblePassword,
-                                textInputAction: TextInputAction.done,
-                                onChanged: (value) {
-                                  setState(() {
-                                    password = value;
-                                  });
-                                },
-                                suffixWidget: IconButton(
-                                  icon: Icon(
-                                    isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: Colors.grey.shade700,
+                            ),
+                            const SizedBox(height: 40),
+                            Form(
+                              key: formKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const CustomPrimaryTextFormField(
+                                    labelText: 'First name',
+                                    hintText: 'John',
                                   ),
-                                  onPressed: togglePasswordVisibility,
-                                ),
-                                hintText: 'Enter your Password',
-                              ),
-                              CustomPrimaryTextFormField(
-                                labelText: 'Confirm password',
-                                obscureText: !isPasswordVisible,
-                                controller: passwordController,
-                                keyboardType: TextInputType.visiblePassword,
-                                textInputAction: TextInputAction.done,
-                                onChanged: (value) {
-                                  setState(() {
-                                    password = value;
-                                  });
-                                },
-                                suffixWidget: IconButton(
-                                  icon: Icon(
-                                    isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: Colors.grey.shade700,
+                                  const CustomPrimaryTextFormField(
+                                    labelText: 'Last name',
+                                    hintText: 'Doe',
                                   ),
-                                  onPressed: togglePasswordVisibility,
-                                ),
-                                hintText: 'Re-enter your Password',
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              PrimaryButton(
-                                backgroundColor: Colors.blueGrey.shade900,
-                                onTap: () async {
-                                  setState(() {
-                                    showSpinner = true;
-                                  });
-                                  try {
-                                    var newUser = await _auth
-                                        .createUserWithEmailAndPassword(
-                                            email: email, password: password);
-                                    if (newUser != null) {
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus();
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
+                                  CustomPrimaryTextFormField(
+                                    labelText: 'Email',
+                                    controller: emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    hintText: 'example@gmail.com',
+                                    onChanged: (value) {
+                                      email = value;
+                                    },
+                                  ),
+                                  CustomPrimaryTextFormField(
+                                    labelText: 'Password',
+                                    obscureText: !isPasswordVisible,
+                                    controller: passwordController,
+                                    keyboardType: TextInputType.visiblePassword,
+                                    textInputAction: TextInputAction.done,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        password = value;
+                                      });
+                                    },
+                                    suffixWidget: IconButton(
+                                      icon: Icon(
+                                        isPasswordVisible
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                      onPressed: togglePasswordVisibility,
+                                    ),
+                                    hintText: 'Enter your Password',
+                                  ),
+                                  CustomPrimaryTextFormField(
+                                    labelText: 'Confirm password',
+                                    obscureText: !isPasswordVisible,
+                                    controller: passwordController,
+                                    keyboardType: TextInputType.visiblePassword,
+                                    textInputAction: TextInputAction.done,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        password = value;
+                                      });
+                                    },
+                                    suffixWidget: IconButton(
+                                      icon: Icon(
+                                        isPasswordVisible
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        color: Colors.grey.shade700,
+                                      ),
+                                      onPressed: togglePasswordVisibility,
+                                    ),
+                                    hintText: 'Re-enter your Password',
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  PrimaryButton(
+                                    backgroundColor: Colors.blueGrey.shade900,
+                                    onTap: () async {
+                                      setState(() {
+                                        showSpinner = true;
+                                      });
+                                      try {
+                                        var newUser = await _auth
+                                            .createUserWithEmailAndPassword(
+                                                email: email,
+                                                password: password);
+                                        if (newUser != null) {
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                            MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  const QrCodePage()));
-                                    }
+                                                  const QrCodePage(),
+                                            ),(route) => false
+                                          );
+                                        }
 
-                                    setState(() {
-                                      showSpinner = false;
-                                    });
-                                  } catch (e) {
-                                    print(e);
-                                  }
-                                  // print(_email);
-                                  // print(password);
-                                },
-                                child: const Text('Sign Up'),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                const LoginPage()));
-                                  },
-                                  child: RichText(
-                                    text: TextSpan(
-                                      style: const TextStyle(
-                                          color: Colors.black, fontSize: 13),
-                                      children: <TextSpan>[
-                                        const TextSpan(
-                                            text: 'Already have an account? '),
-                                        TextSpan(
-                                          text: 'Sign In',
-                                          style: TextStyle(
-                                              color: Colors.blueGrey.shade900,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w600,
-                                              decoration:
-                                                  TextDecoration.underline),
+                                        setState(() {
+                                          showSpinner = false;
+                                        });
+                                      } catch (e) {
+                                        print(e);
+                                      }
+                                    },
+                                    child: const Text('Sign Up'),
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Center(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        const LoginPage()));
+                                      },
+                                      child: RichText(
+                                        text: TextSpan(
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 13),
+                                          children: <TextSpan>[
+                                            const TextSpan(
+                                                text:
+                                                    'Already have an account? '),
+                                            TextSpan(
+                                              text: 'Sign In',
+                                              style: TextStyle(
+                                                  color:
+                                                      Colors.blueGrey.shade900,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w600,
+                                                  decoration:
+                                                      TextDecoration.underline),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

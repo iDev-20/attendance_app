@@ -1,4 +1,3 @@
-import 'package:attendance_app/attendance_log.dart';
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/full_screen.dart';
 import 'package:attendance_app/scan_page.dart';
@@ -65,16 +64,6 @@ class _QrCodePageState extends State<QrCodePage> {
     );
   }
 
-  void viewAttendanceLog(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) =>
-            AttendanceLogScreen(attendanceData: attendanceData1),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,24 +114,13 @@ class _QrCodePageState extends State<QrCodePage> {
                           ),
                           child: Column(
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  openFullScreenQRCode(context);
-                                },
-                                child: QrImageView(
-                                  data: qrData,
-                                  version: QrVersions.auto,
-                                  size: 150,
-                                  // gapless: false,
-                                ),
+                              QrImageView(
+                                data: qrData,
+                                version: QrVersions.auto,
+                                size: 150,
+                                // gapless: false,
                               ),
-                              const Text(
-                                'Tap the QR code to display fullscreen',
-                                style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  fontSize: 14,
-                                ),
-                              ),
+                             
                             ],
                           ),
                         ),
@@ -154,46 +132,14 @@ class _QrCodePageState extends State<QrCodePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: PrimaryButton(
-                            backgroundColor: Colors.blueGrey.shade900,
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ScanPage()));
-                            },
-                            child: const Text('Generate QR Code'),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 25,
-                        ),
-                        Expanded(
-                          child: PrimaryButton(
-                              backgroundColor: Colors.grey.shade300,
-                              foregroundColor: Colors.black,
-                              child: const Text('Download')),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'QR Code Data: $qrData',
-                    style: const TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 14,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: SecondaryButton(
-                      backgroundColor: Colors.grey.shade300,
-                      foregroundColor: Colors.black,
-                      onTap: () => viewAttendanceLog(context),
-                      child: const Text('View Attendance Log'),
+                    child: PrimaryButton(
+                      backgroundColor: Colors.blueGrey.shade900,
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                ScanPage()));
+                      },
+                      child: const Text('Scan QR code'),
                     ),
                   ),
                 ],
@@ -202,27 +148,6 @@ class _QrCodePageState extends State<QrCodePage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget shareRow({required Icon icon, required String text}) {
-    return Column(
-      children: [
-        Container(
-          height: 37,
-          width: 37,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.black),
-              color: Colors.white),
-          child: icon,
-        ),
-        Text(
-          text,
-          style: const TextStyle(
-              color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500),
-        ),
-      ],
     );
   }
 }
