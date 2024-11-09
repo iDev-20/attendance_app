@@ -2,18 +2,17 @@
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
-import 'package:attendance_app/sign_up_page.dart';
-// import 'package:attendance_app/qr_code_page.dart';
+import 'package:attendance_app/login_page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isPasswordVisible = false;
@@ -29,23 +28,6 @@ class _LoginPageState extends State<LoginPage> {
       isPasswordVisible = !isPasswordVisible;
     });
   }
-
-  // void login() {
-  //   String email = emailController.text.trim();
-  //   String password = passwordController.text.trim();
-
-  //   // Placeholder logic for login authentication
-  //   if (email == 'lecturer@example.com' && password == 'password123') {
-  //     // Navigate to the next page if credentials are correct
-  //     Navigator.of(context).push(MaterialPageRoute(
-  //         builder: (BuildContext context) => const QrCodePage()));
-  //   } else {
-  //     // Display an error message if credentials are incorrect
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('Invalid email or password')),
-  //     );
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
-                                'Login to your account',
+                                'Register',
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -158,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                                   //     builder: (BuildContext context) =>
                                   //         const QrCodePage()));
                                 },
-                                child: const Text('Login'),
+                                child: const Text('Sign Up'),
                               ),
                               const SizedBox(
                                 height: 16,
@@ -166,19 +148,19 @@ class _LoginPageState extends State<LoginPage> {
                               Center(
                                 child: InkWell(
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                const SignUpPage()));
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            const LoginPage()));
                                   },
                                   child: RichText(
                                     text: const TextSpan(
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 13),
                                       children: <TextSpan>[
-                                        TextSpan(text: 'Don\'t have an account? '),
                                         TextSpan(
-                                          text: 'Let\'s create one',
+                                            text: 'Already have an account? '),
+                                        TextSpan(
+                                          text: 'Login',
                                           style: TextStyle(
                                               color: Colors.blue,
                                               fontSize: 13,
