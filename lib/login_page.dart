@@ -1,8 +1,8 @@
-import 'dart:ui';
+// ignore_for_file: unused_field
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
-import 'package:attendance_app/qr_code_page.dart';
+// import 'package:attendance_app/qr_code_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -103,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                               Form(
                                 key: formKey,
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     PrimaryTextFormField(
                                       labelText: 'Email',
@@ -142,6 +143,24 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       hintText: 'Enter your Password',
                                       onSaved: (value) => _password = value!,
+                                    ),
+                                    RichText(
+                                      text: const TextSpan(
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 13),
+                                        children: <TextSpan>[
+                                          TextSpan(text: 'No account? '),
+                                          TextSpan(
+                                            text: 'Sign up',
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                decoration:
+                                                    TextDecoration.underline),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
