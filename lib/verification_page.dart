@@ -10,14 +10,14 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class VerificationPage extends StatefulWidget {
+  const VerificationPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<VerificationPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<VerificationPage> {
   final _auth = FirebaseAuth.instance;
 
   final TextEditingController emailController = TextEditingController();
