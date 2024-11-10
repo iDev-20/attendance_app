@@ -141,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     textInputAction: TextInputAction.done,
                                     suffixWidget: IconButton(
                                       icon: Icon(
-                                        isPasswordVisible
+                                        isConfirmPasswordVisible
                                             ? Icons.visibility
                                             : Icons.visibility_off,
                                         color: Colors.grey.shade700,
