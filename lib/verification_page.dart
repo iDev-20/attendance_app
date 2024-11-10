@@ -2,11 +2,11 @@
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
-import 'package:attendance_app/home_page.dart';
 import 'package:attendance_app/verification_success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -161,6 +161,14 @@ class _LoginPageState extends State<LoginPage> {
                                     showSpinner = false;
                                   });
                                 } catch (e) {
+                                  setState(() {
+                                    showSpinner = false;
+                                  });
+                                  Alert(
+                                    context: context,
+                                    title: 'Verification failed',
+                                    desc: 'Incorrect Email or Password',
+                                  ).show();
                                   print(e);
                                 }
                               },
