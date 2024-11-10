@@ -35,6 +35,12 @@ class _SignUpPageState extends State<SignUpPage> {
       isPasswordVisible = !isPasswordVisible;
     });
   }
+  
+  void toggleConfirmPasswordVisibility() {
+    setState(() {
+      isConfirmPasswordVisible = !isConfirmPasswordVisible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                             : Icons.visibility_off,
                                         color: Colors.grey.shade700,
                                       ),
-                                      onPressed: togglePasswordVisibility,
+                                      onPressed: toggleConfirmPasswordVisibility,
                                     ),
                                     hintText: 'Re-enter your Password',
                                   ),
