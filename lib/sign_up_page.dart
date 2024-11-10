@@ -21,8 +21,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
-
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
@@ -35,7 +35,7 @@ class _SignUpPageState extends State<SignUpPage> {
       isPasswordVisible = !isPasswordVisible;
     });
   }
-  
+
   void toggleConfirmPasswordVisibility() {
     setState(() {
       isConfirmPasswordVisible = !isConfirmPasswordVisible;
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           children: [
                             Center(
                               child: Text(
-                                'Log In',
+                                'Sign Up',
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -146,7 +146,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                             : Icons.visibility_off,
                                         color: Colors.grey.shade700,
                                       ),
-                                      onPressed: toggleConfirmPasswordVisibility,
+                                      onPressed:
+                                          toggleConfirmPasswordVisibility,
                                     ),
                                     hintText: 'Re-enter your Password',
                                   ),
@@ -156,8 +157,25 @@ class _SignUpPageState extends State<SignUpPage> {
                                   PrimaryButton(
                                     backgroundColor: Colors.blueGrey.shade900,
                                     onTap: () async {
-                                      if(passwordController.text != confirmPasswordController.text){
-                                        showAlert(context, 'Sign up failed', 'Passwords do not match',);
+
+                                      //check if email entered is a school email
+                                      if (isSchoolEmail(emailController.text) ==
+                                          false) {
+                                        setState(() {
+                                          showSpinner = false;
+                                        });
+                                        showAlert(context, 'Invalid Email',
+                                            'Please enter a valid AIT email address');
+                                        return;
+                                      }
+
+                                      if (passwordController.text !=
+                                          confirmPasswordController.text) {
+                                        showAlert(
+                                          context,
+                                          'Sign up failed',
+                                          'Passwords do not match',
+                                        );
                                         return;
                                       }
                                       setState(() {
@@ -167,23 +185,26 @@ class _SignUpPageState extends State<SignUpPage> {
                                         await _auth
                                             .createUserWithEmailAndPassword(
                                                 email: emailController.text,
-                                                password: passwordController.text);
-                                          FocusManager.instance.primaryFocus
-                                              ?.unfocus();
-                                        
-                                        SharedPreferences prefs = await SharedPreferences.getInstance();
-                                        prefs.setString('email', emailController.text);
+                                                password:
+                                                    passwordController.text);
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+
+                                        SharedPreferences prefs =
+                                            await SharedPreferences
+                                                .getInstance();
+                                        prefs.setString(
+                                            'email', emailController.text);
                                         prefs.setBool('isLoggedIn', true);
-                                          
-                                          Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                                  MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        const HomePage(),
-                                                  ),
-                                                  (route) => false
-                                                );
+
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          const HomePage(),
+                                                ),
+                                                (route) => false);
                                         setState(() {
                                           showSpinner = false;
                                         });
@@ -191,7 +212,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                         setState(() {
                                           showSpinner = false;
                                         });
-                                        showAlert(context, 'Sign up failed', e.toString(),);
+                                        showAlert(
+                                          context,
+                                          'Sign up failed',
+                                          e.toString(),
+                                        );
                                         print(e);
                                       }
                                     },
@@ -213,6 +238,4 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
-
-  
 }

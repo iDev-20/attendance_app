@@ -141,36 +141,37 @@ class _LoginPageState extends State<VerificationPage> {
                                 });
 
                                 //check if email entered is a school email
-                                if(isSchoolEmail(emailController.text) == false){
+                                if (isSchoolEmail(emailController.text) ==
+                                    false) {
                                   setState(() {
                                     showSpinner = false;
                                   });
-                                  showAlert(context, 'Invalid Email', 'Please enter a valid AIT email address');
+                                  showAlert(context, 'Invalid Email',
+                                      'Please enter a valid AIT email address');
                                   return;
                                 }
-                                
+
                                 //confirm email entered is the same as the email used to sign up
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 var email = prefs.getString('email');
-                                if(email != emailController.text){
+                                if (email != emailController.text) {
                                   setState(() {
                                     showSpinner = false;
                                   });
-                                  showAlert(context,'Email mismatch', 'The email you entered does not match the email you signed up with');
+                                  showAlert(context, 'Email mismatch',
+                                      'The email you entered does not match the email you signed up with');
                                   return;
                                 }
-                                
+
                                 try {
-                                    await _auth.signInWithEmailAndPassword(
-                                      email: emailController.text, 
-                                      password: passwordController.text
-                                    );
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus();
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const VerificationSuccessPage()));
+                                  await _auth.signInWithEmailAndPassword(
+                                      email: emailController.text,
+                                      password: passwordController.text);
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const VerificationSuccessPage()));
                                   setState(() {
                                     showSpinner = false;
                                   });
