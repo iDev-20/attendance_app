@@ -2,11 +2,11 @@
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
+import 'package:attendance_app/global_functions.dart';
 import 'package:attendance_app/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -111,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomPrimaryTextFormField(
-                                    labelText: 'Email',
+                                    labelText: 'Student Email',
                                     controller: emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     hintText: 'example@gmail.com',
@@ -172,6 +172,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                               ?.unfocus();
                                         
                                         SharedPreferences prefs = await SharedPreferences.getInstance();
+                                        prefs.setString('email', emailController.text);
                                         prefs.setBool('isLoggedIn', true);
                                           
                                           Navigator.of(context)
@@ -213,26 +214,5 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  showAlert(BuildContext context, String title, String desc) {
-    Alert(
-      context: context,
-      title: title,
-      desc: desc,
-      buttons: [
-        DialogButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          width: 200,
-          color: Colors.blueGrey.shade900,
-          child: const Text(
-            'Try again',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 20),
-          ),
-        ),
-      ],
-    ).show();
-  }
+  
 }

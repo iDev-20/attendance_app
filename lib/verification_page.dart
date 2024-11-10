@@ -2,11 +2,13 @@
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
+import 'package:attendance_app/global_functions.dart';
 import 'package:attendance_app/verification_success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -103,13 +105,10 @@ class _LoginPageState extends State<LoginPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomPrimaryTextFormField(
-                                    labelText: 'Email',
+                                    labelText: 'School Email',
                                     controller: emailController,
                                     keyboardType: TextInputType.emailAddress,
-                                    hintText: 'example@gmail.com',
-                                    onChanged: (value) {
-                                      email = value;
-                                    },
+                                    hintText: 'idnumber@ait.edu.gh',
                                   ),
                                   CustomPrimaryTextFormField(
                                     labelText: 'Pasword',
@@ -117,11 +116,6 @@ class _LoginPageState extends State<LoginPage> {
                                     controller: passwordController,
                                     keyboardType: TextInputType.visiblePassword,
                                     textInputAction: TextInputAction.done,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        password = value;
-                                      });
-                                    },
                                     suffixWidget: IconButton(
                                       icon: Icon(
                                         isPasswordVisible
@@ -145,10 +139,32 @@ class _LoginPageState extends State<LoginPage> {
                                 setState(() {
                                   showSpinner = true;
                                 });
+
+                                //check if email entered is a school email
+                                if(isSchoolEmail(emailController.text) == false){
+                                  setState(() {
+                                    showSpinner = false;
+                                  });
+                                  showAlert(context, 'Invalid Email', 'Please enter a valid AIT email address');
+                                  return;
+                                }
+                                
+                                //confirm email entered is the same as the email used to sign up
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                var email = prefs.getString('email');
+                                if(email != emailController.text){
+                                  setState(() {
+                                    showSpinner = false;
+                                  });
+                                  showAlert(context,'Email mismatch', 'The email you entered does not match the email you signed up with');
+                                  return;
+                                }
+                                
                                 try {
                                     await _auth.signInWithEmailAndPassword(
-                                      email: email, 
-                                      password: password
+                                      email: emailController.text, 
+                                      password: passwordController.text
                                     );
                                     FocusManager.instance.primaryFocus
                                         ?.unfocus();
