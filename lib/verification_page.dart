@@ -3,7 +3,7 @@
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
 import 'package:attendance_app/sign_up_page.dart';
-import 'package:attendance_app/qr_code_page.dart';
+import 'package:attendance_app/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -77,16 +77,18 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   const Padding(
-                    padding: EdgeInsets.only(
-                        left: 16, top: 120, right: 16, bottom: 100),
+                    padding: EdgeInsets.only(top: 120, bottom: 100),
                     child: Center(
-                      child: Text(
-                        'Class Control',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Merriweather',
-                          fontSize: 45,
-                          fontWeight: FontWeight.bold,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          'You came to class huh?',
+                          style: TextStyle(
+                            color: Colors.white,
+                            // fontFamily: 'Merriweather',
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -104,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Center(
                               child: Text(
-                                'Login to your account',
+                                'Let\'s verify that',
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -165,12 +167,14 @@ class _LoginPageState extends State<LoginPage> {
                                       await _auth.signInWithEmailAndPassword(
                                           email: email, password: password);
                                   if (existingUser != null) {
-                                    FocusManager.instance.primaryFocus?.unfocus();
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const QrCodePage()));
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                const QrCodePage()));
                                   }
-            
+
                                   setState(() {
                                     showSpinner = false;
                                   });
@@ -178,38 +182,39 @@ class _LoginPageState extends State<LoginPage> {
                                   print(e);
                                 }
                               },
-                              child: const Text('Login'),
+                              child: const Text('Verify'),
                             ),
                             const SizedBox(
                               height: 16,
                             ),
-                            Center(
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const SignUpPage()));
-                                },
-                                child: RichText(
-                                  text: TextSpan(
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 13),
-                                    children: <TextSpan>[
-                                      const TextSpan(
-                                          text: 'Don\'t have an account? '),
-                                      TextSpan(
-                                        text: 'Sign Up',
-                                        style: TextStyle(
-                                            color: Colors.blueGrey.shade900,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600,
-                                            decoration: TextDecoration.underline),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Center(
+                            //   child: InkWell(
+                            //     onTap: () {
+                            //       Navigator.of(context).push(MaterialPageRoute(
+                            //           builder: (BuildContext context) =>
+                            //               const SignUpPage()));
+                            //     },
+                            //     child: RichText(
+                            //       text: TextSpan(
+                            //         style: const TextStyle(
+                            //             color: Colors.black, fontSize: 13),
+                            //         children: <TextSpan>[
+                            //           const TextSpan(
+                            //               text: 'Don\'t have an account? '),
+                            //           TextSpan(
+                            //             text: 'Sign Up',
+                            //             style: TextStyle(
+                            //                 color: Colors.blueGrey.shade900,
+                            //                 fontSize: 13,
+                            //                 fontWeight: FontWeight.w600,
+                            //                 decoration:
+                            //                     TextDecoration.underline),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

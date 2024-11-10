@@ -2,8 +2,8 @@
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
-import 'package:attendance_app/login_page.dart';
-import 'package:attendance_app/qr_code_page.dart';
+import 'package:attendance_app/verification_page.dart';
+import 'package:attendance_app/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -141,28 +141,28 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ),
                                     hintText: 'Enter your Password',
                                   ),
-                                  CustomPrimaryTextFormField(
-                                    labelText: 'Confirm password',
-                                    obscureText: !isPasswordVisible,
-                                    controller: passwordController,
-                                    keyboardType: TextInputType.visiblePassword,
-                                    textInputAction: TextInputAction.done,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        password = value;
-                                      });
-                                    },
-                                    suffixWidget: IconButton(
-                                      icon: Icon(
-                                        isPasswordVisible
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: Colors.grey.shade700,
-                                      ),
-                                      onPressed: togglePasswordVisibility,
-                                    ),
-                                    hintText: 'Re-enter your Password',
-                                  ),
+                                  // CustomPrimaryTextFormField(
+                                  //   labelText: 'Confirm password',
+                                  //   obscureText: !isPasswordVisible,
+                                  //   controller: passwordController,
+                                  //   keyboardType: TextInputType.visiblePassword,
+                                  //   textInputAction: TextInputAction.done,
+                                  //   onChanged: (value) {
+                                  //     setState(() {
+                                  //       password = value;
+                                  //     });
+                                  //   },
+                                  //   suffixWidget: IconButton(
+                                  //     icon: Icon(
+                                  //       isPasswordVisible
+                                  //           ? Icons.visibility
+                                  //           : Icons.visibility_off,
+                                  //       color: Colors.grey.shade700,
+                                  //     ),
+                                  //     onPressed: togglePasswordVisibility,
+                                  //   ),
+                                  //   hintText: 'Re-enter your Password',
+                                  // ),
                                   const SizedBox(
                                     height: 20,
                                   ),
@@ -201,39 +201,39 @@ class _SignUpPageState extends State<SignUpPage> {
                                   const SizedBox(
                                     height: 16,
                                   ),
-                                  Center(
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        const LoginPage()));
-                                      },
-                                      child: RichText(
-                                        text: TextSpan(
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 13),
-                                          children: <TextSpan>[
-                                            const TextSpan(
-                                                text:
-                                                    'Already have an account? '),
-                                            TextSpan(
-                                              text: 'Sign In',
-                                              style: TextStyle(
-                                                  color:
-                                                      Colors.blueGrey.shade900,
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w600,
-                                                  decoration:
-                                                      TextDecoration.underline),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  // Center(
+                                  //   child: InkWell(
+                                  //     onTap: () {
+                                  //       Navigator.of(context).push(
+                                  //           MaterialPageRoute(
+                                  //               builder:
+                                  //                   (BuildContext context) =>
+                                  //                       const LoginPage()));
+                                  //     },
+                                  //     child: RichText(
+                                  //       text: TextSpan(
+                                  //         style: const TextStyle(
+                                  //             color: Colors.black,
+                                  //             fontSize: 13),
+                                  //         children: <TextSpan>[
+                                  //           const TextSpan(
+                                  //               text:
+                                  //                   'Already have an account? '),
+                                  //           TextSpan(
+                                  //             text: 'Sign In',
+                                  //             style: TextStyle(
+                                  //                 color:
+                                  //                     Colors.blueGrey.shade900,
+                                  //                 fontSize: 13,
+                                  //                 fontWeight: FontWeight.w600,
+                                  //                 decoration:
+                                  //                     TextDecoration.underline),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:attendance_app/login_page.dart';
+import 'package:attendance_app/verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:attendance_app/components/date_time_extensions.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -35,7 +36,7 @@ class _ScanPageState extends State<ScanPage> {
         result = scanData;
         print(result?.code);
         controller.stopCamera();
-        if (result?.code == DateTime.now()) {
+        if (result?.code == DateTime.now().fullFriendlyDate()) {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => LoginPage()));
           print(DateTime.now());
