@@ -1,7 +1,10 @@
 import 'package:attendance_app/components/buttons.dart';
+import 'package:attendance_app/navigation.dart';
 import 'package:attendance_app/scan_page.dart';
+import 'package:attendance_app/sign_up_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,14 +20,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // TODO: implement initState
-
     getCurrentUser();
   }
 
-  void getCurrentUser() async {
+  void getCurrentUser() {
     try {
-      final user = await _auth.currentUser;
+      final user = _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
         // print(loggedInUser?.email);
@@ -33,6 +34,8 @@ class _HomePageState extends State<HomePage> {
       print(e);
     }
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,27 +59,36 @@ class _HomePageState extends State<HomePage> {
         title: const Text('QR Code'),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: PrimaryButton(
-                      backgroundColor: Colors.blueGrey.shade900,
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => ScanPage()));
-                      },
-                      child: const Text('Scan QR code'),
-                    ),
-                  ),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            children: [
+              const Spacer(),
+              PrimaryButton(
+                backgroundColor: Colors.blueGrey.shade900,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => const ScanPage()));
+                },
+                child: const Text('Scan QR code'),
               ),
-            ),
-          ],
+              const Spacer(),
+              //For testing
+              ElevatedButton(
+                onPressed: (){
+                  _auth.signOut();
+                  SharedPreferences.getInstance().then((prefs) {
+                    prefs.setBool('isLoggedIn', false);
+                  });
+                  Navigation.navigateToScreenAndClearAllPrevious(
+                    context: context, 
+                    screen: const SignUpPage()
+                  );
+                }, 
+                child: const Text('Logout'),
+              ),
+            ],
+          ),
         ),
       ),
     );
