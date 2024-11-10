@@ -72,8 +72,9 @@ class _ScanPageState extends State<ScanPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Expanded(
-            flex: 5,
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            width: double.infinity,
             child: QRView(
               key: qrKey,
               onQRViewCreated: _onQRViewCreated,

@@ -6,6 +6,7 @@ import 'package:attendance_app/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -46,6 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
           resizeToAvoidBottomInset:
               false, //this stops the background image from moving anytime the keyboard is initiated
           body: ModalProgressHUD(
+            //this shows the loader
             inAsyncCall: showSpinner,
             child: Container(
               decoration: BoxDecoration(
@@ -181,17 +183,41 @@ class _SignUpPageState extends State<SignUpPage> {
                                               ?.unfocus();
                                           Navigator.of(context)
                                               .pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  const QrCodePage(),
-                                            ),(route) => false
-                                          );
+                                                  MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        const QrCodePage(),
+                                                  ),
+                                                  (route) => false);
                                         }
 
                                         setState(() {
                                           showSpinner = false;
                                         });
                                       } catch (e) {
+                                        setState(() {
+                                          showSpinner = false;
+                                        });
+                                  Alert(
+                                    context: context,
+                                    title: 'Sign up failed',
+                                    desc: 'Incorrect Email or Password',
+                                    buttons: [
+                                      DialogButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        width: 200,
+                                        color: Colors.blueGrey.shade900,
+                                        child: const Text(
+                                          'Try again',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ],
+                                  ).show();
                                         print(e);
                                       }
                                     },
