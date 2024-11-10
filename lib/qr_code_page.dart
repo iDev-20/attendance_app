@@ -35,35 +35,6 @@ class _QrCodePageState extends State<QrCodePage> {
       print(e);
     }
   }
-
-  String qrData = 'Generate your lecture QR code';
-  List<Map<String, String>> attendanceData1 = [
-    {'studentName': 'John Doe', 'timestamp': DateTime.now().toString()},
-    {'studentName': 'Jane Smith', 'timestamp': DateTime.now().toString()},
-  ];
-
-  // bool isVisible = false;
-
-  void generateQRCode() {
-    setState(() {
-      qrData = DateTime.now().toString();
-
-      // attendanceData1 = [
-      //   {'studentName': 'John Doe', 'timestamp': DateTime.now().toString()},
-      //   {'studentName': 'Jane Smith', 'timestamp': DateTime.now().toString()},
-      // ];
-    });
-  }
-
-  void openFullScreenQRCode(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FullScreenQRCode(qrData: qrData),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,51 +64,13 @@ class _QrCodePageState extends State<QrCodePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.black)),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 35, vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Visibility(
-                          // visible: isVisible,
-                          replacement: const Text(
-                            'Your QR code will show here!',
-                            style: TextStyle(
-                              fontFamily: 'Lato',
-                              fontSize: 14,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              QrImageView(
-                                data: qrData,
-                                version: QrVersions.auto,
-                                size: 150,
-                                // gapless: false,
-                              ),
-                             
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: PrimaryButton(
                       backgroundColor: Colors.blueGrey.shade900,
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                ScanPage()));
+                            builder: (BuildContext context) => ScanPage()));
                       },
                       child: const Text('Scan QR code'),
                     ),

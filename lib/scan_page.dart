@@ -35,9 +35,10 @@ class _ScanPageState extends State<ScanPage> {
         result = scanData;
         print(result?.code);
         controller.stopCamera();
-        if (result?.code == 'res') {
+        if (result?.code == DateTime.now()) {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => LoginPage()));
+          print(DateTime.now());
         }
         // customNavigation(
         //   context,
