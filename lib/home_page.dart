@@ -3,14 +3,14 @@ import 'package:attendance_app/scan_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class QrCodePage extends StatefulWidget {
-  const QrCodePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<QrCodePage> createState() => _QrCodePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _QrCodePageState extends State<QrCodePage> {
+class _HomePageState extends State<HomePage> {
   final _auth = FirebaseAuth.instance;
   User? loggedInUser;
 

@@ -146,17 +146,15 @@ class _LoginPageState extends State<LoginPage> {
                                   showSpinner = true;
                                 });
                                 try {
-                                  var existingUser =
-                                      await _auth.signInWithEmailAndPassword(
-                                          email: email, password: password);
-                                  if (existingUser != null) {
+                                    await _auth.signInWithEmailAndPassword(
+                                      email: email, 
+                                      password: password
+                                    );
                                     FocusManager.instance.primaryFocus
                                         ?.unfocus();
                                     Navigator.of(context).push(MaterialPageRoute(
                                         builder: (BuildContext context) =>
                                             const VerificationSuccessPage()));
-                                  }
-
                                   setState(() {
                                     showSpinner = false;
                                   });
@@ -167,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                                   Alert(
                                     context: context,
                                     title: 'Verification failed',
-                                    desc: 'Incorrect Email or Password',
+                                    desc: e.toString(),
                                     buttons: [
                                       DialogButton(
                                         onPressed: () {

@@ -1,8 +1,13 @@
 // ignore_for_file: avoid_print
 
+import 'package:attendance_app/home_page.dart';
 import 'package:attendance_app/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+bool isLoggedIn = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +21,9 @@ void main() async {
   } catch (e) {
     print(e);
   }
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  
   runApp(const MyApp());
 }
 
@@ -35,7 +43,7 @@ class MyApp extends StatelessWidget {
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
         }),
       ),
-      home: const SignUpPage(),
+      home: isLoggedIn? const HomePage() : const SignUpPage(),
     );
   }
 }
