@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:attendance_app/verification_page.dart';
@@ -38,8 +40,15 @@ class _ScanPageState extends State<ScanPage> {
         controller.stopCamera();
         if (result?.code == DateTime.now().fullFriendlyDate()) {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => LoginPage()));
-          print(DateTime.now());
+              builder: (BuildContext context) => const LoginPage()));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Oops! 🚫 This QR code doesn’t match today\'s '
+                  'class session. Please let your lecturer know.'),
+            ),
+          );
+          Navigator.pop(context);
         }
         // customNavigation(
         //   context,

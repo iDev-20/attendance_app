@@ -1,9 +1,9 @@
-// ignore_for_file: unused_field, use_build_context_synchronously
+// ignore_for_file: unused_field, use_build_context_synchronously, avoid_print
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
-import 'package:attendance_app/sign_up_page.dart';
 import 'package:attendance_app/home_page.dart';
+import 'package:attendance_app/verification_success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -34,23 +34,6 @@ class _LoginPageState extends State<LoginPage> {
       isPasswordVisible = !isPasswordVisible;
     });
   }
-
-  // void login() {
-  //   String email = emailController.text.trim();
-  //   String password = passwordController.text.trim();
-
-  //   // Placeholder logic for login authentication
-  //   if (email == 'lecturer@example.com' && password == 'password123') {
-  //     // Navigate to the next page if credentials are correct
-  //     Navigator.of(context).push(MaterialPageRoute(
-  //         builder: (BuildContext context) => const QrCodePage()));
-  //   } else {
-  //     // Display an error message if credentials are incorrect
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('Invalid email or password')),
-  //     );
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -169,10 +152,9 @@ class _LoginPageState extends State<LoginPage> {
                                   if (existingUser != null) {
                                     FocusManager.instance.primaryFocus
                                         ?.unfocus();
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                const QrCodePage()));
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            const VerificationSuccessPage()));
                                   }
 
                                   setState(() {
@@ -187,34 +169,6 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(
                               height: 16,
                             ),
-                            // Center(
-                            //   child: InkWell(
-                            //     onTap: () {
-                            //       Navigator.of(context).push(MaterialPageRoute(
-                            //           builder: (BuildContext context) =>
-                            //               const SignUpPage()));
-                            //     },
-                            //     child: RichText(
-                            //       text: TextSpan(
-                            //         style: const TextStyle(
-                            //             color: Colors.black, fontSize: 13),
-                            //         children: <TextSpan>[
-                            //           const TextSpan(
-                            //               text: 'Don\'t have an account? '),
-                            //           TextSpan(
-                            //             text: 'Sign Up',
-                            //             style: TextStyle(
-                            //                 color: Colors.blueGrey.shade900,
-                            //                 fontSize: 13,
-                            //                 fontWeight: FontWeight.w600,
-                            //                 decoration:
-                            //                     TextDecoration.underline),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
                           ],
                         ),
                       ),
