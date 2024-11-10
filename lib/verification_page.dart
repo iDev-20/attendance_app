@@ -168,6 +168,21 @@ class _LoginPageState extends State<LoginPage> {
                                     context: context,
                                     title: 'Verification failed',
                                     desc: 'Incorrect Email or Password',
+                                    buttons: [
+                                      DialogButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        width: 200,
+                                        color: Colors.blueGrey.shade900,
+                                        child: const Text(
+                                          'Try again',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ],
                                   ).show();
                                   print(e);
                                 }
