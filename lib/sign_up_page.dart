@@ -189,7 +189,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                                     passwordController.text);
                                         FocusManager.instance.primaryFocus
                                             ?.unfocus();
-
+                                        //saves data on device and making the sign up page not to show once 
+                                        //a user has signed up already(keeping the user signed in)
                                         SharedPreferences prefs =
                                             await SharedPreferences
                                                 .getInstance();
