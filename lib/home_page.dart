@@ -1,10 +1,10 @@
 import 'package:attendance_app/components/buttons.dart';
-import 'package:attendance_app/navigation.dart';
+// import 'package:attendance_app/components/navigation.dart';
 import 'package:attendance_app/scan_page.dart';
-import 'package:attendance_app/sign_up_page.dart';
+// import 'package:attendance_app/sign_up_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -74,19 +74,19 @@ class _HomePageState extends State<HomePage> {
               ),
               const Spacer(),
               //For testing
-              ElevatedButton(
-                onPressed: (){
-                  _auth.signOut();
-                  SharedPreferences.getInstance().then((prefs) {
-                    prefs.setBool('isLoggedIn', false);
-                  });
-                  Navigation.navigateToScreenAndClearAllPrevious(
-                    context: context, 
-                    screen: const SignUpPage()
-                  );
-                }, 
-                child: const Text('Logout'),
-              ),
+              // ElevatedButton(
+              //   onPressed: (){
+              //     _auth.signOut();
+              //     SharedPreferences.getInstance().then((prefs) {
+              //       prefs.setBool('isLoggedIn', false);
+              //     });
+              //     Navigation.navigateToScreenAndClearAllPrevious(
+              //       context: context, 
+              //       screen: const SignUpPage()
+              //     );
+              //   }, 
+              //   child: const Text('Logout'),
+              // ),
             ],
           ),
         ),

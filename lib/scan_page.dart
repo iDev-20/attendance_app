@@ -2,7 +2,7 @@
 
 import 'dart:io';
 
-import 'package:attendance_app/navigation.dart';
+import 'package:attendance_app/components/navigation.dart';
 import 'package:attendance_app/verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -42,8 +42,6 @@ class _ScanPageState extends State<ScanPage> {
         if (result?.code == DateTime.now().fullFriendlyDate()) {
           Navigation.navigateToScreenAndClearOnePrevious(
               context: context, screen: const VerificationPage());
-          // Navigator.of(context).push(MaterialPageRoute(
-          //     builder: (BuildContext context) => const LoginPage()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -53,12 +51,6 @@ class _ScanPageState extends State<ScanPage> {
           );
           Navigator.pop(context);
         }
-        // customNavigation(
-        //   context,
-        //   ScanResult(
-        //     code: result!.code,
-        //   ),
-        // );
       },
     );
   }
