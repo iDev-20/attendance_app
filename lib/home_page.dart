@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:attendance_app/components/buttons.dart';
 // import 'package:attendance_app/components/navigation.dart';
 import 'package:attendance_app/scan_page.dart';
