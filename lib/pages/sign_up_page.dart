@@ -2,6 +2,7 @@
 
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
+import 'package:attendance_app/components/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -197,14 +198,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                             'email', emailController.text);
                                         prefs.setBool('isLoggedIn', true);
 
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          const HomePage(),
-                                                ),
-                                                (route) => false);
+                                        Navigation
+                                            .navigateToScreenAndClearAllPrevious(
+                                                context: context,
+                                                screen: const HomePage());
                                         setState(() {
                                           showSpinner = false;
                                         });

@@ -3,6 +3,7 @@
 import 'package:attendance_app/components/buttons.dart';
 import 'package:attendance_app/components/form_fields.dart';
 import 'package:attendance_app/components/global_functions.dart';
+import 'package:attendance_app/components/navigation.dart';
 import 'package:attendance_app/pages/verification_success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -168,9 +169,9 @@ class _LoginPageState extends State<VerificationPage> {
                                       email: emailController.text,
                                       password: passwordController.text);
                                   FocusManager.instance.primaryFocus?.unfocus();
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const VerificationSuccessPage()));
+                                  Navigation.navigateToScreen(
+                                      context: context,
+                                      screen: const VerificationSuccessPage());
                                   setState(() {
                                     showSpinner = false;
                                   });

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:attendance_app/components/buttons.dart';
+import 'package:attendance_app/components/navigation.dart';
 import 'package:attendance_app/pages/scan_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,8 +66,8 @@ class _HomePageState extends State<HomePage> {
               PrimaryButton(
                 backgroundColor: Colors.blueGrey.shade900,
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => const ScanPage()));
+                  Navigation.navigateToScreen(
+                      context: context, screen: const ScanPage());
                 },
                 child: const Text('Scan QR code'),
               ),
@@ -80,10 +80,10 @@ class _HomePageState extends State<HomePage> {
               //       prefs.setBool('isLoggedIn', false);
               //     });
               //     Navigation.navigateToScreenAndClearAllPrevious(
-              //       context: context, 
+              //       context: context,
               //       screen: const SignUpPage()
               //     );
-              //   }, 
+              //   },
               //   child: const Text('Logout'),
               // ),
             ],
