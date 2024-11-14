@@ -48,7 +48,8 @@ class _LoginPageState extends State<LoginPage> {
       child: AbsorbPointer(
         absorbing: false, //this hides the keyboard anytime the screen is tapped
         child: Scaffold(
-          resizeToAvoidBottomInset: false, //this stops the background image from moving anytime the keyboard is initiated
+          resizeToAvoidBottomInset:
+              false, //this stops the background image from moving anytime the keyboard is initiated
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -67,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: EdgeInsets.only(
                           left: 16, top: 100, right: 16, bottom: 100),
                       child: Text(
-                        'Class Control',
+                        'Attendify',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Merriweather',

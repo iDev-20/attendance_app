@@ -73,7 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
-                          'Class Control',
+                          'Attendify',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Merriweather',
@@ -157,7 +157,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                   PrimaryButton(
                                     backgroundColor: Colors.blueGrey.shade900,
                                     onTap: () async {
-
                                       //check if email entered is a school email
                                       if (isSchoolEmail(emailController.text) ==
                                           false) {
@@ -189,7 +188,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                                     passwordController.text);
                                         FocusManager.instance.primaryFocus
                                             ?.unfocus();
-                                        //saves data on device and making the sign up page not to show once 
+                                        //saves data on device and making the sign up page not to show once
                                         //a user has signed up already(keeping the user signed in)
                                         SharedPreferences prefs =
                                             await SharedPreferences
