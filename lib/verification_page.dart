@@ -7,7 +7,6 @@ import 'package:attendance_app/verification_success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VerificationPage extends StatefulWidget {
@@ -179,26 +178,11 @@ class _LoginPageState extends State<VerificationPage> {
                                   setState(() {
                                     showSpinner = false;
                                   });
-                                  Alert(
-                                    context: context,
-                                    title: 'Verification failed',
-                                    desc: e.toString(),
-                                    buttons: [
-                                      DialogButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        width: 200,
-                                        color: Colors.blueGrey.shade900,
-                                        child: const Text(
-                                          'Try again',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20),
-                                        ),
-                                      ),
-                                    ],
-                                  ).show();
+                                  showAlert(
+                                    context,
+                                    'Verification failed',
+                                    'Incorrect password',
+                                  );
                                   print(e);
                                 }
                               },
