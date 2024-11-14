@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:attendance_app/home_page.dart';
-import 'package:attendance_app/sign_up_page.dart';
+import 'package:attendance_app/pages/home_page.dart';
+import 'package:attendance_app/pages/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

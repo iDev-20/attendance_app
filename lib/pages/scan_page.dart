@@ -3,7 +3,7 @@
 import 'dart:io';
 
 import 'package:attendance_app/components/navigation.dart';
-import 'package:attendance_app/verification_page.dart';
+import 'package:attendance_app/pages/verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:attendance_app/components/date_time_extensions.dart';
