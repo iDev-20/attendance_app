@@ -114,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     labelText: 'Student Email',
                                     controller: emailController,
                                     keyboardType: TextInputType.emailAddress,
-                                    hintText: 'example@gmail.com',
+                                    hintText: 'idnumber@ait.edu.gh',
                                   ),
                                   CustomPrimaryTextFormField(
                                     labelText: 'Password',
