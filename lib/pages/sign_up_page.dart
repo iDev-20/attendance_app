@@ -47,10 +47,10 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
+        FocusManager.instance.primaryFocus?.unfocus(); //this hides the keyboard anytime the screen is tapped
       },
       child: AbsorbPointer(
-        absorbing: false, //this hides the keyboard anytime the screen is tapped
+        absorbing: false, 
         child: Scaffold(
           resizeToAvoidBottomInset:
               false, //this stops the background image from moving anytime the keyboard is initiated
