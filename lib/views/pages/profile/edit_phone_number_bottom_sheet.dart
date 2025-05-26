@@ -1,4 +1,3 @@
-import 'package:attendance_app/components/global_functions.dart';
 import 'package:attendance_app/navigation/navigation.dart';
 import 'package:attendance_app/resources/app_buttons.dart';
 import 'package:attendance_app/resources/app_form_fields.dart';
@@ -42,11 +41,6 @@ class _EditPhoneNumberBottomSheetState
             onTap: () {
               Navigation.back(
                   context: context, result: phoneNumberController.text);
-              showAlert(
-                  context: context,
-                  title: 'Success',
-                  desc: 'Phone number updated to ${phoneNumberController.text}',
-                  buttonText: 'Okay');
             },
             child: const Text(AppStrings.saveChanges),
           ),

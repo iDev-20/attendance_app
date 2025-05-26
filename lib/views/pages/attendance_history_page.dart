@@ -1,9 +1,8 @@
+import 'package:attendance_app/navigation/navigation.dart';
 import 'package:attendance_app/resources/app_colors.dart';
-import 'package:attendance_app/resources/app_strings.dart';
-import 'package:attendance_app/views/pages/home_page.dart';
-import 'package:attendance_app/views/pages/scan_page.dart';
+import 'package:attendance_app/views/pages/attendance_card.dart';
+import 'package:attendance_app/views/pages/profile/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class AttendanceHistoryPage extends StatefulWidget {
   const AttendanceHistoryPage({super.key});
@@ -13,129 +12,110 @@ class AttendanceHistoryPage extends StatefulWidget {
 }
 
 class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
-  int currentPageIndex = 0;
-
-  final List<Widget> pages = const [
-    HomePage(),
-    ScanPage(),
-    AttendanceHistoryPage()
-  ];
-
-  final List<Map<String, dynamic>> bottomNavItems = [
-    {'icon': Iconsax.home5, 'text': AppStrings.home},
-    {'icon': Icons.qr_code_scanner, 'text': 'Scan'},
-    {'icon': Iconsax.calendar5, 'text': AppStrings.history},
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'View your attendance details',
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-              const Text(
-                'Attendance History',
-                style: TextStyle(
-                    color: AppColors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Column(
+        child: Column(
+          children: [
+            Container(
+              color: AppColors.defaultColor,
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child: Container()),
-                      // pages[currentPageIndex],
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(32),
-                          // boxShadow: const [
-                          //   BoxShadow(
-                          //     color: Colors.black26,
-                          //     blurRadius: 10,
-                          //     offset: Offset(0, 4),
-                          //   ),
-                          // ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                            bottomNavItems.length,
-                            (index) {
-                              return buildBottomNavIcon(
-                                icon: bottomNavItems[index]['icon'],
-                                text: bottomNavItems[index]['text'],
-                                isSelected: currentPageIndex == index,
-                                onTap: () =>
-                                    setState(() => currentPageIndex = index),
-                              );
-                            },
-                          ),
+                      Text(
+                        'Attendance History',
+                        style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'View your attendance details',
+                        style: TextStyle(
+                          color: Colors.grey,
                         ),
                       ),
                     ],
                   ),
-                ),
+                  Row(
+                    children: [
+                      appBarAction(icon: Icons.notifications, onTap: () {}),
+                      const SizedBox(width: 16),
+                      appBarAction(
+                        icon: Icons.person_rounded,
+                        onTap: () {
+                          Navigation.navigateToScreen(
+                              context: context, screen: const ProfilePage());
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            Expanded(
+              child: ListView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                children: const [
+                  Text(
+                    'Today',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  CourseAttendanceCard(status: 'Present'),
+                  CourseAttendanceCard(status: 'Late'),
+                  CourseAttendanceCard(status: 'Absent'),
+                  Text(
+                    'Past Week',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  CourseAttendanceCard(status: 'Absent'),
+                  CourseAttendanceCard(status: 'Absent'),
+                  CourseAttendanceCard(status: 'Present'),
+                  CourseAttendanceCard(status: 'Late'),
+                  CourseAttendanceCard(status: 'Late'),
+                  CourseAttendanceCard(status: 'Present'),
+                  CourseAttendanceCard(status: 'Absent'),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
   }
 
-  Widget buildBottomNavIcon(
-      {required IconData icon,
-      required String text,
-      required bool isSelected,
-      required VoidCallback onTap}) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: isSelected
-            ? BoxDecoration(
-                color: Colors.teal[50],
-                borderRadius: BorderRadius.circular(16.0),
-              )
-            : null,
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: isSelected ? Colors.blueGrey.shade900 : Colors.grey,
-            ),
-            const SizedBox(width: 8),
-            Visibility(
-              visible: isSelected,
-              child: Text(
-                text,
-                style: TextStyle(
-                    color: isSelected ? Colors.blueGrey.shade900 : Colors.grey,
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
-          ],
+  Widget appBarAction({required IconData icon, required VoidCallback onTap}) {
+    return Material(
+      elevation: 2,
+      borderRadius: BorderRadius.circular(10),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            color: Colors.teal.shade50,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            icon,
+            color: AppColors.defaultColor,
+          ),
         ),
       ),
     );

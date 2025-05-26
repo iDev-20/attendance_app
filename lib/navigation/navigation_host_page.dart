@@ -1,7 +1,9 @@
+import 'package:attendance_app/components/app_material.dart';
+import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/resources/app_strings.dart';
 import 'package:attendance_app/views/pages/attendance_history_page.dart';
 import 'package:attendance_app/views/pages/home_page.dart';
-import 'package:attendance_app/views/pages/profile/profile_page.dart';
+import 'package:attendance_app/views/pages/scan_page.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -17,7 +19,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
 
   final List<Widget> pages = const [
     HomePage(),
-    ProfilePage(),
+    ScanPage(),
     AttendanceHistoryPage()
   ];
 
@@ -55,8 +57,10 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
       required String text,
       required bool isSelected,
       required VoidCallback onTap}) {
-    return InkWell(
+    return AppMaterial(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(16.0),
+      inkwellBorderRadius: BorderRadius.circular(16.0),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: isSelected
@@ -69,18 +73,24 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.blueGrey.shade900 : Colors.grey,
+              color: isSelected ? AppColors.defaultColor : AppColors.white,
             ),
-            const SizedBox(width: 8),
             Visibility(
               visible: isSelected,
-              child: Text(
-                text,
-                style: TextStyle(
-                    color: isSelected ? Colors.blueGrey.shade900 : Colors.grey,
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700),
+              child: Row(
+                children: [
+                  const SizedBox(width: 8),
+                  Text(
+                    text,
+                    style: TextStyle(
+                        color: isSelected
+                            ? AppColors.defaultColor
+                            : AppColors.white,
+                        fontFamily: 'Nunito',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
           ],
