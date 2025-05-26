@@ -1,6 +1,6 @@
-import 'package:attendance_app/components/buttons.dart';
-import 'package:attendance_app/components/form_fields.dart';
-import 'package:attendance_app/pages/home_page.dart';
+import 'package:attendance_app/resources/app_buttons.dart';
+import 'package:attendance_app/resources/app_form_fields.dart';
+import 'package:attendance_app/views/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {

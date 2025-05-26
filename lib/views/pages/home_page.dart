@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
-import 'package:attendance_app/components/buttons.dart';
-import 'package:attendance_app/components/navigation.dart';
-import 'package:attendance_app/pages/scan_page.dart';
+import 'package:attendance_app/resources/app_buttons.dart';
+import 'package:attendance_app/navigation/navigation.dart';
+import 'package:attendance_app/views/pages/scan_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

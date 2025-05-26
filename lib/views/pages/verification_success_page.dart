@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:attendance_app/components/buttons.dart';
+import 'package:attendance_app/resources/app_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

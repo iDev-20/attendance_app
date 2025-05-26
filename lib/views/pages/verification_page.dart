@@ -1,10 +1,10 @@
 // ignore_for_file: unused_field, use_build_context_synchronously, avoid_print
 
-import 'package:attendance_app/components/buttons.dart';
-import 'package:attendance_app/components/form_fields.dart';
+import 'package:attendance_app/resources/app_buttons.dart';
+import 'package:attendance_app/resources/app_form_fields.dart';
 import 'package:attendance_app/components/global_functions.dart';
-import 'package:attendance_app/components/navigation.dart';
-import 'package:attendance_app/pages/verification_success_page.dart';
+import 'package:attendance_app/navigation/navigation.dart';
+import 'package:attendance_app/views/pages/verification_success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
