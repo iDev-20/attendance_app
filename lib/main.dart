@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:attendance_app/navigation/navigation_host_page.dart';
 import 'package:attendance_app/views/pages/home_page.dart';
 import 'package:attendance_app/views/pages/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
         }),
       ),
-      home: isLoggedIn? const HomePage() : const SignUpPage(),
+      home: isLoggedIn? const NavigationHostPage() : const SignUpPage(),
     );
   }
 }
