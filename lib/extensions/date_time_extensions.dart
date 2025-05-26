@@ -20,6 +20,11 @@ extension DateTimeExtensions on DateTime {
     return DateFormat('MMMM').format(this);
   }
 
+  String friendlyMonthShort() {
+    var format = DateFormat.MMM();
+    return format.format(this);
+  }
+
   String friendlyDayMonth() {
     return DateFormat('d MMMM').format(this);
   }

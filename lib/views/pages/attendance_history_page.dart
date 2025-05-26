@@ -62,35 +62,21 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
             ),
             Expanded(
               child: ListView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                children: const [
-                  Text(
-                    'Today',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  CourseAttendanceCard(status: 'Present'),
-                  CourseAttendanceCard(status: 'Late'),
-                  CourseAttendanceCard(status: 'Absent'),
-                  Text(
-                    'Past Week',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  CourseAttendanceCard(status: 'Absent'),
-                  CourseAttendanceCard(status: 'Absent'),
-                  CourseAttendanceCard(status: 'Present'),
-                  CourseAttendanceCard(status: 'Late'),
-                  CourseAttendanceCard(status: 'Late'),
-                  CourseAttendanceCard(status: 'Present'),
-                  CourseAttendanceCard(status: 'Absent'),
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                children: [
+                  period(period: 'Today'),
+                  const CourseAttendanceCard(status: 'Present'),
+                  const CourseAttendanceCard(status: 'Late'),
+                  const CourseAttendanceCard(status: 'Absent'),
+                  period(period: 'Yesterday'),
+                  const CourseAttendanceCard(status: 'Absent'),
+                  const CourseAttendanceCard(status: 'Absent'),
+                  const CourseAttendanceCard(status: 'Present'),
+                  period(period: 'Past Week'),
+                  const CourseAttendanceCard(status: 'Late'),
+                  const CourseAttendanceCard(status: 'Late'),
+                  const CourseAttendanceCard(status: 'Present'),
+                  const CourseAttendanceCard(status: 'Absent'),
                 ],
               ),
             )
@@ -116,6 +102,20 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
             icon,
             color: AppColors.defaultColor,
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget period({required String period}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Text(
+        period,
+        style: const TextStyle(
+          color: AppColors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
