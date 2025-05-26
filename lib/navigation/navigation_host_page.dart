@@ -17,11 +17,23 @@ class NavigationHostPage extends StatefulWidget {
 class _NavigationHostPageState extends State<NavigationHostPage> {
   int currentPageIndex = 0;
 
-  final List<Widget> pages = const [
-    HomePage(),
-    ScanPage(),
-    AttendanceHistoryPage()
-  ];
+  late List<Widget> pages;
+
+  @override
+  void initState() {
+    super.initState();
+    pages = [
+      const HomePage(),
+      ScanPage(
+        onExit: () {
+          setState(() {
+            currentPageIndex = 0;
+          });
+        },
+      ),
+      const AttendanceHistoryPage()
+    ];
+  }
 
   final List<Map<String, dynamic>> bottomNavItems = [
     {'icon': Iconsax.home5, 'text': AppStrings.home},
@@ -33,22 +45,24 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[currentPageIndex],
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(
-            bottomNavItems.length,
-            (index) {
-              return buildBottomNavIcon(
-                icon: bottomNavItems[index]['icon'],
-                text: bottomNavItems[index]['text'],
-                isSelected: currentPageIndex == index,
-                onTap: () => setState(() => currentPageIndex = index),
-              );
-            },
-          ),
-        ),
-      ),
+      bottomNavigationBar: currentPageIndex == 1
+          ? null
+          : BottomAppBar(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(
+                  bottomNavItems.length,
+                  (index) {
+                    return buildBottomNavIcon(
+                      icon: bottomNavItems[index]['icon'],
+                      text: bottomNavItems[index]['text'],
+                      isSelected: currentPageIndex == index,
+                      onTap: () => setState(() => currentPageIndex = index),
+                    );
+                  },
+                ),
+              ),
+            ),
     );
   }
 
