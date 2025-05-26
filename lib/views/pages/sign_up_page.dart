@@ -156,7 +156,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                     height: 20,
                                   ),
                                   PrimaryButton(
-                                    backgroundColor: Colors.blueGrey.shade900,
                                     onTap: () async {
                                       //check if email entered is a school email
                                       if (isSchoolEmail(emailController.text) ==
@@ -164,17 +163,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                         setState(() {
                                           showSpinner = false;
                                         });
-                                        showAlert(context, 'Invalid Email',
-                                            'Please enter a valid AIT email address');
+                                        showAlert(context: context, title: 'Invalid Email',
+                                            desc: 'Please enter a valid AIT email address');
                                         return;
                                       }
 
                                       if (passwordController.text !=
                                           confirmPasswordController.text) {
                                         showAlert(
-                                          context,
-                                          'Sign up failed',
-                                          'Passwords do not match',
+                                          context: context,
+                                          title: 'Sign up failed',
+                                          desc: 'Passwords do not match',
                                         );
                                         return;
                                       }
@@ -210,9 +209,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                           showSpinner = false;
                                         });
                                         showAlert(
-                                          context,
-                                          'Sign up failed',
-                                          e.toString(),
+                                          context: context,
+                                          title: 'Sign up failed',
+                                          desc: e.toString(),
                                         );
                                         print(e);
                                       }

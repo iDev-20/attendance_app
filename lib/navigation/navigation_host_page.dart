@@ -1,8 +1,9 @@
-import 'package:attendance_app/resources/app_colors.dart';
+import 'package:attendance_app/resources/app_strings.dart';
+import 'package:attendance_app/views/pages/attendance_history_page.dart';
 import 'package:attendance_app/views/pages/home_page.dart';
-import 'package:attendance_app/views/pages/scan_page.dart';
-import 'package:attendance_app/views/pages/verification_success_page.dart';
+import 'package:attendance_app/views/pages/profile/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class NavigationHostPage extends StatefulWidget {
   const NavigationHostPage({super.key});
@@ -16,14 +17,14 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
 
   final List<Widget> pages = const [
     HomePage(),
-    ScanPage(),
-    VerificationSuccessPage()
+    ProfilePage(),
+    AttendanceHistoryPage()
   ];
 
   final List<Map<String, dynamic>> bottomNavItems = [
-    {'icon': Icons.home, 'text': 'Home'},
+    {'icon': Iconsax.home5, 'text': AppStrings.home},
     {'icon': Icons.qr_code_scanner, 'text': 'Scan'},
-    {'icon': Icons.check_circle, 'text': 'Verification'},
+    {'icon': Iconsax.calendar5, 'text': AppStrings.history},
   ];
 
   @override
@@ -31,23 +32,18 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
     return Scaffold(
       body: pages[currentPageIndex],
       bottomNavigationBar: BottomAppBar(
-        color: AppColors.transparent,
-        shadowColor: AppColors.transparent,
-        child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              bottomNavItems.length,
-              (index) {
-                return buildBottomNavIcon(
-                  icon: bottomNavItems[index]['icon'],
-                  text: bottomNavItems[index]['text'],
-                  isSelected: currentPageIndex == index,
-                  onTap: () => setState(() => currentPageIndex = index),
-                );
-              },
-            ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(
+            bottomNavItems.length,
+            (index) {
+              return buildBottomNavIcon(
+                icon: bottomNavItems[index]['icon'],
+                text: bottomNavItems[index]['text'],
+                isSelected: currentPageIndex == index,
+                onTap: () => setState(() => currentPageIndex = index),
+              );
+            },
           ),
         ),
       ),
@@ -82,8 +78,9 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
                 text,
                 style: TextStyle(
                     color: isSelected ? Colors.blueGrey.shade900 : Colors.grey,
+                    fontFamily: 'Nunito',
                     fontSize: 14,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w700),
               ),
             ),
           ],

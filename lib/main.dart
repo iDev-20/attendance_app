@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:attendance_app/navigation/navigation_host_page.dart';
-import 'package:attendance_app/views/pages/home_page.dart';
 import 'package:attendance_app/views/pages/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -38,11 +37,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
         primarySwatch: Colors.blueGrey,
-        fontFamily: 'Lato',
+        fontFamily: 'Nunito',
         pageTransitionsTheme: const PageTransitionsTheme(builders: {
           TargetPlatform.android: CupertinoPageTransitionsBuilder(),
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
         }),
+        bottomAppBarTheme: const BottomAppBarTheme(
+          elevation: 0,
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+        ),
       ),
       home: isLoggedIn? const NavigationHostPage() : const SignUpPage(),
     );

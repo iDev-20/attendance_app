@@ -146,8 +146,11 @@ class _LoginPageState extends State<VerificationPage> {
                                   setState(() {
                                     showSpinner = false;
                                   });
-                                  showAlert(context, 'Invalid Email',
-                                      'Please enter a valid AIT email address');
+                                  showAlert(
+                                      context: context,
+                                      title: 'Invalid Email',
+                                      desc:
+                                          'Please enter a valid AIT email address');
                                   return;
                                 }
 
@@ -159,8 +162,11 @@ class _LoginPageState extends State<VerificationPage> {
                                   setState(() {
                                     showSpinner = false;
                                   });
-                                  showAlert(context, 'Email mismatch',
-                                      'The email you entered does not match the email you signed up with');
+                                  showAlert(
+                                      context: context,
+                                      title: 'Email mismatch',
+                                      desc:
+                                          'The email you entered does not match the email you signed up with');
                                   return;
                                 }
 
@@ -180,9 +186,9 @@ class _LoginPageState extends State<VerificationPage> {
                                     showSpinner = false;
                                   });
                                   showAlert(
-                                    context,
-                                    'Verification failed',
-                                    'Incorrect password',
+                                    context: context,
+                                    title: 'Verification failed',
+                                    desc: 'Incorrect password',
                                   );
                                   print(e);
                                 }

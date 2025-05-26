@@ -1,3 +1,4 @@
+import 'package:attendance_app/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -14,7 +15,7 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.child,
     this.onTap,
-    this.backgroundColor = Colors.blue,
+    this.backgroundColor = AppColors.defaultColor,
     this.foregroundColor = Colors.white,
     this.borderColor = Colors.transparent,
     this.overlayColor,
@@ -52,7 +53,7 @@ class PrimaryButton extends StatelessWidget {
       backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.disabled)) {
-          return Colors.blue;
+          return Colors.grey.shade300;
         }
         return backgroundColor; // Defer to the widget's default.
       }),

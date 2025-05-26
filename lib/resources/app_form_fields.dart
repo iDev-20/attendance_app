@@ -1,3 +1,4 @@
+import 'package:attendance_app/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -58,7 +59,7 @@ class PrimaryTextFormField extends StatelessWidget {
                   Text(
                     labelText ?? '',
                     style: const TextStyle(
-                        color: Colors.black,
+                        color: AppColors.defaultColor,
                         fontSize: 14,
                         fontWeight: FontWeight.w400),
                   ),
@@ -85,7 +86,7 @@ class PrimaryTextFormField extends StatelessWidget {
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),
-              cursorColor: Colors.black,
+              cursorColor: AppColors.defaultColor,
               decoration: InputDecoration(
                 prefixIcon: prefixWidget,
                 filled: true,
@@ -100,16 +101,16 @@ class PrimaryTextFormField extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(6),
-                  borderSide: BorderSide(color: Colors.grey.shade700),
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(color: Colors.transparent),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(6),
-                  borderSide: BorderSide(color: Colors.grey.shade700),
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(color: Colors.transparent),
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  borderSide: const BorderSide(color: Colors.black, width: 2.0),
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
                 ),
               ),
               inputFormatters: inputFormatters,

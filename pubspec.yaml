@@ -43,6 +43,8 @@ dependencies:
   intl: ^0.19.0
   rflutter_alert: ^2.0.7
   shared_preferences: ^2.2.3
+  iconsax: ^0.0.8
+  flutter_svg: ^2.0.10+1
 
 
 
@@ -70,8 +72,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/
-    - fonts/
+    - assets/images/
+    - assets/fonts/
+    - assets/svgs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -87,13 +90,23 @@ flutter:
   fonts:
     - family: Merriweather
       fonts:
-        - asset: fonts/Merriweather-Bold.ttf
+        - asset: assets/fonts/Merriweather-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Merriweather-Bold.ttf
           weight: 700
-        - asset: fonts/Merriweather-Regular.ttf
     - family: Lato
       fonts:
-        - asset: fonts/Lato-Bold.ttf
-        - asset: fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Lato-Bold.ttf
+          weight: 700
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
           weight: 700
   #
   # For details regarding fonts from package dependencies,
