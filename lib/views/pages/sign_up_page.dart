@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:attendance_app/views/pages/home_page.dart';
+import 'package:attendance_app/views/pages/home/home_page.dart';
 import 'package:attendance_app/components/global_functions.dart';
 
 class SignUpPage extends StatefulWidget {

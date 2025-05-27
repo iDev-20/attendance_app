@@ -6,10 +6,11 @@ class AppStrings {
 
   //BottomNav
   static const home = 'Home';
-  static const profile = 'Profile';
+  static const scan = 'Scan';
   static const history = 'History';
 
   //Profile
+  static const profile = 'Profile';
   static const sampleFullName = 'Jermaine Lamar Cole';
   static const sampleCourse = 'BEng. Computer Engineering';
   static const studentIdNumber = 'Student ID Number';

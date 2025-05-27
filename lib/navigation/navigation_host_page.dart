@@ -1,8 +1,8 @@
 import 'package:attendance_app/components/app_material.dart';
 import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/resources/app_strings.dart';
-import 'package:attendance_app/views/pages/attendance_history_page.dart';
-import 'package:attendance_app/views/pages/home_page.dart';
+import 'package:attendance_app/views/pages/attendance%20history/attendance_history_page.dart';
+import 'package:attendance_app/views/pages/home/home_page.dart';
 import 'package:attendance_app/views/pages/scan_page.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -37,7 +37,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
 
   final List<Map<String, dynamic>> bottomNavItems = [
     {'icon': Iconsax.home5, 'text': AppStrings.home},
-    {'icon': Icons.qr_code_scanner, 'text': 'Scan'},
+    {'icon': Icons.qr_code_scanner, 'text': AppStrings.scan},
     {'icon': Iconsax.calendar5, 'text': AppStrings.history},
   ];
 

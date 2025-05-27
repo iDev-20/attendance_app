@@ -1,4 +1,4 @@
-import 'package:attendance_app/views/pages/home_page.dart';
+import 'package:attendance_app/views/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Navigation {
