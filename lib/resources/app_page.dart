@@ -1,3 +1,4 @@
+import 'package:attendance_app/components/information_banner.dart';
 import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/views/pages/home/components/home_header.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class AppPageScaffold extends StatelessWidget {
   final bool useSafeArea;
   final bool showBackButton;
   final Widget? appBarLeadingIcon;
+  final bool showInformationBanner;
 
   const AppPageScaffold({
     super.key,
@@ -36,6 +38,7 @@ class AppPageScaffold extends StatelessWidget {
     this.useSafeArea = true,
     this.showBackButton = true,
     this.appBarLeadingIcon,
+    this.showInformationBanner = false,
   });
 
   @override
@@ -87,6 +90,11 @@ class AppPageScaffold extends StatelessWidget {
                     HomeHeader(
                       title: headerTitle ?? '',
                       subtitle: headerSubtitle ?? '',
+                    ),
+                  if (showInformationBanner == true)
+                    const InformationBanner(
+                      text:
+                          'Your CS103 attendance is approaching the minimum thresholds',
                     ),
                   Expanded(child: body),
                 ],

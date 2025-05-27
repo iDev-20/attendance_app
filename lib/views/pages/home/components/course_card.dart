@@ -3,23 +3,8 @@ import 'package:attendance_app/extensions/date_time_extensions.dart';
 import 'package:attendance_app/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CourseAttendanceCard extends StatelessWidget {
-  const CourseAttendanceCard({super.key, required this.status});
-
-  final String status;
-
-  Color getStatusColor(String status) {
-    switch (status) {
-      case 'Present':
-        return Colors.green.shade500;
-      case 'Absent':
-        return Colors.red.shade500;
-      case 'Late':
-        return Colors.orange.shade500;
-      default:
-        return Colors.grey.shade500;
-    }
-  }
+class CourseCard extends StatelessWidget {
+  const CourseCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +22,7 @@ class CourseAttendanceCard extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
-                    color: Colors.teal.shade50,
+                    color: AppColors.primaryTeal,
                     borderRadius: BorderRadius.circular(8)),
                 child: Column(
                   children: [
@@ -95,31 +80,12 @@ class CourseAttendanceCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Column(
-                children: [
-                  Text(
-                    DateTime.now().friendlyTime(),
-                    style: const TextStyle(
-                        color: AppColors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                        color: Colors.teal.shade50,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Text(
-                      status,
-                      style: TextStyle(
-                          color: getStatusColor(status),
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
+              Text(
+                DateTime.now().friendlyTime(),
+                style: const TextStyle(
+                    color: AppColors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),

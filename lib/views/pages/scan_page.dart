@@ -9,9 +9,9 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:attendance_app/extensions/date_time_extensions.dart';
 
 class ScanPage extends StatefulWidget {
-  const ScanPage({super.key, required this.onExit});
+  const ScanPage({super.key, this.onExit});
 
-  final void Function() onExit;
+  final void Function()? onExit;
 
   @override
   State<ScanPage> createState() => _ScanPageState();
@@ -89,7 +89,11 @@ class _ScanPageState extends State<ScanPage> {
               padding:
                   EdgeInsets.only(top: MediaQuery.of(context).padding.top + 30),
               child: InkWell(
-                onTap: widget.onExit,
+                onTap: widget.onExit ??
+                    () {
+                      controller?.stopCamera();
+                      Navigator.pop(context);
+                    },
                 child: Container(
                   width: 85,
                   padding: const EdgeInsets.all(5),

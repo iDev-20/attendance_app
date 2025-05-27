@@ -1,6 +1,6 @@
 import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/resources/app_page.dart';
-import 'package:attendance_app/views/pages/attendance%20history/components/attendance_card.dart';
+import 'package:attendance_app/views/pages/attendance%20history/components/course_attendance_card.dart';
 import 'package:flutter/material.dart';
 
 class AttendanceHistoryPage extends StatefulWidget {

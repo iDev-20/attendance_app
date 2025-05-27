@@ -58,7 +58,7 @@ class HomeHeader extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
-          color: Colors.teal.shade50,
+          color: AppColors.primaryTeal,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Icon(

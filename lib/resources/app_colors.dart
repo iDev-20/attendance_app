@@ -8,4 +8,5 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color defaultColor = Color(0xFF263238);
+  static const Color primaryTeal = Color(0xFFE0F2F1);
 }
