@@ -1,6 +1,10 @@
+import 'package:attendance_app/navigation/navigation.dart';
 import 'package:attendance_app/resources/app_buttons.dart';
+import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/resources/app_form_fields.dart';
-import 'package:attendance_app/views/pages/home/home_page.dart';
+import 'package:attendance_app/resources/app_images.dart';
+import 'package:attendance_app/resources/app_strings.dart';
+import 'package:attendance_app/views/pages/onboarding/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,139 +20,121 @@ class _LoginPageState extends State<LoginPage> {
   bool isPasswordVisible = false;
   String password = '';
 
+  final formKey = GlobalKey<FormState>();
+
   void togglePasswordVisibility() {
     setState(() {
       isPasswordVisible = !isPasswordVisible;
     });
   }
 
-  // void login() {
-  //   String email = emailController.text.trim();
-  //   String password = passwordController.text.trim();
-
-  //   // Placeholder logic for login authentication
-  //   if (email == 'lecturer@example.com' && password == 'password123') {
-  //     // Navigate to the next page if credentials are correct
-  //     Navigator.of(context).push(MaterialPageRoute(
-  //         builder: (BuildContext context) => const QrCodePage()));
-  //   } else {
-  //     // Display an error message if credentials are incorrect
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('Invalid email or password')),
-  //     );
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
+        FocusManager.instance.primaryFocus
+            ?.unfocus(); //this hides the keyboard anytime the screen is tapped
       },
       child: AbsorbPointer(
-        absorbing: false, //this hides the keyboard anytime the screen is tapped
+        absorbing: false,
         child: Scaffold(
           resizeToAvoidBottomInset:
               false, //this stops the background image from moving anytime the keyboard is initiated
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: const AssetImage('images/sample_image2.jpg'),
+                image: AppImages.backgroundImage,
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.5), BlendMode.darken),
+                    AppColors.black.withOpacity(0.7), BlendMode.darken),
               ),
             ),
-            child: ListView(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
-                          left: 16, top: 100, right: 16, bottom: 100),
-                      child: Text(
-                        'Attendify',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Merriweather',
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 24, right: 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 18),
+                    child: Text(
+                      AppStrings.appName,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 45,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Center(
-                        child: SingleChildScrollView(
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, top: 30, right: 24, bottom: 40),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(28),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          AppStrings.login,
+                          style: TextStyle(
+                            color: AppColors.defaultColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Form(
+                          key: formKey,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
-                                'Login to your account',
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                              const SizedBox(height: 20),
                               PrimaryTextFormField(
-                                labelText: 'Email',
+                                labelText: AppStrings.schoolEmail,
                                 controller: emailController,
                                 keyboardType: TextInputType.emailAddress,
-                                prefixWidget: Icon(
-                                  Icons.email_outlined,
-                                  color: Colors.grey.shade700,
-                                ),
-                                hintText: 'example@gmail.com',
+                                hintText: AppStrings.studentEmailHint,
+                                textInputAction: TextInputAction.next,
                               ),
                               PrimaryTextFormField(
-                                labelText: 'Pasword',
-                                obscureText: !isPasswordVisible,
+                                labelText: AppStrings.password,
+                                hintText: AppStrings.enterYourPassword,
                                 controller: passwordController,
                                 keyboardType: TextInputType.visiblePassword,
                                 textInputAction: TextInputAction.done,
+                                obscureText: !isPasswordVisible,
                                 onChanged: (value) {
                                   setState(() {
                                     password = value;
                                   });
                                 },
-                                prefixWidget: Icon(
-                                  Icons.lock_outline_rounded,
-                                  color: Colors.grey.shade700,
-                                ),
                                 suffixWidget: IconButton(
                                   icon: Icon(
                                     isPasswordVisible
                                         ? Icons.visibility
                                         : Icons.visibility_off,
-                                    color: Colors.grey.shade700,
+                                    color: AppColors.defaultColor,
                                   ),
                                   onPressed: togglePasswordVisibility,
                                 ),
-                                hintText: 'Enter your Password',
                               ),
-                              const SizedBox(
-                                height: 20,
-                              ),
+                              const SizedBox(height: 20),
                               PrimaryButton(
                                 onTap: () {
                                   FocusManager.instance.primaryFocus?.unfocus();
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const HomePage()));
+                                  Navigation.navigateToScreen(
+                                      context: context,
+                                      screen: const SignUpPage());
                                 },
-                                child: const Text('Login'),
-                              )
+                                child: const Text(AppStrings.login),
+                              ),
                             ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

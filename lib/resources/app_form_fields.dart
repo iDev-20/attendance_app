@@ -61,7 +61,7 @@ class PrimaryTextFormField extends StatelessWidget {
                     style: const TextStyle(
                         color: AppColors.defaultColor,
                         fontSize: 14,
-                        fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w600),
                   ),
                   Visibility(
                     visible: required,
@@ -119,6 +119,7 @@ class PrimaryTextFormField extends StatelessWidget {
               controller: controller,
               onChanged: onChanged,
               onSaved: onSaved,
+              textInputAction: textInputAction ?? TextInputAction.done,
             ),
           ),
         ],

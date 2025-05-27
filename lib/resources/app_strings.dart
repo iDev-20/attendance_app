@@ -1,7 +1,22 @@
 class AppStrings {
   AppStrings._();
 
-  static const appName = 'MyApp';
+  //General
+  static const appName = 'Attendify';
+
+  //Onboarding
+  static const signUp = 'Sign Up';
+  static const studentEmailHint = 'idnumber@ait.edu.gh';
+  static const password = 'Password';
+  static const enterAPassword = 'Enter a password';
+  static const enterYourPassword = 'Enter your password';
+  static const confirmPassword = 'Confirm Password';
+  static const reenterYourPassword = 'Re-enter your password';
+  static const invalidEmail = 'Invalid Email';
+  static const pleaseEnterAValidAitEmailAdd = 'Please enter a valid AIT email address';
+  static const signUpFailed = 'Sign up failed';
+  static const passwordsDoNotMatch = 'Passwords do not match';
+  static const login = 'Login';
 
   //BottomNav
   static const home = 'Home';
