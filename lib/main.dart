@@ -2,7 +2,8 @@
 
 import 'package:attendance_app/navigation/navigation_host_page.dart';
 import 'package:attendance_app/resources/app_colors.dart';
-import 'package:attendance_app/views/pages/sign_up_page.dart';
+import 'package:attendance_app/views/pages/onboarding/sign_up_page.dart';
+import 'package:attendance_app/views/pages/verification_success_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
           surfaceTintColor: AppColors.defaultColor,
         ),
       ),
-      home: isLoggedIn? const NavigationHostPage() : const SignUpPage(),
+      home: isLoggedIn? const VerificationSuccessPage() : const SignUpPage(),
     );
   }
 }

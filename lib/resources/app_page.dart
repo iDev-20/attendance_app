@@ -17,6 +17,7 @@ class AppPageScaffold extends StatelessWidget {
   final Widget? bottomNavigationBar;
   final OnBackPressed? onBackPressed;
   final bool useSafeArea;
+  final bool showBackButton;
   final Widget? appBarLeadingIcon;
 
   const AppPageScaffold({
@@ -33,6 +34,7 @@ class AppPageScaffold extends StatelessWidget {
     this.bottomNavigationBar,
     this.onBackPressed,
     this.useSafeArea = true,
+    this.showBackButton = true,
     this.appBarLeadingIcon,
   });
 
@@ -54,21 +56,24 @@ class AppPageScaffold extends StatelessWidget {
                     fontSize: 20),
               ),
               automaticallyImplyLeading: false,
-              leading: Container(
-                padding: const EdgeInsets.all(16),
-                child: InkResponse(
-                  radius: 28,
-                  onTap: () {
-                    if (onBackPressed != null) {
-                      onBackPressed?.call();
-                    } else {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: appBarLeadingIcon ??
-                      const Icon(Icons.arrow_back, color: AppColors.white),
-                ),
-              ),
+              leading: showBackButton
+                  ? Container(
+                      padding: const EdgeInsets.all(16),
+                      child: InkResponse(
+                        radius: 28,
+                        onTap: () {
+                          if (onBackPressed != null) {
+                            onBackPressed?.call();
+                          } else {
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: appBarLeadingIcon ??
+                            const Icon(Icons.arrow_back,
+                                color: AppColors.white),
+                      ),
+                    )
+                  : null,
               actions: actions,
               bottom: appBarBottom,
             ),

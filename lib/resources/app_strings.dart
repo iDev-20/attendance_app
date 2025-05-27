@@ -3,7 +3,6 @@ class AppStrings {
 
   static const appName = 'MyApp';
 
-
   //BottomNav
   static const home = 'Home';
   static const scan = 'Scan';
@@ -30,4 +29,9 @@ class AppStrings {
   static const nationality = 'Nationality';
   static const sampleNationality = 'Nigerian';
   static const saveChanges = 'Save Changes';
+
+  //Verification Success
+  static const attendanceRecorded = 'Attendance Recorded!';
+  static const thanksForShowingUpToday =
+      'Thanks for showing up today — your presence has been successfully logged. Keep it up!';
 }

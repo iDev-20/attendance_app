@@ -37,9 +37,9 @@ class PrimaryButton extends StatelessWidget {
       ),
       textStyle: MaterialStateProperty.all(
         const TextStyle(
-          fontFamily: 'Lato',
+          fontFamily: 'Nunito',
           fontSize: 16,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
         ),
       ),
       shape: MaterialStateProperty.all(
