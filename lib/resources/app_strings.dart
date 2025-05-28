@@ -3,6 +3,8 @@ class AppStrings {
 
   //General
   static const appName = 'Attendify';
+  static const sampleAttendanceThresholdMessage =
+      'Your CS103 attendance is approaching the minimum thresholds';
 
   //Onboarding
   static const signUp = 'Sign Up';
@@ -13,7 +15,8 @@ class AppStrings {
   static const confirmPassword = 'Confirm Password';
   static const reenterYourPassword = 'Re-enter your password';
   static const invalidEmail = 'Invalid Email';
-  static const pleaseEnterAValidAitEmailAdd = 'Please enter a valid AIT email address';
+  static const pleaseEnterAValidAitEmailAdd =
+      'Please enter a valid AIT email address';
   static const signUpFailed = 'Sign up failed';
   static const passwordsDoNotMatch = 'Passwords do not match';
   static const login = 'Login';
@@ -49,4 +52,30 @@ class AppStrings {
   static const attendanceRecorded = 'Attendance Recorded!';
   static const thanksForShowingUpToday =
       'Thanks for showing up today — your presence has been successfully logged. Keep it up!';
+
+  //Home
+  static const morningGreetingSubtitle = 'Ready to make the most of today?';
+  static const afternoonGreetingSubtitle = "Let’s get things done this afternoon.";
+  static const eveningGreetingSubtitle = "Evening check-in — let’s finish strong.";
+  static const semesterCourses = 'Semester Courses';
+  static const todaysClasses = "Today's Classes";
+  static const upcoming = 'Upcoming';
+  static const markAttendance = 'Mark attendance';
+
+  //Attendance History
+  static const attendanceHistory = 'Attendance History';
+  static const viewYourAttendanceHistory = 'View your attendance history';
+  static const today = 'Today';
+  static const yesterday = 'Yesterday';
+  static const pastWeek = 'Past Week';
+  static const present = 'Present';
+  static const late = 'Late';
+  static const absent = 'Absent';
+
+  //Course details
+  static const courseDetails = 'Course Details';
+  static const sampleEligibilityText = 'Your are eligible for mid semester exams';
+  static const attendanceThreshold = 'Attendance Threshold';
+  static const midSemester = 'Mid Semester';
+  static const endOfSemester = 'End of Semester';
 }

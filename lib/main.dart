@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
         bottomAppBarTheme: const BottomAppBarTheme(
           elevation: 0,
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          color: AppColors.defaultColor,
-          surfaceTintColor: AppColors.defaultColor,
+          color: AppColors.white,
+          surfaceTintColor: AppColors.white,
         ),
       ),
       home: isLoggedIn? const NavigationHostPage() : const SignUpPage(),

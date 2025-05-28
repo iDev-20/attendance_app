@@ -1,5 +1,6 @@
 import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/resources/app_page.dart';
+import 'package:attendance_app/resources/app_strings.dart';
 import 'package:attendance_app/views/pages/attendance%20history/components/course_attendance_card.dart';
 import 'package:flutter/material.dart';
 
@@ -14,24 +15,25 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return AppPageScaffold(
-      headerTitle: 'Attendance History',
-      headerSubtitle: 'View your attendance history',
+      headerTitle: AppStrings.attendanceHistory,
+      headerSubtitle: AppStrings.viewYourAttendanceHistory,
+      hasRefreshIndicator: true,
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
-          period(period: 'Today'),
-          const CourseAttendanceCard(status: 'Present'),
-          const CourseAttendanceCard(status: 'Late'),
-          const CourseAttendanceCard(status: 'Absent'),
-          period(period: 'Yesterday'),
-          const CourseAttendanceCard(status: 'Absent'),
-          const CourseAttendanceCard(status: 'Absent'),
-          const CourseAttendanceCard(status: 'Present'),
-          period(period: 'Past Week'),
-          const CourseAttendanceCard(status: 'Late'),
-          const CourseAttendanceCard(status: 'Late'),
-          const CourseAttendanceCard(status: 'Present'),
-          const CourseAttendanceCard(status: 'Absent'),
+          period(period: AppStrings.today),
+          const CourseAttendanceCard(status: AppStrings.present),
+          const CourseAttendanceCard(status: AppStrings.late),
+          const CourseAttendanceCard(status: AppStrings.absent),
+          period(period: AppStrings.today),
+          const CourseAttendanceCard(status: AppStrings.absent),
+          const CourseAttendanceCard(status: AppStrings.absent),
+          const CourseAttendanceCard(status: AppStrings.present),
+          period(period: AppStrings.pastWeek),
+          const CourseAttendanceCard(status: AppStrings.late),
+          const CourseAttendanceCard(status: AppStrings.late),
+          const CourseAttendanceCard(status: AppStrings.present),
+          const CourseAttendanceCard(status: AppStrings.absent),
         ],
       ),
     );
@@ -43,7 +45,7 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
       child: Text(
         period,
         style: const TextStyle(
-          color: AppColors.white,
+          color: AppColors.defaultColor,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),

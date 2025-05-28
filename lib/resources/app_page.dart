@@ -1,5 +1,6 @@
 import 'package:attendance_app/components/information_banner.dart';
 import 'package:attendance_app/resources/app_colors.dart';
+import 'package:attendance_app/resources/app_strings.dart';
 import 'package:attendance_app/views/pages/home/components/home_header.dart';
 import 'package:flutter/material.dart';
 
@@ -21,25 +22,26 @@ class AppPageScaffold extends StatelessWidget {
   final bool showBackButton;
   final Widget? appBarLeadingIcon;
   final bool showInformationBanner;
+  final bool hasRefreshIndicator;
 
-  const AppPageScaffold({
-    super.key,
-    required this.body,
-    this.hideAppBar = true,
-    this.title,
-    this.headerTitle,
-    this.headerSubtitle,
-    this.actions,
-    this.backgroundColor = AppColors.defaultColor,
-    this.appBarBottom,
-    this.floatingActionButton,
-    this.bottomNavigationBar,
-    this.onBackPressed,
-    this.useSafeArea = true,
-    this.showBackButton = true,
-    this.appBarLeadingIcon,
-    this.showInformationBanner = false,
-  });
+  const AppPageScaffold(
+      {super.key,
+      required this.body,
+      this.hideAppBar = true,
+      this.title,
+      this.headerTitle,
+      this.headerSubtitle,
+      this.actions,
+      this.backgroundColor = AppColors.white,
+      this.appBarBottom,
+      this.floatingActionButton,
+      this.bottomNavigationBar,
+      this.onBackPressed,
+      this.useSafeArea = true,
+      this.showBackButton = true,
+      this.appBarLeadingIcon,
+      this.showInformationBanner = false,
+      this.hasRefreshIndicator = false});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class AppPageScaffold extends StatelessWidget {
               title: Text(
                 title ?? '',
                 style: const TextStyle(
-                    color: AppColors.white,
+                    color: AppColors.defaultColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),
@@ -73,7 +75,7 @@ class AppPageScaffold extends StatelessWidget {
                         },
                         child: appBarLeadingIcon ??
                             const Icon(Icons.arrow_back,
-                                color: AppColors.white),
+                                color: AppColors.defaultColor),
                       ),
                     )
                   : null,
@@ -93,10 +95,13 @@ class AppPageScaffold extends StatelessWidget {
                     ),
                   if (showInformationBanner == true)
                     const InformationBanner(
-                      text:
-                          'Your CS103 attendance is approaching the minimum thresholds',
+                      text: AppStrings.sampleAttendanceThresholdMessage,
                     ),
-                  Expanded(child: body),
+                  Expanded(
+                    child: hasRefreshIndicator
+                        ? RefreshIndicator(onRefresh: () async {}, child: body)
+                        : body,
+                  ),
                 ],
               ),
             )

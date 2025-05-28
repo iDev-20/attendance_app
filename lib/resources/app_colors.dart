@@ -9,4 +9,10 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color defaultColor = Color(0xFF263238);
   static const Color primaryTeal = Color(0xFFE0F2F1);
+  static const Color boxColor1 = Color(0xffF6F6F6);
+  static const Color boxColor2 = Color(0xffFFF4F4);
+  static const Color boxColor3 = Color(0xffF5F9F9);
+  static const Color boxColor4 = Color(0xffF4F7FF);
+  static const Color boxColor5 = Color(0xffFFF3DE);
+  static const Color boxColor6 = Color(0xffF2EEFF);
 }

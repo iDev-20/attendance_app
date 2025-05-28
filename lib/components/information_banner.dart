@@ -19,7 +19,7 @@ class InformationBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
+        padding: const EdgeInsets.only(bottom: 6),
         child: Material(
           color: AppColors.transparent,
           child: InkWell(

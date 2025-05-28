@@ -1,6 +1,8 @@
 import 'package:attendance_app/components/app_material.dart';
 import 'package:attendance_app/extensions/date_time_extensions.dart';
+import 'package:attendance_app/navigation/navigation.dart';
 import 'package:attendance_app/resources/app_colors.dart';
+import 'package:attendance_app/views/pages/course_details_page.dart';
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
@@ -13,7 +15,10 @@ class CourseCard extends StatelessWidget {
         bottom: 8,
       ),
       child: AppMaterial(
-        onTap: () {},
+        onTap: () {
+          Navigation.navigateToScreen(
+              context: context, screen: const CourseDetailsPage());
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
@@ -59,7 +64,7 @@ class CourseCard extends StatelessWidget {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                color: AppColors.white,
+                                color: AppColors.defaultColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -69,7 +74,7 @@ class CourseCard extends StatelessWidget {
                           Text(
                             'Introduction to Computer Science',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: AppColors.defaultColor,
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
                             ),
@@ -83,7 +88,7 @@ class CourseCard extends StatelessWidget {
               Text(
                 DateTime.now().friendlyTime(),
                 style: const TextStyle(
-                    color: AppColors.white,
+                    color: AppColors.defaultColor,
                     fontSize: 13,
                     fontWeight: FontWeight.bold),
               ),

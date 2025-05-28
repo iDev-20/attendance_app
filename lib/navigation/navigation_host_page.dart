@@ -87,7 +87,8 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           children: [
             Icon(
               icon,
-              color: isSelected ? AppColors.defaultColor : AppColors.white,
+              // color: isSelected ? AppColors.defaultColor : AppColors.white,
+              color: isSelected ? AppColors.defaultColor : Colors.grey,
             ),
             Visibility(
               visible: isSelected,

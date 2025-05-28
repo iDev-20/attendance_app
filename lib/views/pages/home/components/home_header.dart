@@ -26,7 +26,7 @@ class HomeHeader extends StatelessWidget {
             children: [
               Text(title,
                   style: const TextStyle(
-                      color: Colors.white,
+                      color: AppColors.defaultColor,
                       fontSize: 24,
                       fontWeight: FontWeight.bold)),
               Text(subtitle, style: const TextStyle(color: Colors.grey)),
@@ -35,13 +35,14 @@ class HomeHeader extends StatelessWidget {
           Row(
             children: [
               appBarAction(icon: Icons.notifications, onTap: () {}),
-              const SizedBox(width: 16),
+              const SizedBox(width: 10),
               appBarAction(
-                  icon: Icons.person_rounded,
-                  onTap: () {
-                    Navigation.navigateToScreen(
-                        context: context, screen: const ProfilePage());
-                  }),
+                icon: Icons.person_rounded,
+                onTap: () {
+                  Navigation.navigateToScreen(
+                      context: context, screen: const ProfilePage());
+                },
+              ),
             ],
           ),
         ],

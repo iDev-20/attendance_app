@@ -1,6 +1,9 @@
 import 'package:attendance_app/components/app_material.dart';
 import 'package:attendance_app/extensions/date_time_extensions.dart';
+import 'package:attendance_app/navigation/navigation.dart';
 import 'package:attendance_app/resources/app_colors.dart';
+import 'package:attendance_app/resources/app_strings.dart';
+import 'package:attendance_app/views/pages/course_details_page.dart';
 import 'package:flutter/material.dart';
 
 class CourseAttendanceCard extends StatelessWidget {
@@ -10,11 +13,11 @@ class CourseAttendanceCard extends StatelessWidget {
 
   Color getStatusColor(String status) {
     switch (status) {
-      case 'Present':
+      case AppStrings.present:
         return Colors.green.shade500;
-      case 'Absent':
+      case AppStrings.absent:
         return Colors.red.shade500;
-      case 'Late':
+      case AppStrings.late:
         return Colors.orange.shade500;
       default:
         return Colors.grey.shade500;
@@ -28,7 +31,10 @@ class CourseAttendanceCard extends StatelessWidget {
         bottom: 8,
       ),
       child: AppMaterial(
-        onTap: () {},
+        onTap: () {
+          Navigation.navigateToScreen(
+              context: context, screen: const CourseDetailsPage());
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
@@ -74,7 +80,7 @@ class CourseAttendanceCard extends StatelessWidget {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                color: AppColors.white,
+                                color: AppColors.defaultColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -84,7 +90,7 @@ class CourseAttendanceCard extends StatelessWidget {
                           Text(
                             'Introduction to Computer Science',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: AppColors.defaultColor,
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
                             ),
@@ -100,7 +106,7 @@ class CourseAttendanceCard extends StatelessWidget {
                   Text(
                     DateTime.now().friendlyTime(),
                     style: const TextStyle(
-                        color: AppColors.white,
+                        color: AppColors.defaultColor,
                         fontSize: 13,
                         fontWeight: FontWeight.bold),
                   ),

@@ -42,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     const Text(
                       AppStrings.sampleFullName,
                       style: TextStyle(
-                          color: AppColors.white,
+                          color: AppColors.defaultColor,
                           fontSize: 24,
                           fontWeight: FontWeight.bold),
                     ),
@@ -59,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         padding: const EdgeInsets.only(
                             left: 36, top: 24, right: 36, bottom: 36),
                         decoration: BoxDecoration(
-                          color: AppColors.white,
+                          color: AppColors.defaultColor,
                           borderRadius: BorderRadius.circular(28),
                         ),
                         child: Column(
@@ -108,7 +108,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             PrimaryButton(
-                                enabled: newPhoneNumber != null,
+                                // enabled: newPhoneNumber != null,
+                                backgroundColor: AppColors.white,
+                                foregroundColor: AppColors.defaultColor,
                                 onTap: () {
                                   showAlert(
                                       context: context,
@@ -155,7 +157,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Text(
               value,
               style: const TextStyle(
-                  color: AppColors.defaultColor, fontWeight: FontWeight.bold),
+                  color: AppColors.white, fontWeight: FontWeight.bold),
             ),
           ],
         ),
