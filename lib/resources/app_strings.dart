@@ -49,9 +49,11 @@ class AppStrings {
   static const saveChanges = 'Save Changes';
 
   //Verification Success
+  static const checkInComplete = 'Check-In Complete';
   static const attendanceRecorded = 'Attendance Recorded!';
   static const thanksForShowingUpToday =
       'Thanks for showing up today — your presence has been successfully logged. Keep it up!';
+  static const done = 'Done';
 
   //Home
   static const morningGreetingSubtitle = 'Ready to make the most of today?';
