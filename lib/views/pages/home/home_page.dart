@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
       informationBannerText: AppStrings.sampleAttendanceThresholdMessage,
       hasRefreshIndicator: true,
       body: ListView(
-        // padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
           const UpcomingClass(),
           SemesterCoursesDashboardMetricView(),
