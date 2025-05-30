@@ -1,18 +1,35 @@
 import 'package:attendance_app/components/app_material.dart';
 import 'package:attendance_app/extensions/date_time_extensions.dart';
+import 'package:attendance_app/models/ui_models.dart';
 import 'package:attendance_app/navigation/navigation.dart';
 import 'package:attendance_app/resources/app_colors.dart';
+import 'package:attendance_app/resources/app_strings.dart';
 import 'package:attendance_app/views/pages/course_details_page.dart';
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
-  const CourseCard({super.key});
+  const CourseCard({super.key, required this.course});
+
+  final Course course;
+
+  Color getStatusColor(String status) {
+    switch (status) {
+      case AppStrings.present:
+        return Colors.green.shade500;
+      case AppStrings.absent:
+        return Colors.red.shade500;
+      case AppStrings.late:
+        return Colors.orange.shade500;
+      default:
+        return Colors.grey.shade500;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        bottom: 8,
+        bottom: 2,
       ),
       child: AppMaterial(
         onTap: () {
@@ -52,7 +69,7 @@ class CourseCard extends StatelessWidget {
               const SizedBox(
                 width: 12,
               ),
-              const Expanded(
+              Expanded(
                 child: Row(
                   children: [
                     Expanded(
@@ -60,20 +77,20 @@ class CourseCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'CS101',
+                            course.courseCode,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: AppColors.defaultColor,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.w600),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Text(
-                            'Introduction to Computer Science',
-                            style: TextStyle(
+                            course.courseTitle,
+                            style: const TextStyle(
                               color: AppColors.defaultColor,
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
@@ -85,12 +102,38 @@ class CourseCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Text(
-                DateTime.now().friendlyTime(),
-                style: const TextStyle(
-                    color: AppColors.defaultColor,
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold),
+              Column(
+                children: [
+                  Text(
+                    DateTime.now().friendlyTime(),
+                    style: const TextStyle(
+                        color: AppColors.defaultColor,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Visibility(
+                    visible: course.showStatus,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 4),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 8),
+                          decoration: BoxDecoration(
+                              color: AppColors.primaryTeal,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Text(
+                            course.status ?? '',
+                            style: TextStyle(
+                                color: getStatusColor(course.status ?? ''),
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

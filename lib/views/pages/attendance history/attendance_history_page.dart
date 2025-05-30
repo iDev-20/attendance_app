@@ -1,7 +1,8 @@
+import 'package:attendance_app/models/ui_models.dart';
 import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/resources/app_page.dart';
 import 'package:attendance_app/resources/app_strings.dart';
-import 'package:attendance_app/views/pages/attendance%20history/components/course_attendance_card.dart';
+import 'package:attendance_app/views/pages/home/components/course_card.dart';
 import 'package:flutter/material.dart';
 
 class AttendanceHistoryPage extends StatefulWidget {
@@ -12,29 +13,100 @@ class AttendanceHistoryPage extends StatefulWidget {
 }
 
 class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
+  final List<String> periods = [
+    AppStrings.today,
+    AppStrings.today,
+    AppStrings.pastWeek,
+  ];
+
+  final List<List<Course>> courseHistory = [
+    [
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.present,
+        showStatus: true,
+      ),
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.late,
+        showStatus: true,
+      ),
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.absent,
+        showStatus: true,
+      ),
+    ],
+    [
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.absent,
+        showStatus: true,
+      ),
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.absent,
+        showStatus: true,
+      ),
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.present,
+        showStatus: true,
+      ),
+    ],
+    [
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.late,
+        showStatus: true,
+      ),
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.late,
+        showStatus: true,
+      ),
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.present,
+        showStatus: true,
+      ),
+      Course(
+        courseCode: 'CS101',
+        courseTitle: 'Introduction to Computer Science',
+        status: AppStrings.absent,
+        showStatus: true,
+      ),
+    ]
+  ];
   @override
   Widget build(BuildContext context) {
     return AppPageScaffold(
       headerTitle: AppStrings.attendanceHistory,
       headerSubtitle: AppStrings.viewYourAttendanceHistory,
       hasRefreshIndicator: true,
-      body: ListView(
+      body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        children: [
-          period(period: AppStrings.today),
-          const CourseAttendanceCard(status: AppStrings.present),
-          const CourseAttendanceCard(status: AppStrings.late),
-          const CourseAttendanceCard(status: AppStrings.absent),
-          period(period: AppStrings.today),
-          const CourseAttendanceCard(status: AppStrings.absent),
-          const CourseAttendanceCard(status: AppStrings.absent),
-          const CourseAttendanceCard(status: AppStrings.present),
-          period(period: AppStrings.pastWeek),
-          const CourseAttendanceCard(status: AppStrings.late),
-          const CourseAttendanceCard(status: AppStrings.late),
-          const CourseAttendanceCard(status: AppStrings.present),
-          const CourseAttendanceCard(status: AppStrings.absent),
-        ],
+        itemCount: periods.length,
+        itemBuilder: (context, index) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              period(period: periods[index]),
+              ...courseHistory[index]
+                  .map((course) => CourseCard(course: course))
+                  .toList(),
+            ],
+          );
+        },
       ),
     );
   }

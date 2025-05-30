@@ -59,9 +59,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         padding: const EdgeInsets.only(
                             left: 36, top: 24, right: 36, bottom: 36),
                         decoration: BoxDecoration(
-                          color: AppColors.defaultColor,
-                          borderRadius: BorderRadius.circular(28),
-                        ),
+                            color: AppColors.transparent,
+                            borderRadius: BorderRadius.circular(28),
+                            border: Border.all(color: AppColors.defaultColor)),
                         child: Column(
                           children: [
                             Expanded(
@@ -77,6 +77,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   profileDetailItem(
                                       title: AppStrings.currentSemester,
                                       value: AppStrings.sampleCurrentSemester),
+                                  profileDetailItem(
+                                      title: AppStrings.stream,
+                                      value: AppStrings.sampleStream),
                                   profileDetailItem(
                                       title: AppStrings.schoolEmail,
                                       value: AppStrings.sampleSchoolEmail),
@@ -109,8 +112,6 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             PrimaryButton(
                                 // enabled: newPhoneNumber != null,
-                                backgroundColor: AppColors.white,
-                                foregroundColor: AppColors.defaultColor,
                                 onTap: () {
                                   showAlert(
                                       context: context,
@@ -139,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return AppMaterial(
       onTap: onTap ?? () {},
       child: Container(
-        padding: const EdgeInsets.only(top: 24, bottom: 12),
+        padding: const EdgeInsets.only(top: 16, bottom: 12),
         decoration: BoxDecoration(
           color: AppColors.transparent,
           border: Border(
@@ -157,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Text(
               value,
               style: const TextStyle(
-                  color: AppColors.white, fontWeight: FontWeight.bold),
+                  color: AppColors.defaultColor, fontWeight: FontWeight.bold),
             ),
           ],
         ),

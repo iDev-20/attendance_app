@@ -1,4 +1,3 @@
-import 'package:attendance_app/components/information_banner.dart';
 import 'package:attendance_app/extensions/date_time_extensions.dart';
 import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/resources/app_page.dart';
@@ -32,10 +31,13 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   Widget build(BuildContext context) {
     return AppPageScaffold(
       hideAppBar: false,
+      hasRefreshIndicator: true,
       title: AppStrings.courseDetails,
+      // showDivider: true,
+      showInformationBanner: true,
+      informationBannerText: AppStrings.sampleEligibilityText,
       body: Column(
         children: [
-          const InformationBanner(text: AppStrings.sampleEligibilityText),
           Expanded(
             child: ListView(
               children: [

@@ -1,7 +1,6 @@
 import 'package:attendance_app/components/information_banner.dart';
 import 'package:attendance_app/resources/app_colors.dart';
-import 'package:attendance_app/resources/app_strings.dart';
-import 'package:attendance_app/views/pages/home/components/home_header.dart';
+import 'package:attendance_app/components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 typedef OnBackPressed = Function();
@@ -23,6 +22,8 @@ class AppPageScaffold extends StatelessWidget {
   final Widget? appBarLeadingIcon;
   final bool showInformationBanner;
   final bool hasRefreshIndicator;
+  final bool showDivider;
+  final String? informationBannerText;
 
   const AppPageScaffold(
       {super.key,
@@ -41,7 +42,9 @@ class AppPageScaffold extends StatelessWidget {
       this.showBackButton = true,
       this.appBarLeadingIcon,
       this.showInformationBanner = false,
-      this.hasRefreshIndicator = false});
+      this.hasRefreshIndicator = false,
+      this.showDivider = false,
+      this.informationBannerText});
 
   @override
   Widget build(BuildContext context) {
@@ -89,14 +92,16 @@ class AppPageScaffold extends StatelessWidget {
                   if (hideAppBar &&
                       headerTitle != null &&
                       headerSubtitle != null)
-                    HomeHeader(
+                    CustomAppBar(
                       title: headerTitle ?? '',
                       subtitle: headerSubtitle ?? '',
                     ),
                   if (showInformationBanner == true)
-                    const InformationBanner(
-                      text: AppStrings.sampleAttendanceThresholdMessage,
+                    InformationBanner(
+                      text: informationBannerText ?? '',
                     ),
+                  // else if (hideAppBar == false && showDivider == true)
+                  //   const AppDivider(),
                   Expanded(
                     child: hasRefreshIndicator
                         ? RefreshIndicator(onRefresh: () async {}, child: body)

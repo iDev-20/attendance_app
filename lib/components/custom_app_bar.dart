@@ -4,11 +4,11 @@ import 'package:attendance_app/resources/app_colors.dart';
 import 'package:attendance_app/views/pages/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
-class HomeHeader extends StatelessWidget {
+class CustomAppBar extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const HomeHeader({
+  const CustomAppBar({
     super.key,
     required this.title,
     required this.subtitle,
