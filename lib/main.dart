@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
-import 'package:attendance_app/navigation/navigation_host_page.dart';
-import 'package:attendance_app/resources/app_colors.dart';
-import 'package:attendance_app/views/pages/onboarding/sign_up_page.dart';
+import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
+import 'package:attendance_app/ux/shared/resources/app_colors.dart';
+import 'package:attendance_app/ux/views//onboarding/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
