@@ -97,21 +97,23 @@ class _ScanPageState extends State<ScanPage> {
                 child: Container(
                   width: 85,
                   padding: const EdgeInsets.all(5),
-                  child: const Row(children: [
-                    Text(
-                      'Exit',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
-                    ),
-                    SizedBox(width: 5),
-                    Icon(
-                      Icons.close_sharp,
-                      size: 27,
-                      color: Colors.white,
-                    )
-                  ]),
+                  child: const Row(
+                    children: [
+                      Text(
+                        'Exit',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
+                      SizedBox(width: 5),
+                      Icon(
+                        Icons.close_sharp,
+                        size: 27,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -128,34 +130,36 @@ class _ScanPageState extends State<ScanPage> {
                     borderRadius: BorderRadius.circular(26.5),
                     color: Colors.white),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            controller!.flipCamera();
-                          },
-                          child: const Icon(
-                            Icons.flip_camera_android,
-                            size: 27,
-                            color: Colors.black,
-                          )),
-                      Container(
-                        width: 1,
-                        color: const Color.fromRGBO(102, 102, 102, 1),
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          controller!.flipCamera();
+                        },
+                        child: const Icon(
+                          Icons.flip_camera_android,
+                          size: 27,
+                          color: Colors.black,
+                        )),
+                    Container(
+                      width: 1,
+                      color: const Color.fromRGBO(102, 102, 102, 1),
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        await controller!.toggleFlash();
+                        setState(() {
+                          flash = !flash;
+                        });
+                      },
+                      child: Icon(
+                        flash ? Icons.flash_off : Icons.flash_on,
+                        size: 27,
+                        color: Colors.black,
                       ),
-                      InkWell(
-                          onTap: () async {
-                            await controller!.toggleFlash();
-                            setState(() {
-                              flash = !flash;
-                            });
-                          },
-                          child: Icon(
-                            flash ? Icons.flash_off : Icons.flash_on,
-                            size: 27,
-                            color: Colors.black,
-                          )),
-                    ]),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

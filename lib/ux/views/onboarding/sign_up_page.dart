@@ -23,6 +23,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _auth = FirebaseAuth.instance;
 
+  final TextEditingController idNumberController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -113,12 +114,20 @@ class _SignUpPageState extends State<SignUpPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 PrimaryTextFormField(
-                                  labelText: AppStrings.studentEmail,
-                                  controller: emailController,
-                                  keyboardType: TextInputType.emailAddress,
-                                  hintText: AppStrings.studentEmailHint,
-                                  textInputAction: TextInputAction.next,
-                                ),
+                                    labelText: AppStrings.studentIdNumber,
+                                    controller: idNumberController,
+                                    keyboardType: TextInputType.visiblePassword,
+                                    hintText: AppStrings.sampleIdNumber,
+                                    textInputAction: TextInputAction.next,
+                                    textCapitalization:
+                                        TextCapitalization.characters),
+                                // PrimaryTextFormField(
+                                //   labelText: AppStrings.studentEmail,
+                                //   controller: emailController,
+                                //   keyboardType: TextInputType.emailAddress,
+                                //   hintText: AppStrings.studentEmailHint,
+                                //   textInputAction: TextInputAction.next,
+                                // ),
                                 PrimaryTextFormField(
                                   labelText: AppStrings.password,
                                   hintText: AppStrings.enterAPassword,
@@ -142,7 +151,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   obscureText: !isConfirmPasswordVisible,
                                   controller: confirmPasswordController,
                                   keyboardType: TextInputType.visiblePassword,
-                                  // textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.done,
                                   suffixWidget: IconButton(
                                     icon: Icon(
                                       isConfirmPasswordVisible

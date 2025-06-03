@@ -4,7 +4,7 @@ import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_form_fields.dart';
 import 'package:attendance_app/ux/shared/resources/app_images.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:attendance_app/ux/views/onboarding/sign_up_page.dart';
+import 'package:attendance_app/ux/views/face_verification_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController idNumberController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isPasswordVisible = false;
@@ -88,13 +89,21 @@ class _LoginPageState extends State<LoginPage> {
                           key: formKey,
                           child: Column(
                             children: [
-                              PrimaryTextFormField(
-                                labelText: AppStrings.schoolEmail,
-                                controller: emailController,
-                                keyboardType: TextInputType.emailAddress,
-                                hintText: AppStrings.studentEmailHint,
-                                textInputAction: TextInputAction.next,
-                              ),
+                                PrimaryTextFormField(
+                                  labelText: AppStrings.studentIdNumber,
+                                  controller: idNumberController,
+                                  keyboardType: TextInputType.visiblePassword,
+                                  hintText: AppStrings.sampleIdNumber,
+                                  textInputAction: TextInputAction.next,
+                                  textCapitalization: TextCapitalization.characters
+                                ),
+                              // PrimaryTextFormField(
+                              //   labelText: AppStrings.schoolEmail,
+                              //   controller: emailController,
+                              //   keyboardType: TextInputType.emailAddress,
+                              //   hintText: AppStrings.studentEmailHint,
+                              //   textInputAction: TextInputAction.next,
+                              // ),
                               PrimaryTextFormField(
                                 labelText: AppStrings.password,
                                 hintText: AppStrings.enterYourPassword,
@@ -123,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                                   FocusManager.instance.primaryFocus?.unfocus();
                                   Navigation.navigateToScreen(
                                       context: context,
-                                      screen: const SignUpPage());
+                                      screen: const FaceVerificationPage());
                                 },
                                 child: const Text(AppStrings.login),
                               ),
