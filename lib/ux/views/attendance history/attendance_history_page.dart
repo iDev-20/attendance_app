@@ -90,6 +90,7 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return AppPageScaffold(
+      hideAppBar: true,
       headerTitle: AppStrings.attendanceHistory,
       headerSubtitle: AppStrings.viewYourAttendanceHistory,
       hasRefreshIndicator: true,

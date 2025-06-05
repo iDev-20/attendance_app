@@ -22,7 +22,6 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return AppPageScaffold(
-      hideAppBar: false,
       body: LayoutBuilder(
         builder: (context, constraints) => SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),

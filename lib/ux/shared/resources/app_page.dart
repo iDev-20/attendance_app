@@ -28,7 +28,7 @@ class AppPageScaffold extends StatelessWidget {
   const AppPageScaffold(
       {super.key,
       required this.body,
-      this.hideAppBar = true,
+      this.hideAppBar = false,
       this.title,
       this.headerTitle,
       this.headerSubtitle,

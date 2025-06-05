@@ -60,8 +60,10 @@ class AppStrings {
   //Home
   static const sampleAppUser = 'Jermaine';
   static const morningGreetingSubtitle = 'Ready to make the most of today?';
-  static const afternoonGreetingSubtitle = "Let’s get things done this afternoon.";
-  static const eveningGreetingSubtitle = "Evening check-in — let’s finish strong.";
+  static const afternoonGreetingSubtitle =
+      "Let’s get things done this afternoon.";
+  static const eveningGreetingSubtitle =
+      "Evening check-in — let’s finish strong.";
   static const semesterCourses = 'Semester Courses';
   static const todaysClasses = "Today's Classes";
   static const upcoming = 'Upcoming';
@@ -79,8 +81,15 @@ class AppStrings {
 
   //Course details
   static const courseDetails = 'Course Details';
-  static const sampleEligibilityText = 'Your are eligible for mid semester exams';
+  static const sampleEligibilityText =
+      'Your are eligible for mid semester exams';
   static const attendanceThreshold = 'Attendance Threshold';
   static const midSemester = 'Mid Semester';
   static const endOfSemester = 'End of Semester';
+
+  //Notifications
+  static const notifications = 'Notifications';
+  static const noNotifications = 'No Notifications';
+  static const wellLetYouKnow =
+      "We'll let you know when there will be something to update you";
 }

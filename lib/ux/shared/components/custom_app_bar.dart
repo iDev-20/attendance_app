@@ -1,6 +1,7 @@
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
+import 'package:attendance_app/ux/views/home/notifications_page.dart';
 import 'package:attendance_app/ux/views/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,12 @@ class CustomAppBar extends StatelessWidget {
           ),
           Row(
             children: [
-              appBarAction(icon: Icons.notifications, onTap: () {}),
+              appBarAction(
+                  icon: Icons.notifications,
+                  onTap: () {
+                    Navigation.navigateToScreen(
+                        context: context, screen: const NotificationsPage());
+                  }),
               const SizedBox(width: 10),
               appBarAction(
                 icon: Icons.person_rounded,

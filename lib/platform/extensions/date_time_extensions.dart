@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtensions on DateTime {
-  
   String format(String pattern) {
     var format = DateFormat(pattern);
     return format.format(this);
@@ -64,6 +63,7 @@ extension DateTimeExtensions on DateTime {
     var format = DateFormat.jm();
     return '${friendlyDate()}${newLine == true ? "\n" : " • "}${format.format(this)}';
   }
+
   String formatMediumDate() {
     var format = DateFormat('EE, dd MMM yyyy');
     return format.format(this);
@@ -173,6 +173,27 @@ extension DateTimeExtensions on DateTime {
         return 'Sunday';
       default:
         return 'Unknown';
+    }
+  }
+
+  String smartTimeAgo() {
+    final now = DateTime.now();
+    final difference = now.difference(this);
+
+    if (difference.inSeconds < 60) {
+      return 'Just now';
+    } else if (difference.inMinutes < 60) {
+      return '${difference.inMinutes} min ago';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours} hour${difference.inHours > 1 ? 's' : ''} ago';
+    } else if (difference.inDays == 1) {
+      return 'Yesterday at ${DateFormat.jm().format(this)}';
+    } else if (now.year == year) {
+      return DateFormat("MMM d 'at' h:mm a")
+          .format(this); // e.g., Sep 23 at 3:27 PM
+    } else {
+      return DateFormat("MMM d, yyyy 'at' h:mm a")
+          .format(this); // e.g., Sep 23, 2023 at 3:27 PM
     }
   }
 }

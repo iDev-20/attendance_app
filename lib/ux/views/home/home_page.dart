@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return AppPageScaffold(
+      hideAppBar: true,
       headerTitle: getGreetingTitle(AppStrings.sampleAppUser),
       headerSubtitle: getGreetingSubtitle(),
       showInformationBanner: true,

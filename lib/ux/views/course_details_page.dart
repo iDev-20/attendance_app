@@ -30,10 +30,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return AppPageScaffold(
-      hideAppBar: false,
       hasRefreshIndicator: true,
       title: AppStrings.courseDetails,
-      // showDivider: true,
       showInformationBanner: true,
       informationBannerText: AppStrings.sampleEligibilityText,
       body: Column(
