@@ -4,18 +4,18 @@ String getGreetingTitle(String name) {
   final hour = DateTime.now().hour;
 
   if (hour < 12) {
-    return 'Good morning, $name!';
+    return '${AppStrings.goodMorning}, $name!';
   } else if (hour < 17) {
-    return 'Hey $name!';
+    return '${AppStrings.hey} $name!';
   } else {
-    return 'Evening, $name!';
+    return '${AppStrings.evening}, $name!';
   }
 }
 
 String getGreetingSubtitle() {
   final hour = DateTime.now().hour;
 
-  if (hour < 16) {
+  if (hour < 12) {
     return AppStrings.morningGreetingSubtitle;
   } else if (hour < 17) {
     return AppStrings.afternoonGreetingSubtitle;

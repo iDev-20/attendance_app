@@ -58,6 +58,9 @@ class AppStrings {
   static const done = 'Done';
 
   //Home
+  static const goodMorning = 'Good morning';
+  static const hey = 'Hey';
+  static const evening = 'Evening';
   static const sampleAppUser = 'Jermaine';
   static const morningGreetingSubtitle = 'Ready to make the most of today?';
   static const afternoonGreetingSubtitle =
