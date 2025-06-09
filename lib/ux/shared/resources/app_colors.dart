@@ -7,6 +7,9 @@ class AppColors {
   static const Color transparent = Colors.transparent;
   static const Color white = Colors.white;
   static const Color black = Colors.black;
+  static const Color statusRed = Colors.red;
+  static const Color statusGreen = Colors.green;
+  static const Color statusOrange = Colors.orange;
   static const Color grey = Color(0xFF9E9E9E);
   static const Color defaultColor = Color(0xFF263238);
   static const Color primaryTeal = Color(0xFFE0F2F1);

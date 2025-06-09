@@ -1,11 +1,15 @@
 import 'dart:ui';
+import 'package:attendance_app/ux/shared/components/global_functions.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
+import 'package:flutter/material.dart';
 
 class Course {
   final String courseCode;
   final String courseTitle;
   final String? status;
   final bool showStatus;
+
+  Color get getStatusColor => statusColor(status ?? '');
 
   Course({
     required this.courseCode,
@@ -39,4 +43,20 @@ class CourseInfo {
   CourseInfo(
       {required this.courseCode, required this.creditHours, required int index})
       : color = CourseInfo.getColorByIndex(index);
+}
+
+class Session {
+  final int sessionNumber;
+  final String date;
+  final String status;
+
+  String get session => 'Session $sessionNumber';
+
+  Color get getStatusColor => statusColor(status);
+
+  Session({
+    required this.sessionNumber,
+    required this.date,
+    required this.status,
+  });
 }

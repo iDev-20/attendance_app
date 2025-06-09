@@ -1,4 +1,5 @@
 import 'package:attendance_app/platform/extensions/date_time_extensions.dart';
+import 'package:attendance_app/ux/shared/models/ui_models.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
@@ -12,20 +13,36 @@ class CourseDetailsPage extends StatefulWidget {
 }
 
 class _CourseDetailsPageState extends State<CourseDetailsPage> {
-  final String status = '';
-
-  Color getStatusColor(String status) {
-    switch (status) {
-      case AppStrings.present:
-        return Colors.green.shade500;
-      case AppStrings.absent:
-        return Colors.red.shade500;
-      case AppStrings.late:
-        return Colors.orange.shade500;
-      default:
-        return Colors.grey.shade500;
-    }
-  }
+  List<Session> sessions = [
+    Session(
+        sessionNumber: 1,
+        date: DateTime.now().friendlySlashDate(),
+        status: AppStrings.absent),
+    Session(
+        sessionNumber: 2,
+        date: DateTime.now().friendlySlashDate(),
+        status: AppStrings.present),
+    Session(
+        sessionNumber: 3,
+        date: DateTime.now().friendlySlashDate(),
+        status: AppStrings.present),
+    Session(
+        sessionNumber: 4,
+        date: DateTime.now().friendlySlashDate(),
+        status: AppStrings.late),
+    Session(
+        sessionNumber: 5,
+        date: DateTime.now().friendlySlashDate(),
+        status: AppStrings.present),
+    Session(
+        sessionNumber: 6,
+        date: DateTime.now().friendlySlashDate(),
+        status: AppStrings.present),
+    Session(
+        sessionNumber: 7,
+        date: DateTime.now().friendlySlashDate(),
+        status: AppStrings.present),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +62,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'CS101 - Introduction to Computer Science',
+                        AppStrings.sampleUpcomingClass,
                         style: TextStyle(
                             color: AppColors.defaultColor,
                             fontSize: 16,
@@ -88,20 +105,10 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      sessionHistory(
-                          title: 'Session 1', status: AppStrings.absent),
-                      sessionHistory(
-                          title: 'Session 2', status: AppStrings.present),
-                      sessionHistory(
-                          title: 'Session 3', status: AppStrings.present),
-                      sessionHistory(
-                          title: 'Session 4', status: AppStrings.late),
-                      sessionHistory(
-                          title: 'Session 5', status: AppStrings.present),
-                      sessionHistory(
-                          title: 'Session 6', status: AppStrings.present),
-                      sessionHistory(
-                          title: 'Session 7', status: AppStrings.present),
+                      ...sessions
+                          .map((sessionData) =>
+                              sessionHistory(session: sessionData))
+                          .toList(),
                     ],
                   ),
                 ),
@@ -140,7 +147,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     );
   }
 
-  Widget sessionHistory({required String title, required String status}) {
+  Widget sessionHistory({required Session session}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: const BoxDecoration(
@@ -153,13 +160,13 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                session.session,
                 style: const TextStyle(
                     color: AppColors.defaultColor, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 4),
               Text(
-                DateTime.now().friendlySlashDate(),
+                session.date,
                 style: TextStyle(
                     color: Colors.grey.shade600, fontWeight: FontWeight.w600),
               ),
@@ -171,9 +178,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 color: AppColors.primaryTeal,
                 borderRadius: BorderRadius.circular(8)),
             child: Text(
-              status,
+              session.status,
               style: TextStyle(
-                  color: getStatusColor(status), fontWeight: FontWeight.w600),
+                  color: session.getStatusColor, fontWeight: FontWeight.w600),
             ),
           ),
         ],

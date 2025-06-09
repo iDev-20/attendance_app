@@ -9,17 +9,17 @@ class TodaysClasses extends StatelessWidget {
 
   final List<Course> courses = [
     Course(
-        courseCode: 'CS101',
-        courseTitle: 'Introduction to Computer Science',
-        showStatus: false),
+      courseCode: 'CS101',
+      courseTitle: 'Introduction to Computer Science',
+    ),
     Course(
-        courseCode: 'MATH201',
-        courseTitle: 'Engineering Mathematics 1',
-        showStatus: false),
+      courseCode: 'MATH201',
+      courseTitle: 'Engineering Mathematics 1',
+    ),
     Course(
-        courseCode: 'ENG233',
-        courseTitle: 'Engineering Ethics',
-        showStatus: false),
+      courseCode: 'ENG233',
+      courseTitle: 'Engineering Ethics',
+    ),
   ];
 
   @override

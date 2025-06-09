@@ -3,7 +3,6 @@ import 'package:attendance_app/platform/extensions/date_time_extensions.dart';
 import 'package:attendance_app/ux/shared/models/ui_models.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
-import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:attendance_app/ux/views/course_details_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,19 +10,6 @@ class CourseCard extends StatelessWidget {
   const CourseCard({super.key, required this.course});
 
   final Course course;
-
-  Color getStatusColor(String status) {
-    switch (status) {
-      case AppStrings.present:
-        return Colors.green.shade500;
-      case AppStrings.absent:
-        return Colors.red.shade500;
-      case AppStrings.late:
-        return Colors.orange.shade500;
-      default:
-        return Colors.grey.shade500;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +111,7 @@ class CourseCard extends StatelessWidget {
                           child: Text(
                             course.status ?? '',
                             style: TextStyle(
-                                color: getStatusColor(course.status ?? ''),
+                                color: course.getStatusColor,
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold),
                           ),

@@ -27,11 +27,10 @@ class UpcomingClass extends StatelessWidget {
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 16,
-                // fontWeight: FontWeight.bold,
               ),
             ),
             const Text(
-              'CS104 - Data Structures and Algorithms',
+              AppStrings.sampleUpcomingClass,
               style: TextStyle(
                   color: AppColors.defaultColor,
                   fontSize: 16,
@@ -41,7 +40,7 @@ class UpcomingClass extends StatelessWidget {
             const SizedBox(height: 16),
             const Center(
               child: Text(
-                '8:00AM - 9:30AM',
+                AppStrings.sampleUpcomingClassTime,
                 style: TextStyle(
                   color: AppColors.defaultColor,
                   fontSize: 36,

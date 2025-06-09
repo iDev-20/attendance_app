@@ -70,6 +70,8 @@ class AppStrings {
   static const semesterCourses = 'Semester Courses';
   static const todaysClasses = "Today's Classes";
   static const upcoming = 'Upcoming';
+  static const sampleUpcomingClass = 'CS104 - Data Structures and Algorithms';
+  static const sampleUpcomingClassTime = '8:30AM - 11:30AM';
   static const markAttendance = 'Mark attendance';
 
   //Attendance History
