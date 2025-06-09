@@ -78,9 +78,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
       onTap: () {},
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: const BoxDecoration(
-          color: AppColors.transparent,
-        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -64,7 +64,10 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
           onTap: () {
             if (courses.length > 9) {
               Navigation.navigateToScreen(
-                  context: context, screen: FullCourseListPage(courses: courses,));
+                  context: context,
+                  screen: FullCourseListPage(
+                    courses: courses,
+                  ));
             }
           },
         ),
@@ -87,6 +90,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
   Widget singleCourse(
       {required BuildContext context, required CourseInfo course}) {
     return AppMaterial(
+      color: course.color,
       borderRadius: BorderRadius.circular(15),
       inkwellBorderRadius: BorderRadius.circular(15),
       elevation: 1,
@@ -98,7 +102,6 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
         padding:
             const EdgeInsets.only(left: 12, top: 10, right: 12, bottom: 12),
         decoration: BoxDecoration(
-          color: course.color,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(

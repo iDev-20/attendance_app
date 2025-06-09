@@ -79,7 +79,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: isSelected
             ? BoxDecoration(
-                color: Colors.teal[50],
+                color: AppColors.primaryTeal,
                 borderRadius: BorderRadius.circular(16.0),
               )
             : null,
@@ -87,8 +87,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           children: [
             Icon(
               icon,
-              // color: isSelected ? AppColors.defaultColor : AppColors.white,
-              color: isSelected ? AppColors.defaultColor : Colors.grey,
+              color: isSelected ? AppColors.defaultColor : AppColors.grey,
             ),
             Visibility(
               visible: isSelected,

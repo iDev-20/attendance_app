@@ -58,6 +58,7 @@ class CustomAppBar extends StatelessWidget {
 
   Widget appBarAction({required IconData icon, required VoidCallback onTap}) {
     return AppMaterial(
+      color: AppColors.primaryTeal,
       elevation: 2,
       borderRadius: BorderRadius.circular(10),
       inkwellBorderRadius: BorderRadius.circular(10),
@@ -65,7 +66,6 @@ class CustomAppBar extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
-          color: AppColors.primaryTeal,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Icon(
