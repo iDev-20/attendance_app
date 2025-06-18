@@ -13,6 +13,9 @@ class AppPageScaffold extends StatelessWidget {
   final String? headerSubtitle;
   final List<Widget>? actions;
   final Color backgroundColor;
+  final Color appBarColor;
+  final Color titleTextColor;
+  final Color leadingIconColor;
   final PreferredSizeWidget? appBarBottom;
   final Widget? floatingActionButton;
   final Widget? bottomNavigationBar;
@@ -34,6 +37,9 @@ class AppPageScaffold extends StatelessWidget {
       this.headerSubtitle,
       this.actions,
       this.backgroundColor = AppColors.white,
+      this.appBarColor = AppColors.white,
+      this.titleTextColor = AppColors.defaultColor,
+      this.leadingIconColor = AppColors.defaultColor,
       this.appBarBottom,
       this.floatingActionButton,
       this.bottomNavigationBar,
@@ -53,13 +59,13 @@ class AppPageScaffold extends StatelessWidget {
       appBar: hideAppBar
           ? null
           : AppBar(
-              backgroundColor: backgroundColor,
+              backgroundColor: appBarColor,
               elevation: 0,
               centerTitle: true,
               title: Text(
                 title ?? '',
-                style: const TextStyle(
-                    color: AppColors.defaultColor,
+                style: TextStyle(
+                    color: titleTextColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),
@@ -77,8 +83,8 @@ class AppPageScaffold extends StatelessWidget {
                           }
                         },
                         child: appBarLeadingIcon ??
-                            const Icon(Icons.arrow_back,
-                                color: AppColors.defaultColor),
+                            Icon(Icons.arrow_back,
+                                color: leadingIconColor),
                       ),
                     )
                   : null,

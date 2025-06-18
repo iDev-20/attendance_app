@@ -1,3 +1,4 @@
+import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/components/bottom_sheets.dart';
 import 'package:attendance_app/ux/shared/components/global_functions.dart';
@@ -7,6 +8,7 @@ import 'package:attendance_app/ux/shared/resources/app_images.dart';
 import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:attendance_app/ux/views/profile/edit_phone_number_bottom_sheet.dart';
+import 'package:attendance_app/ux/views/profile/view_profile_image_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -33,9 +35,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 80,
-                      backgroundImage: AppImages.sampleProfilePhoto,
+                    InkWell(
+                      onTap: () {
+                        Navigation.navigateToScreen(
+                            context: context,
+                            screen: const ViewProfileImagePage());
+                      },
+                      child: CircleAvatar(
+                        radius: 80,
+                        backgroundImage: AppImages.sampleProfilePhoto,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     const Text(

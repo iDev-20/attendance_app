@@ -49,6 +49,10 @@ class AppStrings {
   static const nationality = 'Nationality';
   static const sampleNationality = 'Nigerian';
   static const saveChanges = 'Save Changes';
+  static const profilePicture = 'Profile Picture';
+  static const changePicture = 'Change picture';
+  static const uploadFromGallery = 'Upload from gallery';
+  static const takePicture = 'Take picture';
 
   //Verification Success
   static const checkInComplete = 'Check-In Complete';
