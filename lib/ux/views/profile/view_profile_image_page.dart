@@ -23,7 +23,7 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
   @override
   void initState() {
     super.initState();
-    
+
   }
 
   Future selectNewProfilePhoto() async {
@@ -35,6 +35,7 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
     if (imageSource != null) {
       File? newProfileImage =
           await ImageUtils.selectAndCropImageFromSource(source: imageSource);
+          //Complete the image changing logic
     }
   }
 
