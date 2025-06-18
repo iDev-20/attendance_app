@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:attendance_app/platform/utils/image_utils.dart';
+import 'package:attendance_app/ux/shared/utils/image_utils.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/components/bottom_sheets.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
@@ -19,11 +19,9 @@ class ViewProfileImagePage extends StatefulWidget {
 }
 
 class ViewProfileImagePageState extends State<ViewProfileImagePage> {
-
   @override
   void initState() {
     super.initState();
-
   }
 
   Future selectNewProfilePhoto() async {
@@ -35,7 +33,7 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
     if (imageSource != null) {
       File? newProfileImage =
           await ImageUtils.selectAndCropImageFromSource(source: imageSource);
-          //Complete the image changing logic
+      //Complete the image changing logic
     }
   }
 

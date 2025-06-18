@@ -2,7 +2,7 @@
 
 import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:attendance_app/platform/utils/greeting_utils.dart';
+import 'package:attendance_app/ux/shared/utils/general_ui_utils.dart';
 import 'package:attendance_app/ux/views/home/components/semester_courses_dashboard_metric_view.dart';
 import 'package:attendance_app/ux/views/home/components/todays_classes.dart';
 import 'package:attendance_app/ux/views/home/components/upcoming_class.dart';
@@ -42,8 +42,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return AppPageScaffold(
       hideAppBar: true,
-      headerTitle: getGreetingTitle(AppStrings.sampleAppUser),
-      headerSubtitle: getGreetingSubtitle(),
+      headerTitle: UiUtils.getGreetingTitle(AppStrings.sampleAppUser),
+      headerSubtitle: UiUtils.getGreetingSubtitle(),
       showInformationBanner: true,
       informationBannerText: AppStrings.sampleAttendanceThresholdMessage,
       hasRefreshIndicator: true,
