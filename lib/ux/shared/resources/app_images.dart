@@ -13,6 +13,8 @@ class AppImages {
       const AssetImage('assets/images/profile_photo.png');
   static AssetImage successLogo =
       const AssetImage('assets/images/success_logo.png');
+  static AssetImage placeholderImage =
+      const AssetImage('assets/images/placeholder.png');
 
   //Svgs
   static SvgPicture svgCloseBottomSheetIcon =
