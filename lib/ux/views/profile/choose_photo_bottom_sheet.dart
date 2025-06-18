@@ -2,7 +2,7 @@ import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChoosePhotoBottomSheet extends StatelessWidget {
   const ChoosePhotoBottomSheet({super.key});
@@ -15,13 +15,13 @@ class ChoosePhotoBottomSheet extends StatelessWidget {
             icon: Icons.file_upload_outlined,
             title: AppStrings.uploadFromGallery,
             onTap: () {
-              // Navigator.pop(context, ImageSource.gallery);
+              Navigator.pop(context, ImageSource.gallery);
             }),
         singleOption(
             icon: Icons.camera_alt_outlined,
             title: AppStrings.takePicture,
             onTap: () {
-              // Navigator.pop(context, ImageSource.camera);
+              Navigator.pop(context, ImageSource.camera);
             }),
       ],
     );
