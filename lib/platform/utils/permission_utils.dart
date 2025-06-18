@@ -3,7 +3,7 @@
 // import 'package:attendance_app/ux/shared/bottom_sheets/app_confirmation_bottom_sheets.dart';
 // import 'package:attendance_app/ux/shared/components/bottom_sheets.dart';
 // import 'package:permission_handler/permission_handler.dart';
-// import 'package:geolocator/geolocator.dart';
+// // import 'package:geolocator/geolocator.dart';
 
 // class PermissionUtils {
 //   PermissionUtils._();
@@ -38,20 +38,20 @@
 //     }
 //   }
 
-//   static Future<bool> requestLocationPermission(
-//       {bool showSettingsOption = false}) async {
-//     LocationPermission permission = await Geolocator.requestPermission();
-//     if (permission == LocationPermission.always ||
-//         permission == LocationPermission.whileInUse) {
-//       Utils.printInDebugMode('Location permission status: $permission');
-//       return true;
-//     } else {
-//       if (showSettingsOption) {
-//         await showSettingsBottomSheet(access: 'location');
-//       }
-//       return false;
-//     }
-//   }
+//   // static Future<bool> requestLocationPermission(
+//   //     {bool showSettingsOption = false}) async {
+//   //   LocationPermission permission = await Geolocator.requestPermission();
+//   //   if (permission == LocationPermission.always ||
+//   //       permission == LocationPermission.whileInUse) {
+//   //     Utils.printInDebugMode('Location permission status: $permission');
+//   //     return true;
+//   //   } else {
+//   //     if (showSettingsOption) {
+//   //       await showSettingsBottomSheet(access: 'location');
+//   //     }
+//   //     return false;
+//   //   }
+//   // }
 
 //   static Future showSettingsBottomSheet({required String access}) async {
 //     var res = await showAppBottomSheet(

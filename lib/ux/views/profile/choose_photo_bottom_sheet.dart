@@ -34,8 +34,8 @@ class ChoosePhotoBottomSheet extends StatelessWidget {
     return AppMaterial(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-        padding: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
           children: [
             Icon(
