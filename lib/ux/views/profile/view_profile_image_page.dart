@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:attendance_app/platform/utils/image_utils.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/components/bottom_sheets.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
@@ -6,7 +9,7 @@ import 'package:attendance_app/ux/views/profile/choose_photo_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ViewProfileImagePage extends StatefulWidget {
   const ViewProfileImagePage({super.key});
@@ -16,16 +19,24 @@ class ViewProfileImagePage extends StatefulWidget {
 }
 
 class ViewProfileImagePageState extends State<ViewProfileImagePage> {
-  // Future selectNewProfilePhoto() async {
-  //   ImageSource? imageSource = await showAppBottomSheet(
-  //     context: context,
-  //     title: AppStrings.changePicture,
-  //     child: const ChoosePhotoBottomSheet(),
-  //   );
-  //   // if(imageSource != null) {
-  //   //   File? newProfileImage = await
-  //   // }
-  // }
+
+  @override
+  void initState() {
+    super.initState();
+    
+  }
+
+  Future selectNewProfilePhoto() async {
+    ImageSource? imageSource = await showAppBottomSheet(
+      context: context,
+      title: AppStrings.changePicture,
+      child: const ChoosePhotoBottomSheet(),
+    );
+    if (imageSource != null) {
+      File? newProfileImage =
+          await ImageUtils.selectAndCropImageFromSource(source: imageSource);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +63,12 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
                 AppMaterial(
                   inkwellBorderRadius: BorderRadius.circular(10),
                   onTap: () {
-                    showAppBottomSheet(
-                        context: context,
-                        title: AppStrings.changePicture,
-                        showCloseButton: false,
-                    child: const ChoosePhotoBottomSheet());
+                    selectNewProfilePhoto();
+                    // showAppBottomSheet(
+                    //     context: context,
+                    //     title: AppStrings.changePicture,
+                    //     showCloseButton: false,
+                    //     child: const ChoosePhotoBottomSheet());
                   },
                   child: Container(
                     padding: const EdgeInsets.all(7),

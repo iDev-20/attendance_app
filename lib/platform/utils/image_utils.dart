@@ -19,13 +19,13 @@ class ImageUtils {
   }) async {
     try {
       bool permissionGranted = false;
-      // if (imageSource == ImageSource.camera) {
-      //   permissionGranted = await PermissionUtils.requestCameraPermission(
-      //       showSettingsOption: true);
-      // } else if (imageSource == ImageSource.gallery) {
-      //   permissionGranted = await PermissionUtils.requestGalleryPermission(
-      //       showSettingsOption: true);
-      // }
+      if (imageSource == ImageSource.camera) {
+        permissionGranted = await PermissionUtils.requestCameraPermission(
+            showSettingsOption: true);
+      } else if (imageSource == ImageSource.gallery) {
+        permissionGranted = await PermissionUtils.requestGalleryPermission(
+            showSettingsOption: true);
+      }
 
       if (!permissionGranted) {
         return null;
@@ -45,11 +45,11 @@ class ImageUtils {
     int imageQuality = 100,
   }) async {
     try {
-      // bool permissionGranted = await PermissionUtils.requestGalleryPermission(
-      //     showSettingsOption: true);
-      // if (!permissionGranted) {
-      //   return null;
-      // }
+      bool permissionGranted = await PermissionUtils.requestGalleryPermission(
+          showSettingsOption: true);
+      if (!permissionGranted) {
+        return null;
+      }
 
       return await imagePicker.pickMultiImage(imageQuality: imageQuality);
     } catch (e) {
