@@ -1,6 +1,6 @@
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
-import 'package:attendance_app/ux/shared/components/bottom_sheets.dart';
+import 'package:attendance_app/ux/shared/bottom_sheets/show_app_bottom_sheet.dart';
 import 'package:attendance_app/ux/shared/components/global_functions.dart';
 import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';

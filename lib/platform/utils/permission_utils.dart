@@ -1,7 +1,7 @@
 import 'package:attendance_app/platform/utils/general_utils.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/bottom_sheets/app_confirmation_bottom_sheets.dart';
-import 'package:attendance_app/ux/shared/components/bottom_sheets.dart';
+import 'package:attendance_app/ux/shared/bottom_sheets/show_app_bottom_sheet.dart';
 import 'package:permission_handler/permission_handler.dart';
 // import 'package:geolocator/geolocator.dart';
 

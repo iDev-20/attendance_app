@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:attendance_app/ux/shared/utils/image_utils.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
-import 'package:attendance_app/ux/shared/components/bottom_sheets.dart';
+import 'package:attendance_app/ux/shared/bottom_sheets/show_app_bottom_sheet.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_images.dart';
-import 'package:attendance_app/ux/views/profile/choose_photo_bottom_sheet.dart';
+import 'package:attendance_app/ux/shared/bottom_sheets/choose_photo_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
