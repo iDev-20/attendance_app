@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:attendance_app/ux/shared/components/app_image_widgets.dart';
 import 'package:attendance_app/ux/shared/utils/image_utils.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/bottom_sheets/show_app_bottom_sheet.dart';

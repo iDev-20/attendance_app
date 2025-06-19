@@ -1,4 +1,6 @@
 // import 'package:attendance_app/ux/navigation/navigation.dart';
+// import 'package:attendance_app/ux/shared/components/app_image_widgets.dart';
+// import 'package:attendance_app/ux/shared/resources/app_images.dart';
 // import 'package:attendance_app/ux/views/profile/view_profile_image_page.dart';
 // import 'package:flutter/material.dart';
 
@@ -20,7 +22,26 @@
 //               screen: const ViewProfileImagePage(),
 //             );
 //           },
-//           child: ValueListenableBuilder(valueListenable: valueListenable, builder: (context, value, _) {}),
+//       child: ValueListenableBuilder(
+//         valueListenable: valueListenable,
+//         builder: (context, value, _) {
+//           if (value?.user == null ||
+//               (value?.user.hasProfilePicture() ?? false) == false) {
+//             return noPictureWidget ??
+//                 AppImageWidget.local(
+//                   image: AppImages.defaultProfileImageTeal,
+//                   height: size,
+//                   width: size,
+//                 );
+//           }
+//           return AppImageWidget(
+//             imageUrl: 'imageUrl',
+//             height: size,
+//             width: size,
+//             borderRadius: 100,
+//           );
+//         },
+//       ),
 //     );
 //   }
 // }
