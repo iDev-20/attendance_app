@@ -35,7 +35,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    InkWell(
+                    AppMaterial(
+                      customBorder: const CircleBorder(),
                       onTap: () {
                         Navigation.navigateToScreen(
                             context: context,
@@ -43,7 +44,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: AppImages.sampleProfilePhoto,
+                        backgroundColor: AppColors.defaultColor,
+                        foregroundColor: AppColors.transparent,
+                        backgroundImage: AppImages.defaultProfileImageTeal,
                       ),
                     ),
                     const SizedBox(height: 16),

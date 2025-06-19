@@ -9,7 +9,8 @@ class AppMaterial extends StatelessWidget {
       this.borderRadius,
       this.inkwellBorderRadius,
       this.elevation,
-      this.color});
+      this.color,
+      this.customBorder});
 
   final VoidCallback onTap;
   final Widget child;
@@ -17,6 +18,7 @@ class AppMaterial extends StatelessWidget {
   final BorderRadius? inkwellBorderRadius;
   final double? elevation;
   final Color? color;
+  final ShapeBorder? customBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class AppMaterial extends StatelessWidget {
       child: InkWell(
         splashColor: AppColors.defaultColor.withOpacity(0.1),
         borderRadius: inkwellBorderRadius ?? BorderRadius.circular(0),
+        customBorder: customBorder,
         onTap: onTap,
         child: child,
       ),

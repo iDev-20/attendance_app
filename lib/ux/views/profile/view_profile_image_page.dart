@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attendance_app/ux/shared/components/app_image_widgets.dart';
 import 'package:attendance_app/ux/shared/utils/image_utils.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/bottom_sheets/show_app_bottom_sheet.dart';
@@ -44,9 +45,9 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
       title: AppStrings.profilePicture,
       titleTextColor: AppColors.white,
       leadingIconColor: AppColors.white,
-      appBarColor: AppColors.black,
+      appBarColor: AppColors.defaultColor,
       body: ColoredBox(
-        color: AppColors.black,
+        color: AppColors.defaultColor,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
@@ -55,7 +56,25 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
                 Expanded(
                   child: Container(
                     alignment: Alignment.center,
-                    child: Image(image: AppImages.sampleProfilePhoto),
+                    child: Image(image: AppImages.defaultProfileImageTeal),
+                    // child: Visibility(
+                    //   visible: false,
+                    //   replacement: AppImageWidget.local(
+                    //     image: AppImages.defaultProfileImageTeal,
+                    //     height: double.infinity,
+                    //     width: double.infinity,
+                    //     showPlaceHolder: false,
+                    //   ),
+                    //   child: AppImageWidget(
+                    //     showPlaceHolder: false,
+                    //     imageUrl: 'imageUrl',
+                    //     height: double.infinity,
+                    //     width: double.infinity,
+                    //     boxFit: BoxFit.cover,
+                    //     borderRadius: 0,
+                    //     placeHolder: null,
+                    //   ),
+                    // ),
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -63,11 +82,6 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
                   inkwellBorderRadius: BorderRadius.circular(10),
                   onTap: () {
                     selectNewProfilePhoto();
-                    // showAppBottomSheet(
-                    //     context: context,
-                    //     title: AppStrings.changePicture,
-                    //     showCloseButton: false,
-                    //     child: const ChoosePhotoBottomSheet());
                   },
                   child: Container(
                     padding: const EdgeInsets.all(7),

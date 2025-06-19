@@ -13,6 +13,10 @@ class AppImages {
       const AssetImage('assets/images/profile_photo.png');
   static AssetImage successLogo =
       const AssetImage('assets/images/success_logo.png');
+  static AssetImage defaultProfileImage =
+      const AssetImage('assets/images/default_profile_image.png');
+  static AssetImage defaultProfileImageTeal =
+      const AssetImage('assets/images/default_profile_image_teal.png');
   static AssetImage placeholderImage =
       const AssetImage('assets/images/placeholder.png');
 
