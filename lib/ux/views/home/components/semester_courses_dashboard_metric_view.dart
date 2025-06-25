@@ -65,10 +65,11 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
           onTap: () {
             if (courses.length > 9) {
               Navigation.navigateToScreen(
-                  context: context,
-                  screen: FullCourseListPage(
-                    courses: courses,
-                  ));
+                context: context,
+                screen: FullCourseListPage(
+                  courses: courses,
+                ),
+              );
             }
           },
         ),
