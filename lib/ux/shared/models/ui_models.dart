@@ -8,6 +8,7 @@ class Course {
   final String courseTitle;
   final String? status;
   final bool showStatus;
+  final String lecturer;
 
   Color get getStatusColor => statusColor(status ?? '');
 
@@ -16,6 +17,7 @@ class Course {
     required this.courseTitle,
     this.status,
     this.showStatus = false,
+    required this.lecturer,
   });
 }
 
@@ -23,6 +25,7 @@ class CourseInfo {
   final String courseCode;
   final String creditHours;
   late final Color color;
+  final String lecturer;
 
   static const List<Color> courseColors = [
     AppColors.boxColor1,
@@ -40,9 +43,12 @@ class CourseInfo {
     return courseColors[index % courseColors.length];
   }
 
-  CourseInfo(
-      {required this.courseCode, required this.creditHours, required int index})
-      : color = CourseInfo.getColorByIndex(index);
+  CourseInfo({
+    required this.courseCode,
+    required this.creditHours,
+    required int index,
+    required this.lecturer,
+  }) : color = CourseInfo.getColorByIndex(index);
 }
 
 class Session {

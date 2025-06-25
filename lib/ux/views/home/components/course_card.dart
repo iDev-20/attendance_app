@@ -20,7 +20,11 @@ class CourseCard extends StatelessWidget {
       child: AppMaterial(
         onTap: () {
           Navigation.navigateToScreen(
-              context: context, screen: const CourseDetailsPage());
+              context: context,
+              screen: CourseDetailsPage(
+                courseCode: course.courseCode,
+                lecturer: course.lecturer,
+              ));
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

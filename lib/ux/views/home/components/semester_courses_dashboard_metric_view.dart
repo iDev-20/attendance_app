@@ -34,14 +34,14 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
   // ];
 
   final List<CourseInfo> courses = [
-    'MATH201|3',
-    'CS203|2',
-    'CS205|3',
-    'CE201/CE202|3',
-    'CE203/CE204|3',
-    'ENG233|3',
-    'FRN101|3',
-    'ENG207|1',
+    'MATH201|3|STEPHEN EDUAFO',
+    'CS203|2|FRANCIS AVEVOR',
+    'CS205|3|KAISU MUMUNI',
+    'CE201/CE202|3|DR. MAMUD MOHAMED',
+    'CE203/CE204|3|DR. MAMUD MOHAMED',
+    'ENG233|3|BAYOR ALPHONSE',
+    'FRN101|3|GEORGE LUAKOU',
+    'ENG207|1|ANTHONY MENSAH',
     // 'CS313|3',
     // 'CS450|2',
   ].asMap().entries.map((entry) {
@@ -50,6 +50,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
     return CourseInfo(
       courseCode: split[0],
       creditHours: split[1],
+      lecturer: split[2],
       index: index,
     );
   }).toList();
@@ -96,7 +97,11 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
       elevation: 1,
       onTap: () {
         Navigation.navigateToScreen(
-            context: context, screen: const CourseDetailsPage());
+            context: context,
+            screen: CourseDetailsPage(
+              courseCode: course.courseCode,
+              lecturer: course.lecturer,
+            ));
       },
       child: Container(
         padding:

@@ -15,7 +15,7 @@ class AttendanceHistoryPage extends StatefulWidget {
 class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
   final List<String> periods = [
     AppStrings.today,
-    AppStrings.today,
+    AppStrings.yesterday,
     AppStrings.pastWeek,
   ];
 
@@ -24,18 +24,21 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.present,
         showStatus: true,
       ),
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.late,
         showStatus: true,
       ),
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.absent,
         showStatus: true,
       ),
@@ -44,18 +47,21 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.absent,
         showStatus: true,
       ),
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.absent,
         showStatus: true,
       ),
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.present,
         showStatus: true,
       ),
@@ -64,24 +70,28 @@ class _AttendanceHistoryPageState extends State<AttendanceHistoryPage> {
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.late,
         showStatus: true,
       ),
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.late,
         showStatus: true,
       ),
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.present,
         showStatus: true,
       ),
       Course(
         courseCode: 'CS101',
         courseTitle: 'Introduction to Computer Science',
+        lecturer: 'FRANCIS AVEVOR',
         status: AppStrings.absent,
         showStatus: true,
       ),

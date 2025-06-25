@@ -6,7 +6,11 @@ import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailsPage extends StatefulWidget {
-  const CourseDetailsPage({super.key});
+  const CourseDetailsPage(
+      {super.key, required this.courseCode, required this.lecturer});
+
+  final String courseCode;
+  final String lecturer;
 
   @override
   State<CourseDetailsPage> createState() => _CourseDetailsPageState();
@@ -57,20 +61,20 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             child: ListView(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        AppStrings.sampleUpcomingClass,
-                        style: TextStyle(
+                      Text(
+                        widget.courseCode,
+                        style: const TextStyle(
                             color: AppColors.defaultColor,
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),
-                      const Text(
-                        'FRANCIS AVEVOR',
-                        style: TextStyle(
+                      Text(
+                        widget.lecturer,
+                        style: const TextStyle(
                             color: Colors.grey,
                             // fontSize: 16,
                             fontWeight: FontWeight.bold),

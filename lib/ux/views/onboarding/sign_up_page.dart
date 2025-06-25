@@ -169,65 +169,65 @@ class _SignUpPageState extends State<SignUpPage> {
                                   // enabled: false,
                                   onTap: () async {
                                     //check if email entered is a school email
-                                    if (isSchoolEmail(emailController.text) ==
-                                        false) {
-                                      setState(() {
-                                        showSpinner = false;
-                                      });
-                                      showAlert(
-                                          context: context,
-                                          title: AppStrings.invalidEmail,
-                                          desc: AppStrings
-                                              .pleaseEnterAValidAitEmailAdd);
-                                      return;
-                                    }
+                                    // if (isSchoolEmail(emailController.text) ==
+                                    //     false) {
+                                    //   setState(() {
+                                    //     showSpinner = false;
+                                    //   });
+                                    //   showAlert(
+                                    //       context: context,
+                                    //       title: AppStrings.invalidEmail,
+                                    //       desc: AppStrings
+                                    //           .pleaseEnterAValidAitEmailAdd);
+                                    //   return;
+                                    // }
 
-                                    if (passwordController.text !=
-                                        confirmPasswordController.text) {
-                                      showAlert(
-                                        context: context,
-                                        title: AppStrings.signUpFailed,
-                                        desc: AppStrings.passwordsDoNotMatch,
-                                      );
-                                      return;
-                                    }
-                                    setState(() {
-                                      showSpinner = true;
-                                    });
-                                    try {
-                                      await _auth
-                                          .createUserWithEmailAndPassword(
-                                              email: emailController.text,
-                                              password:
-                                                  passwordController.text);
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus();
-                                      //saves data on device and making the sign up page not to show once
-                                      //a user has signed up already(keeping the user signed in)
-                                      SharedPreferences prefs =
-                                          await SharedPreferences.getInstance();
-                                      prefs.setString(
-                                          'email', emailController.text);
-                                      prefs.setBool('isLoggedIn', true);
+                                    // if (passwordController.text !=
+                                    //     confirmPasswordController.text) {
+                                    //   showAlert(
+                                    //     context: context,
+                                    //     title: AppStrings.signUpFailed,
+                                    //     desc: AppStrings.passwordsDoNotMatch,
+                                    //   );
+                                    //   return;
+                                    // }
+                                    // setState(() {
+                                    //   showSpinner = true;
+                                    // });
+                                    // try {
+                                    //   await _auth
+                                    //       .createUserWithEmailAndPassword(
+                                    //           email: emailController.text,
+                                    //           password:
+                                    //               passwordController.text);
+                                    //   FocusManager.instance.primaryFocus
+                                    //       ?.unfocus();
+                                    //   //saves data on device and making the sign up page not to show once
+                                    //   //a user has signed up already(keeping the user signed in)
+                                    //   SharedPreferences prefs =
+                                    //       await SharedPreferences.getInstance();
+                                    //   prefs.setString(
+                                    //       'email', emailController.text);
+                                    //   prefs.setBool('isLoggedIn', true);
 
                                       Navigation
                                           .navigateToScreenAndClearAllPrevious(
                                               context: context,
                                               screen: const HomePage());
-                                      setState(() {
-                                        showSpinner = false;
-                                      });
-                                    } catch (e) {
-                                      setState(() {
-                                        showSpinner = false;
-                                      });
-                                      showAlert(
-                                        context: context,
-                                        title: AppStrings.signUpFailed,
-                                        desc: e.toString(),
-                                      );
-                                      print(e);
-                                    }
+                                  //     setState(() {
+                                  //       showSpinner = false;
+                                  //     });
+                                  //   } catch (e) {
+                                  //     setState(() {
+                                  //       showSpinner = false;
+                                  //     });
+                                  //     showAlert(
+                                  //       context: context,
+                                  //       title: AppStrings.signUpFailed,
+                                  //       desc: e.toString(),
+                                  //     );
+                                  //     print(e);
+                                  //   }
                                   },
                                   child: const Text(AppStrings.signUp),
                                 ),
