@@ -9,9 +9,9 @@ import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:attendance_app/ux/views/home/home_page.dart';
-import 'package:attendance_app/ux/shared/components/global_functions.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
+// import 'package:attendance_app/ux/shared/components/global_functions.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -213,7 +213,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       Navigation
                                           .navigateToScreenAndClearAllPrevious(
                                               context: context,
-                                              screen: const HomePage());
+                                              screen: const NavigationHostPage());
                                   //     setState(() {
                                   //       showSpinner = false;
                                   //     });

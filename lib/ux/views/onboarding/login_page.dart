@@ -1,10 +1,10 @@
 import 'package:attendance_app/ux/navigation/navigation.dart';
+import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_form_fields.dart';
 import 'package:attendance_app/ux/shared/resources/app_images.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:attendance_app/ux/views/face_verification_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                                   FocusManager.instance.primaryFocus?.unfocus();
                                   Navigation.navigateToScreen(
                                       context: context,
-                                      screen: const FaceVerificationPage());
+                                      screen: const NavigationHostPage());
                                 },
                                 child: const Text(AppStrings.login),
                               ),

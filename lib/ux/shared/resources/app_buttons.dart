@@ -114,7 +114,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
     return ButtonStyle(
       enableFeedback: true,
       overlayColor: MaterialStateColor.resolveWith(
-          (states) => overlayColor ?? const Color(0xFFF2F2F2).withOpacity(0.2)),
+          (states) => overlayColor ?? const Color(0xFFF2F2F2).withOpacity(0.9)),
       padding: MaterialStateProperty.all(
         contentPadding ??
             const EdgeInsets.symmetric(

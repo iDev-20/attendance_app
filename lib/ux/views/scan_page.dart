@@ -3,10 +3,10 @@
 import 'dart:io';
 
 import 'package:attendance_app/ux/navigation/navigation.dart';
-import 'package:attendance_app/ux/views/verification_page.dart';
+import 'package:attendance_app/ux/views/face_verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:attendance_app/platform/extensions/date_time_extensions.dart';
+// import 'package:attendance_app/platform/extensions/date_time_extensions.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key, this.onExit});
@@ -41,9 +41,9 @@ class _ScanPageState extends State<ScanPage> {
         result = scanData;
         print(result?.code);
         controller.stopCamera();
-        if (result?.code == DateTime.now().fullFriendlyDate()) {
+        if (result?.code == 'res') {
           Navigation.navigateToScreenAndClearOnePrevious(
-              context: context, screen: const VerificationPage());
+              context: context, screen: const FaceVerificationPage());
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

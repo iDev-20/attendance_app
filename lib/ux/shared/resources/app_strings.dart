@@ -101,4 +101,10 @@ class AppStrings {
   static const noNotifications = 'No Notifications';
   static const wellLetYouKnow =
       "We'll let you know when there will be something to update you";
+
+  //Face verification
+  static const cancelVerification = 'Cancel Verification';
+  static const areYouSureYouWantToCancelVerification =
+      'Are you sure you want to cancel the verification process?';
+  static const verifyFace = 'Verify Face';
 }
