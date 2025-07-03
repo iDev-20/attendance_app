@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/components/app_dialogs.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
@@ -88,7 +89,12 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
           );
         });
     if (result == true) {
-      Navigation.navigateToHomePage(context: context);
+      await cameraController?.dispose();
+      cameraController = null;
+      if (mounted) {
+        Navigation.navigateToScreen(
+            context: context, screen: const NavigationHostPage());
+      }
     }
   }
 
@@ -132,15 +138,16 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
               alignment: Alignment.topRight,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).padding.top + 30),
+                    top: MediaQuery.of(context).padding.top + 30, right: 12),
                 child: AppMaterial(
+                  inkwellBorderRadius: BorderRadius.circular(10),
                   onTap: widget.onExit ??
                       () {
                         showCancelDialog();
                       },
                   child: Container(
                     width: 85,
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -149,13 +156,13 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black),
+                              color: AppColors.black),
                         ),
                         SizedBox(width: 5),
                         Icon(
                           Icons.close_sharp,
                           size: 25,
-                          color: Colors.black,
+                          color: AppColors.black,
                         ),
                       ],
                     ),

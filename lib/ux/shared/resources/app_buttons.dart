@@ -87,7 +87,6 @@ class PrimaryButton extends StatelessWidget {
   }
 }
 
-
 class PrimaryOutlinedButton extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
@@ -114,7 +113,8 @@ class PrimaryOutlinedButton extends StatelessWidget {
     return ButtonStyle(
       enableFeedback: true,
       overlayColor: MaterialStateColor.resolveWith(
-          (states) => overlayColor ?? const Color(0xFFF2F2F2).withOpacity(0.9)),
+        (states) => overlayColor ?? AppColors.defaultColor.withOpacity(0.1),
+      ),
       padding: MaterialStateProperty.all(
         contentPadding ??
             const EdgeInsets.symmetric(
@@ -192,7 +192,6 @@ class SecondaryButton extends StatelessWidget {
     this.borderColor = Colors.transparent,
     this.overlayColor,
     this.contentPadding,
-
   });
 
   ButtonStyle getStyle() {

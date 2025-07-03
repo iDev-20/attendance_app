@@ -1,8 +1,10 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'dart:io';
 
 import 'package:attendance_app/ux/navigation/navigation.dart';
+import 'package:attendance_app/ux/shared/components/app_material.dart';
+import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/views/face_verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -40,11 +42,18 @@ class _ScanPageState extends State<ScanPage> {
       (scanData) async {
         result = scanData;
         print(result?.code);
-        controller.stopCamera();
         if (result?.code == 'res') {
+          setState(() {
+            isLoading = true;
+          });
+          controller.stopCamera();
+
+          await Future.delayed(const Duration(milliseconds: 500));
+
           Navigation.navigateToScreenAndClearOnePrevious(
               context: context, screen: const FaceVerificationPage());
         } else {
+          controller.stopCamera();
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Oops! 🚫 This QR code doesn’t match today\'s '
@@ -64,6 +73,7 @@ class _ScanPageState extends State<ScanPage> {
   }
 
   bool flash = false;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,9 +96,10 @@ class _ScanPageState extends State<ScanPage> {
           Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding:
-                  EdgeInsets.only(top: MediaQuery.of(context).padding.top + 30),
-              child: InkWell(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top + 30, right: 12),
+              child: AppMaterial(
+                inkwellBorderRadius: BorderRadius.circular(10),
                 onTap: widget.onExit ??
                     () {
                       controller?.stopCamera();
@@ -96,21 +107,22 @@ class _ScanPageState extends State<ScanPage> {
                     },
                 child: Container(
                   width: 85,
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
                   child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Exit',
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
-                            color: Colors.white),
+                            color: AppColors.white),
                       ),
                       SizedBox(width: 5),
                       Icon(
                         Icons.close_sharp,
-                        size: 27,
-                        color: Colors.white,
+                        size: 25,
+                        color: AppColors.white,
                       ),
                     ],
                   ),
@@ -123,47 +135,65 @@ class _ScanPageState extends State<ScanPage> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 50.0),
               child: Container(
-                width: 140,
                 height: 50,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                width: 141,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26.5),
-                    color: Colors.white),
+                    color: AppColors.white),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    InkWell(
+                    iconBox(
+                        icon: Icons.flip_camera_android,
                         onTap: () {
-                          controller!.flipCamera();
-                        },
-                        child: const Icon(
-                          Icons.flip_camera_android,
-                          size: 27,
-                          color: Colors.black,
-                        )),
+                          controller?.flipCamera();
+                        }),
                     Container(
                       width: 1,
                       color: const Color.fromRGBO(102, 102, 102, 1),
                     ),
-                    InkWell(
-                      onTap: () async {
-                        await controller!.toggleFlash();
-                        setState(() {
-                          flash = !flash;
-                        });
-                      },
-                      child: Icon(
-                        flash ? Icons.flash_off : Icons.flash_on,
-                        size: 27,
-                        color: Colors.black,
-                      ),
-                    ),
+                    iconBox(
+                        icon: flash ? Icons.flash_off : Icons.flash_on,
+                        onTap: () async {
+                          await controller?.toggleFlash();
+                          setState(() {
+                            flash = !flash;
+                          });
+                        }),
                   ],
                 ),
               ),
             ),
           ),
+          if (isLoading)
+            Container(
+              color: Colors.black54,
+              child: const Center(
+                child: CircularProgressIndicator(color: AppColors.white),
+              ),
+            ),
         ],
+      ),
+    );
+  }
+
+  Widget iconBox({required IconData icon, required VoidCallback onTap}) {
+    return AppMaterial(
+      inkwellBorderRadius: icon == Icons.flip_camera_android
+          ? const BorderRadius.only(
+              topLeft: Radius.circular(26.5), bottomLeft: Radius.circular(26.5))
+          : const BorderRadius.only(
+              topRight: Radius.circular(26.5),
+              bottomRight: Radius.circular(26.5)),
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        width: 70,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Icon(
+          icon,
+          size: 27,
+          color: AppColors.black,
+        ),
       ),
     );
   }
