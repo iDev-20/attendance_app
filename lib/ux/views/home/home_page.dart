@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           const UpcomingClass(),
-          SemesterCoursesDashboardMetricView(),
+          const SemesterCoursesDashboardMetricView(),
           TodaysClasses(),
         ],
       ),
