@@ -17,7 +17,8 @@ class AppPageScaffold extends StatelessWidget {
   final Color titleTextColor;
   final Color leadingIconColor;
   final PreferredSizeWidget? appBarBottom;
-  final Widget? floatingActionButton;
+  final FloatingActionButton? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Widget? bottomNavigationBar;
   final OnBackPressed? onBackPressed;
   final bool useSafeArea;
@@ -42,6 +43,7 @@ class AppPageScaffold extends StatelessWidget {
       this.leadingIconColor = AppColors.defaultColor,
       this.appBarBottom,
       this.floatingActionButton,
+      this.floatingActionButtonLocation,
       this.bottomNavigationBar,
       this.onBackPressed,
       this.useSafeArea = true,
@@ -54,71 +56,81 @@ class AppPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: hideAppBar
-          ? null
-          : AppBar(
-              backgroundColor: appBarColor,
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                title ?? '',
-                style: TextStyle(
-                    color: titleTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              ),
-              automaticallyImplyLeading: false,
-              leading: showBackButton
-                  ? Container(
-                      padding: const EdgeInsets.all(16),
-                      child: InkResponse(
-                        radius: 28,
-                        onTap: () {
-                          if (onBackPressed != null) {
-                            onBackPressed?.call();
-                          } else {
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: appBarLeadingIcon ??
-                            Icon(Icons.arrow_back,
-                                color: leadingIconColor),
-                      ),
-                    )
-                  : null,
-              actions: actions,
-              bottom: appBarBottom,
-            ),
-      body: useSafeArea
-          ? SafeArea(
-              child: Column(
-                children: [
-                  if (hideAppBar &&
-                      headerTitle != null &&
-                      headerSubtitle != null)
-                    CustomAppBar(
-                      title: headerTitle ?? '',
-                      subtitle: headerSubtitle ?? '',
-                    ),
-                  if (showInformationBanner == true)
-                    InformationBanner(
-                      text: informationBannerText ?? '',
-                    ),
-                  // else if (hideAppBar == false && showDivider == true)
-                  //   const AppDivider(),
-                  Expanded(
-                    child: hasRefreshIndicator
-                        ? RefreshIndicator(onRefresh: () async {}, child: body)
-                        : body,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: AbsorbPointer(
+        absorbing: false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: backgroundColor,
+          appBar: hideAppBar
+              ? null
+              : AppBar(
+                  backgroundColor: appBarColor,
+                  elevation: 0,
+                  centerTitle: true,
+                  title: Text(
+                    title ?? '',
+                    style: TextStyle(
+                        color: titleTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
-                ],
-              ),
-            )
-          : body,
-      floatingActionButton: floatingActionButton,
-      bottomNavigationBar: bottomNavigationBar,
+                  automaticallyImplyLeading: false,
+                  leading: showBackButton
+                      ? Container(
+                          padding: const EdgeInsets.all(16),
+                          child: InkResponse(
+                            radius: 28,
+                            onTap: () {
+                              if (onBackPressed != null) {
+                                onBackPressed?.call();
+                              } else {
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: appBarLeadingIcon ??
+                                Icon(Icons.arrow_back, color: leadingIconColor),
+                          ),
+                        )
+                      : null,
+                  actions: actions,
+                  bottom: appBarBottom,
+                ),
+          body: useSafeArea
+              ? SafeArea(
+                  child: Column(
+                    children: [
+                      if (hideAppBar &&
+                          headerTitle != null &&
+                          headerSubtitle != null)
+                        CustomAppBar(
+                          title: headerTitle ?? '',
+                          subtitle: headerSubtitle ?? '',
+                        ),
+                      if (showInformationBanner == true)
+                        InformationBanner(
+                          text: informationBannerText ?? '',
+                        ),
+                      // else if (hideAppBar == false && showDivider == true)
+                      //   const AppDivider(),
+                      Expanded(
+                        child: hasRefreshIndicator
+                            ? RefreshIndicator(
+                                onRefresh: () async {}, child: body)
+                            : body,
+                      ),
+                    ],
+                  ),
+                )
+              : body,
+          floatingActionButton: floatingActionButton,
+          floatingActionButtonLocation: floatingActionButtonLocation,
+          bottomNavigationBar: bottomNavigationBar,
+        ),
+      ),
     );
   }
 }

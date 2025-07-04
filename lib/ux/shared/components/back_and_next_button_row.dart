@@ -6,6 +6,7 @@ class BackAndNextButtonRow extends StatelessWidget {
   const BackAndNextButtonRow({
     super.key,
     this.enableNextButton = true,
+    this.enableBackButton = true,
     required this.onTapNextButton,
     this.firstText,
     this.secondText,
@@ -16,6 +17,7 @@ class BackAndNextButtonRow extends StatelessWidget {
   });
 
   final bool enableNextButton;
+  final bool enableBackButton;
   final VoidCallback onTapNextButton;
   final String? firstText;
   final String? secondText;
@@ -27,24 +29,21 @@ class BackAndNextButtonRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(
-          top: 16,
-          left: 16,
-          right: 16),
+      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
       color: AppColors.white,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             child: PrimaryOutlinedButton(
-              onTap: onTapFirstButton ?? () {
-                Navigator.pop(context);
-              },
-              backgroundColor: AppColors.white,
-              borderColor: AppColors.defaultColor,
+              enabled: enableBackButton,
+              onTap: onTapFirstButton ??
+                  () {
+                    Navigator.pop(context);
+                  },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ 
+                children: [
                   Visibility(
                     visible: firstIcon != null,
                     child: Padding(
@@ -54,18 +53,13 @@ class BackAndNextButtonRow extends StatelessWidget {
                   ),
                   Text(
                     firstText ?? 'Back',
-                    style: const TextStyle(
-                        color: AppColors.defaultColor,
-                        fontWeight: FontWeight.w500),
                     textAlign: TextAlign.center,
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(
-            width: 16
-          ),
+          const SizedBox(width: 16),
           Expanded(
             child: PrimaryButton(
               backgroundColor: buttonColor ?? AppColors.defaultColor,
@@ -83,6 +77,7 @@ class BackAndNextButtonRow extends StatelessWidget {
                   ),
                   Text(
                     secondText ?? 'Next',
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),

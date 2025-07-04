@@ -106,5 +106,8 @@ class AppStrings {
   static const cancelVerification = 'Cancel Verification';
   static const areYouSureYouWantToCancelVerification =
       'Are you sure you want to cancel the verification process?';
+  static const registerFace = 'Register Face';
   static const verifyFace = 'Verify Face';
+  static const confirmSemeterCourses = 'Confirm Semester Courses';
+  static const confirm = 'Confirm';
 }

@@ -1,16 +1,17 @@
 // ignore_for_file: unused_field, use_build_context_synchronously, avoid_print
 
+import 'package:attendance_app/ux/shared/components/global_functions.dart';
 import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_form_fields.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/resources/app_images.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
+import 'package:attendance_app/ux/views/face_verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
-import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 // import 'package:attendance_app/ux/shared/components/global_functions.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -210,24 +211,26 @@ class _SignUpPageState extends State<SignUpPage> {
                                     //       'email', emailController.text);
                                     //   prefs.setBool('isLoggedIn', true);
 
-                                      Navigation
-                                          .navigateToScreenAndClearAllPrevious(
-                                              context: context,
-                                              screen: const NavigationHostPage());
-                                  //     setState(() {
-                                  //       showSpinner = false;
-                                  //     });
-                                  //   } catch (e) {
-                                  //     setState(() {
-                                  //       showSpinner = false;
-                                  //     });
-                                  //     showAlert(
-                                  //       context: context,
-                                  //       title: AppStrings.signUpFailed,
-                                  //       desc: e.toString(),
-                                  //     );
-                                  //     print(e);
-                                  //   }
+                                    Navigation
+                                        .navigateToScreenAndClearAllPrevious(
+                                            context: context,
+                                            screen: const FaceVerificationPage(
+                                              mode: FaceVerificationMode.signUp,
+                                            ));
+                                    //     setState(() {
+                                    //       showSpinner = false;
+                                    //     });
+                                    //   } catch (e) {
+                                    //     setState(() {
+                                    //       showSpinner = false;
+                                    //     });
+                                    //     showAlert(
+                                    //       context: context,
+                                    //       title: AppStrings.signUpFailed,
+                                    //       desc: e.toString(),
+                                    //     );
+                                    //     print(e);
+                                    //   }
                                   },
                                   child: const Text(AppStrings.signUp),
                                 ),

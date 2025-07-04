@@ -60,7 +60,7 @@ class PrimaryButton extends StatelessWidget {
       foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.disabled)) {
-          return Colors.white;
+          return Colors.grey;
         }
         return foregroundColor; // Defer to the widget's default.
       }),
@@ -102,7 +102,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
     required this.child,
     this.onTap,
     this.backgroundColor = AppColors.white,
-    this.foregroundColor = Colors.white,
+    this.foregroundColor = AppColors.defaultColor,
     this.borderColor = AppColors.defaultColor,
     this.overlayColor,
     this.enabled = true,
@@ -133,7 +133,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(48),
           side: BorderSide(
-            color: borderColor,
+            color: enabled ? borderColor : AppColors.transparent,
           ),
         ),
       ),
@@ -147,7 +147,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
       foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.disabled)) {
-          return Colors.white;
+          return Colors.grey;
         }
         return foregroundColor; // Defer to the widget's default.
       }),

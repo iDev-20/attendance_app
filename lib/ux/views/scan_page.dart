@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
+import 'package:attendance_app/ux/shared/components/global_functions.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/views/face_verification_page.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,10 @@ class _ScanPageState extends State<ScanPage> {
           await Future.delayed(const Duration(milliseconds: 500));
 
           Navigation.navigateToScreenAndClearOnePrevious(
-              context: context, screen: const FaceVerificationPage());
+              context: context,
+              screen: const FaceVerificationPage(
+                mode: FaceVerificationMode.attendance,
+              ));
         } else {
           controller.stopCamera();
           ScaffoldMessenger.of(context).showSnackBar(

@@ -64,3 +64,5 @@ Color statusColor(String status) {
       return Colors.grey.shade500;
   }
 }
+
+enum FaceVerificationMode { signUp, attendance }

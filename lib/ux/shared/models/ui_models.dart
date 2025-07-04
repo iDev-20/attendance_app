@@ -66,3 +66,13 @@ class Session {
     required this.status,
   });
 }
+
+class SemesterCourse {
+  final String courseCode;
+  final String courseTitle;
+
+  SemesterCourse({
+    required this.courseCode,
+    required this.courseTitle,
+  });
+}

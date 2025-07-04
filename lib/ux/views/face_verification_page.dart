@@ -3,18 +3,21 @@
 import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/components/app_dialogs.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
+import 'package:attendance_app/ux/shared/components/global_functions.dart';
 import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
+import 'package:attendance_app/ux/views/onboarding/confirm_courses_page.dart';
 import 'package:attendance_app/ux/views/verification_success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 
 class FaceVerificationPage extends StatefulWidget {
-  const FaceVerificationPage({super.key, this.onExit});
+  const FaceVerificationPage({super.key, this.onExit, required this.mode});
 
   final void Function()? onExit;
+  final FaceVerificationMode mode;
 
   @override
   State<FaceVerificationPage> createState() => _FaceVerificationPageState();
@@ -67,8 +70,17 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
       isVerifying = false;
     });
 
-    Navigation.navigateToScreenAndClearOnePrevious(
-        context: context, screen: const VerificationSuccessPage());
+    switch (widget.mode) {
+      case FaceVerificationMode.signUp:
+        Navigation.navigateToScreenAndClearOnePrevious(
+            context: context, screen: const ConfirmCoursesPage());
+        break;
+
+      case FaceVerificationMode.attendance:
+        Navigation.navigateToScreenAndClearOnePrevious(
+            context: context, screen: const VerificationSuccessPage());
+        break;
+    }
   }
 
   Future<void> showCancelDialog() async {
@@ -183,7 +195,9 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
                           width: 20,
                           child: CircularProgressIndicator(
                               strokeWidth: 2.5, color: AppColors.white))
-                      : const Text(AppStrings.verifyFace),
+                      : Text(widget.mode == FaceVerificationMode.signUp
+                          ? AppStrings.registerFace
+                          : AppStrings.verifyFace),
                 ),
               ),
             ),
