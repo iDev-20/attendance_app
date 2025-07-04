@@ -1,10 +1,12 @@
 // ignore_for_file: avoid_print
 
+import 'package:attendance_app/platform/provider/course_provider.dart';
 import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/views/onboarding/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool isLoggedIn = false;
@@ -24,7 +26,14 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CourseProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

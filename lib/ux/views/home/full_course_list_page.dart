@@ -81,7 +81,7 @@ import 'package:flutter/material.dart';
 //     );
 //   }
 // }
-
+  
 class FullCourseListPage extends StatefulWidget {
   final List<CourseInfo> courses;
 

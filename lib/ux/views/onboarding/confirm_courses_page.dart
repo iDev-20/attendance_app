@@ -1,3 +1,4 @@
+import 'package:attendance_app/platform/provider/course_provider.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
@@ -8,6 +9,7 @@ import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:attendance_app/ux/views/onboarding/add_course_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ConfirmCoursesPage extends StatefulWidget {
   const ConfirmCoursesPage({super.key});
@@ -190,6 +192,7 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
                         context: context, screen: const AddCoursePage());
                   },
                   onTapNextButton: () {
+                    context.read<CourseProvider>().setCourses(selectedCourses);
                     Navigation.navigateToScreen(
                         context: context, screen: const NavigationHostPage());
                   },

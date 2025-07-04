@@ -1,3 +1,4 @@
+import 'package:attendance_app/platform/provider/course_provider.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/components/dashboard_metric_grid_view.dart';
 import 'package:attendance_app/ux/shared/models/ui_models.dart';
@@ -8,66 +9,38 @@ import 'package:attendance_app/ux/views/course_details_page.dart';
 import 'package:attendance_app/ux/views/home/components/section_header.dart';
 import 'package:attendance_app/ux/views/home/full_course_list_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SemesterCoursesDashboardMetricView extends StatelessWidget {
-  SemesterCoursesDashboardMetricView({super.key});
-
-  // final List<CourseInfo> courses = [
-  //   CourseInfo(
-  //       courseCode: 'MATH201', creditHours: '3'),
-  //   CourseInfo(
-  //       courseCode: 'CS203', creditHours: '2'),
-  //   CourseInfo(
-  //       courseCode: 'CS205', creditHours: '3'),
-  //   CourseInfo(
-  //       courseCode: 'CE201/CE202',
-  //       creditHours: '3'),
-  //   CourseInfo(
-  //       courseCode: 'CE203/CE204',
-  //       creditHours: '3'),
-  //   CourseInfo(
-  //       courseCode: 'ENG233', creditHours: '3'),
-  //   CourseInfo(
-  //       courseCode: 'FRN101', creditHours: '3'),
-  //   CourseInfo(
-  //       courseCode: 'ENG207', creditHours: '1'),
-  // ];
-
-  final List<CourseInfo> courses = [
-    'MATH201|3|STEPHEN EDUAFO',
-    'CS203|2|FRANCIS AVEVOR',
-    'CS205|3|KAISU MUMUNI',
-    'CE201/CE202|3|DR. MAMUD MOHAMED',
-    'CE203/CE204|3|DR. MAMUD MOHAMED',
-    'ENG233|3|BAYOR ALPHONSE',
-    'FRN101|3|GEORGE LUAKOU',
-    'ENG207|1|ANTHONY MENSAH',
-    // 'CS313|3',
-    // 'CS450|2',
-  ].asMap().entries.map((entry) {
-    int index = entry.key;
-    var split = entry.value.split('|');
-    return CourseInfo(
-      courseCode: split[0],
-      creditHours: split[1],
-      lecturer: split[2],
-      index: index,
-    );
-  }).toList();
+  const SemesterCoursesDashboardMetricView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final selectedSemesterCourses =
+        context.watch<CourseProvider>().selectedCourses;
+
+    List<CourseInfo> courseInfos =
+        selectedSemesterCourses.asMap().entries.map((entry) {
+      int index = entry.key;
+      SemesterCourse course = entry.value;
+      return CourseInfo(
+          courseCode: course.courseCode,
+          creditHours: course.creditHour.toString(),
+          index: index,
+          lecturer: 'lecturer');
+    }).toList();
+
     return Column(
       children: [
         SectionHeader(
           period: AppStrings.semesterCourses,
-          hasAction: courses.length > 9,
+          hasAction: courseInfos.length > 9,
           onTap: () {
-            if (courses.length > 9) {
+            if (courseInfos.length > 9) {
               Navigation.navigateToScreen(
                 context: context,
                 screen: FullCourseListPage(
-                  courses: courses,
+                  courses: courseInfos,
                 ),
               );
             }
@@ -78,7 +51,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
               const EdgeInsets.only(left: 16, top: 10, right: 16, bottom: 16),
           child: DashboardMetricGridView(
             children: [
-              ...courses
+              ...courseInfos
                   .map((course) =>
                       singleCourse(context: context, course: course))
                   .toList(),
