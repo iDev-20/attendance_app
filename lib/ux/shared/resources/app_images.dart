@@ -25,4 +25,5 @@ class AppImages {
       SvgPicture.asset('assets/svgs/close_bottom_sheet_icon.svg');
   static SvgPicture svgChatIcon = SvgPicture.asset('assets/svgs/chat_icon.svg');
   static SvgPicture svgChatIcon2 = SvgPicture.asset('assets/svgs/chat_icon_2.svg');
+  static SvgPicture svgSearchIcon = SvgPicture.asset('assets/svgs/search_icon.svg');
 }

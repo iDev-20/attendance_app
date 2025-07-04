@@ -1,9 +1,12 @@
+import 'package:attendance_app/ux/navigation/navigation.dart';
+import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/components/back_and_next_button_row.dart';
 import 'package:attendance_app/ux/shared/models/ui_models.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
+import 'package:attendance_app/ux/views/onboarding/add_course_page.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmCoursesPage extends StatefulWidget {
@@ -16,29 +19,65 @@ class ConfirmCoursesPage extends StatefulWidget {
 class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
   List<SemesterCourse> courses = [
     SemesterCourse(
-        courseCode: 'CS306', courseTitle: 'Computer Architecture Lab'),
-    SemesterCourse(courseCode: 'CS311', courseTitle: 'Datebase system 1'),
+        courseCode: 'CS306',
+        creditHour: 1,
+        courseTitle: 'Computer Architecture Lab'),
+    SemesterCourse(
+        courseCode: 'CS311', creditHour: 3, courseTitle: 'Datebase system 1'),
     SemesterCourse(
         courseCode: 'CE301/CE302',
+        creditHour: 3,
         courseTitle: 'Electronic Device & Circuits Electronics Lab'),
     SemesterCourse(
-        courseCode: 'CE303', courseTitle: 'Embedded Microprocessor Systems'),
+        courseCode: 'CE303',
+        creditHour: 1,
+        courseTitle: 'Embedded Microprocessor Systems'),
     SemesterCourse(
-        courseCode: 'EEE303', courseTitle: 'Communication Systems 1'),
-    SemesterCourse(courseCode: 'CE304', courseTitle: 'Systems and Signals'),
+        courseCode: 'EEE303',
+        creditHour: 1,
+        courseTitle: 'Communication Systems 1'),
+    SemesterCourse(
+        courseCode: 'CE304', creditHour: 3, courseTitle: 'Systems and Signals'),
     SemesterCourse(
         courseCode: 'CS208',
+        creditHour: 3,
         courseTitle: 'Data Communications & Computer Networks 1'),
     SemesterCourse(
         courseCode: 'ENG307',
+        creditHour: 1,
         courseTitle: 'Eng Lab 4 - Microcomputer Tech Lab'),
-    SemesterCourse(courseCode: 'ENG306', courseTitle: 'Research Methodology'),
+    SemesterCourse(
+        courseCode: 'ENG306',
+        creditHour: 2,
+        courseTitle: 'Research Methodology'),
     SemesterCourse(
         courseCode: 'FAB301',
+        creditHour: 0,
         courseTitle: 'Digital Fabrication for Product Development'),
   ];
 
-  SemesterCourse? selectedCourses;
+  List<SemesterCourse> selectedCourses = [];
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCourses = List.from(courses);
+  }
+
+  bool get allSelected => selectedCourses.length == courses.length;
+
+  void toggleSelectAll() {
+    setState(() {
+      if (allSelected) {
+        selectedCourses.clear();
+      } else {
+        selectedCourses = List.from(courses);
+      }
+    });
+  }
+
+  int get totalCreditHours =>
+      selectedCourses.fold(0, (sum, course) => sum + course.creditHour);
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +88,66 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 8, bottom: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  '300 1st Semester',
+                  style: TextStyle(
+                      color: AppColors.defaultColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+                AppMaterial(
+                  inkwellBorderRadius: BorderRadius.circular(8),
+                  onTap: toggleSelectAll,
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    child: Row(
+                      children: [
+                        const Text(
+                          AppStrings.selectAll,
+                          style: TextStyle(
+                              color: AppColors.defaultColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(width: 8),
+                        Icon(
+                          allSelected
+                              ? Icons.check_circle_rounded
+                              : Icons.circle_outlined,
+                          color: allSelected
+                              ? AppColors.defaultColor
+                              : AppColors.grey,
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               children: courses
                   .map(
                     (semesterCourses) => courseCard(
                       semesterCourse: semesterCourses,
-                      selected: true,
-                      onTap: () {},
+                      selected: selectedCourses.contains(semesterCourses),
+                      onTap: () {
+                        setState(() {
+                          if (selectedCourses.contains(semesterCourses)) {
+                            selectedCourses.remove(semesterCourses);
+                          } else {
+                            selectedCourses.add(semesterCourses);
+                          }
+                        });
+                      },
                     ),
                   )
                   .toList(),
@@ -72,15 +162,15 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         text: 'Total credit hours: ',
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: AppColors.defaultColor,
                             fontFamily: 'Nunito'),
                         children: <TextSpan>[
                           TextSpan(
-                            text: '18',
-                            style: TextStyle(
+                            text: totalCreditHours.toString(),
+                            style: const TextStyle(
                                 color: AppColors.defaultColor,
                                 fontFamily: 'Nunito',
                                 fontWeight: FontWeight.bold),
@@ -91,26 +181,24 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
                   ),
                 ),
                 BackAndNextButtonRow(
-                  enableBackButton: false,
-                  // enableNextButton: false,
-                  firstText: 'Add Course',
-                  secondText: 'Confirm',
-                  onTapFirstButton: () {},
-                  onTapNextButton: () {},
+                  enableBackButton: totalCreditHours != 18,
+                  enableNextButton: totalCreditHours == 18,
+                  firstText: AppStrings.addCourse,
+                  secondText: AppStrings.confirm,
+                  onTapFirstButton: () {
+                    Navigation.navigateToScreen(
+                        context: context, screen: const AddCoursePage());
+                  },
+                  onTapNextButton: () {
+                    Navigation.navigateToScreen(
+                        context: context, screen: const NavigationHostPage());
+                  },
                 ),
               ],
             ),
           )
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   backgroundColor: AppColors.defaultColor,
-      //   foregroundColor: AppColors.white,
-      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      //   child: const Icon(Icons.add),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -122,10 +210,11 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
       padding: const EdgeInsets.only(bottom: 10),
       child: AppMaterial(
         color: selected ? AppColors.primaryTeal : AppColors.white,
+        borderRadius: BorderRadius.circular(10),
         inkwellBorderRadius: BorderRadius.circular(10),
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
@@ -135,27 +224,32 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    semesterCourse.courseCode,
-                    style: const TextStyle(
-                        color: AppColors.defaultColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    semesterCourse.courseTitle,
-                    style: const TextStyle(
-                        color: AppColors.defaultColor,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${semesterCourse.courseCode} (${(semesterCourse.creditHour).toString()})',
+                      style: const TextStyle(
+                          color: AppColors.defaultColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      semesterCourse.courseTitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          color: AppColors.defaultColor,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
               ),
               Icon(
                 selected ? Icons.check_circle_rounded : Icons.circle_outlined,
                 color: selected ? AppColors.defaultColor : AppColors.grey,
+                size: 20,
               ),
             ],
           ),

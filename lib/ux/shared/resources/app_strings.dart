@@ -5,6 +5,7 @@ class AppStrings {
   static const appName = 'Attendify';
   static const sampleAttendanceThresholdMessage =
       'Your CS103 attendance is approaching the minimum thresholds';
+  static const search = 'Search';
 
   //Onboarding
   static const signUp = 'Sign Up';
@@ -108,6 +109,12 @@ class AppStrings {
       'Are you sure you want to cancel the verification process?';
   static const registerFace = 'Register Face';
   static const verifyFace = 'Verify Face';
+
+  //Confrim semester courses
   static const confirmSemeterCourses = 'Confirm Semester Courses';
+  static const addCourse = 'Add course';
   static const confirm = 'Confirm';
+  static const selectAll = 'Select all';
+  static const addCourseCaps = 'Add Course';
+  static const searchCourses = 'Search courses';
 }

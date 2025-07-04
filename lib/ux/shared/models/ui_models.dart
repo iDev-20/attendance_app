@@ -70,9 +70,11 @@ class Session {
 class SemesterCourse {
   final String courseCode;
   final String courseTitle;
+  final int creditHour;
 
   SemesterCourse({
     required this.courseCode,
     required this.courseTitle,
+    required this.creditHour,
   });
 }
