@@ -13,7 +13,11 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppMaterial(
-      onTap: onTap ?? () {},
+      onTap: hasAction
+          ? () {
+              onTap?.call();
+            }
+          : null,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         child: Row(

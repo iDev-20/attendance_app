@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppMaterial extends StatelessWidget {
   const AppMaterial(
       {super.key,
-      required this.onTap,
+      this.onTap,
       required this.child,
       this.borderRadius,
       this.inkwellBorderRadius,
@@ -12,7 +12,7 @@ class AppMaterial extends StatelessWidget {
       this.color,
       this.customBorder});
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Widget child;
   final BorderRadiusGeometry? borderRadius;
   final BorderRadius? inkwellBorderRadius;
