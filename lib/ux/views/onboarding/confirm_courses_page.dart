@@ -21,46 +21,48 @@ class ConfirmCoursesPage extends StatefulWidget {
 class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
   bool isConfirming = false;
 
-  List<SemesterCourse> courses = [
-    SemesterCourse(
+  List<Course> courses = [
+    Course(
         courseCode: 'CS306',
-        creditHour: 1,
+        creditHours: 1,
         courseTitle: 'Computer Architecture Lab'),
-    SemesterCourse(
-        courseCode: 'CS311', creditHour: 3, courseTitle: 'Datebase system 1'),
-    SemesterCourse(
+    Course(
+        courseCode: 'CS311', creditHours: 3, courseTitle: 'Datebase system 1'),
+    Course(
         courseCode: 'CE301/CE302',
-        creditHour: 3,
+        creditHours: 3,
         courseTitle: 'Electronic Device & Circuits Electronics Lab'),
-    SemesterCourse(
+    Course(
         courseCode: 'CE303',
-        creditHour: 1,
+        creditHours: 1,
         courseTitle: 'Embedded Microprocessor Systems'),
-    SemesterCourse(
+    Course(
         courseCode: 'EEE303',
-        creditHour: 1,
+        creditHours: 1,
         courseTitle: 'Communication Systems 1'),
-    SemesterCourse(
-        courseCode: 'CE304', creditHour: 3, courseTitle: 'Systems and Signals'),
-    SemesterCourse(
+    Course(
+        courseCode: 'CE304',
+        creditHours: 3,
+        courseTitle: 'Systems and Signals'),
+    Course(
         courseCode: 'CS208',
-        creditHour: 3,
+        creditHours: 3,
         courseTitle: 'Data Communications & Computer Networks 1'),
-    SemesterCourse(
+    Course(
         courseCode: 'ENG307',
-        creditHour: 1,
+        creditHours: 1,
         courseTitle: 'Eng Lab 4 - Microcomputer Tech Lab'),
-    SemesterCourse(
+    Course(
         courseCode: 'ENG306',
-        creditHour: 2,
+        creditHours: 2,
         courseTitle: 'Research Methodology'),
-    SemesterCourse(
+    Course(
         courseCode: 'FAB301',
-        creditHour: 0,
+        creditHours: 0,
         courseTitle: 'Digital Fabrication for Product Development'),
   ];
 
-  List<SemesterCourse> selectedCourses = [];
+  List<Course> selectedCourses = [];
 
   @override
   void initState() {
@@ -81,7 +83,7 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
   }
 
   int get totalCreditHours =>
-      selectedCourses.fold(0, (sum, course) => sum + course.creditHour);
+      selectedCourses.fold(0, (sum, course) => sum + (course.creditHours ?? 0));
 
   void confirmCourses() async {
     setState(() {
@@ -229,7 +231,7 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
   }
 
   Widget courseCard(
-      {required SemesterCourse semesterCourse,
+      {required Course semesterCourse,
       required bool selected,
       required VoidCallback onTap}) {
     return Padding(
@@ -255,14 +257,14 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${semesterCourse.courseCode} (${(semesterCourse.creditHour).toString()})',
+                      '${semesterCourse.courseCode} (${(semesterCourse.creditHours).toString()})',
                       style: const TextStyle(
                           color: AppColors.defaultColor,
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      semesterCourse.courseTitle,
+                      semesterCourse.courseTitle ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(

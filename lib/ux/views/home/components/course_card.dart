@@ -23,7 +23,7 @@ class CourseCard extends StatelessWidget {
             context: context,
             screen: CourseDetailsPage(
               courseCode: course.courseCode,
-              lecturer: course.lecturer,
+              lecturer: course.lecturer ?? '',
             ),
           );
         },
@@ -80,7 +80,7 @@ class CourseCard extends StatelessWidget {
                             height: 4,
                           ),
                           Text(
-                            course.courseTitle,
+                            course.courseTitle ?? '',
                             style: const TextStyle(
                               color: AppColors.defaultColor,
                               fontSize: 13,

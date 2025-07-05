@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 class Course {
   final String courseCode;
-  final String courseTitle;
+  final String? courseTitle;
   final int? creditHours;
   final String? status;
   final bool showStatus;
   late final Color color;
-  final String lecturer;
+  final String? lecturer;
 
   static const List<Color> courseColors = [
     AppColors.boxColor1,
@@ -26,49 +26,18 @@ class Course {
   static Color getColorByIndex(int index) {
     return courseColors[index % courseColors.length];
   }
-
 
   Color get getStatusColor => statusColor(status ?? '');
 
   Course({
     required this.courseCode,
-    required this.courseTitle,
+    this.courseTitle,
     this.creditHours,
     this.status,
     this.showStatus = false,
-    required this.lecturer,
+    this.lecturer,
     int? index,
-  }) : color = CourseInfo.getColorByIndex(index ?? 0);
-}
-
-class CourseInfo {
-  final String courseCode;
-  final String creditHours;
-  late final Color color;
-  final String lecturer;
-
-  static const List<Color> courseColors = [
-    AppColors.boxColor1,
-    AppColors.boxColor2,
-    AppColors.boxColor3,
-    AppColors.boxColor4,
-    AppColors.boxColor5,
-    AppColors.boxColor6,
-    AppColors.boxColor7,
-    AppColors.boxColor8,
-  ];
-
-  static Color getColorByIndex(int index) {
-    // final index = courseCode.hashCode % courseColors.length;
-    return courseColors[index % courseColors.length];
-  }
-
-  CourseInfo({
-    required this.courseCode,
-    required this.creditHours,
-    required int index,
-    required this.lecturer,
-  }) : color = CourseInfo.getColorByIndex(index);
+  }) : color = Course.getColorByIndex(index ?? 0);
 }
 
 class Session {
@@ -84,17 +53,5 @@ class Session {
     required this.sessionNumber,
     required this.date,
     required this.status,
-  });
-}
-
-class SemesterCourse {
-  final String courseCode;
-  final String courseTitle;
-  final int creditHour;
-
-  SemesterCourse({
-    required this.courseCode,
-    required this.courseTitle,
-    required this.creditHour,
   });
 }

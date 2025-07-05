@@ -2,21 +2,21 @@ import 'package:attendance_app/ux/shared/models/ui_models.dart';
 import 'package:flutter/material.dart';
 
 class CourseProvider extends ChangeNotifier {
-  List<SemesterCourse> _selectedCourses = [];
+  List<Course> _selectedCourses = [];
 
-  List<SemesterCourse> get selectedCourses => _selectedCourses;
+  List<Course> get selectedCourses => _selectedCourses;
 
-  void setCourses(List<SemesterCourse> courses) {
+  void setCourses(List<Course> courses) {
     _selectedCourses = courses;
     notifyListeners();
   }
 
-  void addCourse(SemesterCourse course) {
+  void addCourse(Course course) {
     _selectedCourses.add(course);
     notifyListeners();
   }
 
-  void removeCourse(SemesterCourse course) {
+  void removeCourse(Course course) {
     _selectedCourses.remove(course);
     notifyListeners();
   }

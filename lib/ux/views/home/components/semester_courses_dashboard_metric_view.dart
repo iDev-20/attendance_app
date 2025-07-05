@@ -19,16 +19,19 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
     final selectedSemesterCourses =
         context.watch<CourseProvider>().selectedCourses;
 
-    List<CourseInfo> courseInfos =
-        selectedSemesterCourses.asMap().entries.map((entry) {
-      int index = entry.key;
-      SemesterCourse course = entry.value;
-      return CourseInfo(
-          courseCode: course.courseCode,
-          creditHours: course.creditHour.toString(),
-          index: index,
-          lecturer: 'lecturer');
-    }).toList();
+    final courseInfos = selectedSemesterCourses
+        .asMap()
+        .entries
+        .map((entry) => Course(
+              courseCode: entry.value.courseCode,
+              courseTitle: entry.value.courseTitle,
+              creditHours: entry.value.creditHours,
+              status: entry.value.status,
+              showStatus: entry.value.showStatus,
+              lecturer: entry.value.lecturer,
+              index: entry.key,
+            ))
+        .toList();
 
     return Column(
       children: [
@@ -62,8 +65,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
     );
   }
 
-  Widget singleCourse(
-      {required BuildContext context, required CourseInfo course}) {
+  Widget singleCourse({required BuildContext context, required Course course}) {
     return AppMaterial(
       color: course.color,
       borderRadius: BorderRadius.circular(15),
@@ -74,7 +76,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
             context: context,
             screen: CourseDetailsPage(
               courseCode: course.courseCode,
-              lecturer: course.lecturer,
+              lecturer: course.lecturer ?? '',
             ));
       },
       child: Container(
@@ -86,7 +88,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              course.creditHours,
+              course.creditHours.toString(),
               textAlign: TextAlign.center,
               style: const TextStyle(
                   color: AppColors.defaultColor,
