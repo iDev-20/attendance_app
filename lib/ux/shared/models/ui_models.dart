@@ -6,19 +6,39 @@ import 'package:flutter/material.dart';
 class Course {
   final String courseCode;
   final String courseTitle;
+  final int? creditHours;
   final String? status;
   final bool showStatus;
+  late final Color color;
   final String lecturer;
+
+  static const List<Color> courseColors = [
+    AppColors.boxColor1,
+    AppColors.boxColor2,
+    AppColors.boxColor3,
+    AppColors.boxColor4,
+    AppColors.boxColor5,
+    AppColors.boxColor6,
+    AppColors.boxColor7,
+    AppColors.boxColor8,
+  ];
+
+  static Color getColorByIndex(int index) {
+    return courseColors[index % courseColors.length];
+  }
+
 
   Color get getStatusColor => statusColor(status ?? '');
 
   Course({
     required this.courseCode,
     required this.courseTitle,
+    this.creditHours,
     this.status,
     this.showStatus = false,
     required this.lecturer,
-  });
+    int? index,
+  }) : color = CourseInfo.getColorByIndex(index ?? 0);
 }
 
 class CourseInfo {

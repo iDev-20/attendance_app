@@ -19,6 +19,8 @@ class ConfirmCoursesPage extends StatefulWidget {
 }
 
 class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
+  bool isConfirming = false;
+
   List<SemesterCourse> courses = [
     SemesterCourse(
         courseCode: 'CS306',
@@ -80,6 +82,23 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
 
   int get totalCreditHours =>
       selectedCourses.fold(0, (sum, course) => sum + course.creditHour);
+
+  void confirmCourses() async {
+    setState(() {
+      isConfirming = true;
+    });
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (!mounted) return;
+    setState(() {
+      isConfirming = false;
+    });
+
+    context.read<CourseProvider>().setCourses(selectedCourses);
+    Navigation.navigateToScreen(
+        context: context, screen: const NavigationHostPage());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -191,11 +210,15 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
                     Navigation.navigateToScreen(
                         context: context, screen: const AddCoursePage());
                   },
-                  onTapNextButton: () {
-                    context.read<CourseProvider>().setCourses(selectedCourses);
-                    Navigation.navigateToScreen(
-                        context: context, screen: const NavigationHostPage());
-                  },
+                  onTapNextButton: isConfirming ? () {} : confirmCourses,
+                  nextWidget: isConfirming
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                              strokeWidth: 2.5, color: AppColors.white),
+                        )
+                      : null,
                 ),
               ],
             ),

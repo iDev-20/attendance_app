@@ -14,6 +14,7 @@ class BackAndNextButtonRow extends StatelessWidget {
     this.firstIcon,
     this.secondIcon,
     this.buttonColor,
+    this.nextWidget,
   });
 
   final bool enableNextButton;
@@ -25,6 +26,7 @@ class BackAndNextButtonRow extends StatelessWidget {
   final Widget? firstIcon;
   final Widget? secondIcon;
   final Color? buttonColor;
+  final Widget? nextWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +77,12 @@ class BackAndNextButtonRow extends StatelessWidget {
                       child: secondIcon,
                     ),
                   ),
-                  Text(
-                    secondText ?? 'Next',
-                    textAlign: TextAlign.center,
-                  ),
+                  nextWidget != null
+                      ? nextWidget ?? const SizedBox()
+                      : Text(
+                          secondText ?? 'Next',
+                          textAlign: TextAlign.center,
+                        ),
                 ],
               ),
             ),
