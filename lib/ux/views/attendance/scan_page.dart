@@ -78,11 +78,15 @@ class _ScanPageState extends State<ScanPage> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        await controller?.stopCamera();
-        return true;
+    return PopScope(
+      canPop: true,
+      onPopInvoked: (didPop) {
+        controller?.stopCamera();
       },
+      // onWillPop: () async {
+      //   await controller?.stopCamera();
+      //   return true;
+      // },
       child: Scaffold(
         body: Stack(
           children: [

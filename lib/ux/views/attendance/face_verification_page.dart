@@ -148,15 +148,23 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width * 0.93;
     final previewSize = cameraController?.value.previewSize;
-    return WillPopScope(
-      onWillPop: () async {
-        if (widget.mode == FaceVerificationMode.signUp) {
-          await showSignUpCancelDialog();
-        } else {
-          await showAttendanceCancelDialog();
-        }
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (result) {
+          if (widget.mode == FaceVerificationMode.signUp) {
+            showSignUpCancelDialog();
+          } else {
+            showAttendanceCancelDialog();
+          }
       },
+      // onWillPop: () async {
+      //   if (widget.mode == FaceVerificationMode.signUp) {
+      //     await showSignUpCancelDialog();
+      //   } else {
+      //     await showAttendanceCancelDialog();
+      //   }
+      //   return false;
+      // },
       child: Scaffold(
         body: Stack(
           children: [
