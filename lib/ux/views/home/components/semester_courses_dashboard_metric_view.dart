@@ -19,7 +19,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
     final selectedSemesterCourses =
         context.watch<CourseProvider>().selectedCourses;
 
-    final courseInfos = selectedSemesterCourses
+    final courseInfo = selectedSemesterCourses
         .asMap()
         .entries
         .map((entry) => Course(
@@ -37,13 +37,13 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
       children: [
         SectionHeader(
           period: AppStrings.semesterCourses,
-          hasAction: courseInfos.length > 9,
+          hasAction: courseInfo.length > 9,
           onTap: () {
-            if (courseInfos.length > 9) {
+            if (courseInfo.length > 9) {
               Navigation.navigateToScreen(
                 context: context,
                 screen: FullCourseListPage(
-                  courses: courseInfos,
+                  courses: courseInfo,
                 ),
               );
             }
@@ -54,7 +54,7 @@ class SemesterCoursesDashboardMetricView extends StatelessWidget {
               const EdgeInsets.only(left: 16, top: 10, right: 16, bottom: 16),
           child: DashboardMetricGridView(
             children: [
-              ...courseInfos
+              ...courseInfo
                   .map((course) =>
                       singleCourse(context: context, course: course))
                   .toList(),
