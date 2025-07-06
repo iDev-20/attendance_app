@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:attendance_app/platform/provider/course_provider.dart';
+import 'package:attendance_app/platform/providers/course_provider.dart';
 import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/views/onboarding/sign_up_page.dart';

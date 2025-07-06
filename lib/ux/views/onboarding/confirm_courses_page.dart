@@ -1,4 +1,4 @@
-import 'package:attendance_app/platform/provider/course_provider.dart';
+import 'package:attendance_app/platform/providers/course_provider.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
