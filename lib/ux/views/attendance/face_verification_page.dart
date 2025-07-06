@@ -9,7 +9,7 @@ import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:attendance_app/ux/views/onboarding/confirm_courses_page.dart';
 import 'package:attendance_app/ux/views/onboarding/sign_up_page.dart';
-import 'package:attendance_app/ux/views/verification_success_page.dart';
+import 'package:attendance_app/ux/views/attendance/verification_success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';

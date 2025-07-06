@@ -7,7 +7,7 @@ import 'package:attendance_app/ux/shared/components/global_functions.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/resources/app_images.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:attendance_app/ux/views/verification_success_page.dart';
+import 'package:attendance_app/ux/views/attendance/verification_success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';

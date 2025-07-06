@@ -1,9 +1,9 @@
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:attendance_app/ux/views/attendance%20history/attendance_history_page.dart';
+import 'package:attendance_app/ux/views/attendance_history/attendance_history_page.dart';
 import 'package:attendance_app/ux/views/home/home_page.dart';
-import 'package:attendance_app/ux/views/scan_page.dart';
+import 'package:attendance_app/ux/views/attendance/select_attendance_mode_page.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -24,20 +24,14 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
     super.initState();
     pages = [
       const HomePage(),
-      ScanPage(
-        onExit: () {
-          setState(() {
-            currentPageIndex = 0;
-          });
-        },
-      ),
+      const SelectAttendanceModePage(),
       const AttendanceHistoryPage()
     ];
   }
 
   final List<Map<String, dynamic>> bottomNavItems = [
     {'icon': Iconsax.home5, 'text': AppStrings.home},
-    {'icon': Icons.qr_code_scanner, 'text': AppStrings.scan},
+    {'icon': Iconsax.profile_tick5, 'text': AppStrings.attendance},
     {'icon': Iconsax.calendar5, 'text': AppStrings.history},
   ];
 
@@ -45,24 +39,26 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[currentPageIndex],
-      bottomNavigationBar: currentPageIndex == 1
-          ? null
-          : BottomAppBar(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  bottomNavItems.length,
-                  (index) {
-                    return buildBottomNavIcon(
-                      icon: bottomNavItems[index]['icon'],
-                      text: bottomNavItems[index]['text'],
-                      isSelected: currentPageIndex == index,
-                      onTap: () => setState(() => currentPageIndex = index),
-                    );
-                  },
-                ),
-              ),
-            ),
+      bottomNavigationBar:
+          // currentPageIndex == 1
+          //     ? null
+          //     :
+          BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(
+            bottomNavItems.length,
+            (index) {
+              return buildBottomNavIcon(
+                icon: bottomNavItems[index]['icon'],
+                text: bottomNavItems[index]['text'],
+                isSelected: currentPageIndex == index,
+                onTap: () => setState(() => currentPageIndex = index),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 

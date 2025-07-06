@@ -2,7 +2,7 @@ import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:attendance_app/ux/views/scan_page.dart';
+import 'package:attendance_app/ux/views/attendance/scan_page.dart';
 import 'package:flutter/material.dart';
 
 class UpcomingClass extends StatelessWidget {

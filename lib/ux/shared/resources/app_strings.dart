@@ -29,7 +29,7 @@ class AppStrings {
 
   //BottomNav
   static const home = 'Home';
-  static const scan = 'Scan';
+  static const attendance = 'Attendance';
   static const history = 'History';
 
   //Profile
@@ -129,4 +129,15 @@ class AppStrings {
   static const selectAll = 'Select all';
   static const addCourseCaps = 'Add Course';
   static const searchCourses = 'Search courses';
+
+  //Attendance type
+  static const selectAttendanceType = 'Attendance Mode';
+  static const areYouAttendingInPersonOrOnline =
+      'Are you attending in person or online?';
+  static const enterClassCode = 'Enter Class Code';
+  static const classCode = 'Class code';
+  static const inputTheAttendanceCodeProvided =
+      'Input the attendance code provided by your lecturer';
+  static const classCodeHint = 'e.g. AIT-CS103-7XKP';
+  static const submit = 'Submit';
 }
