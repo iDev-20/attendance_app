@@ -29,6 +29,15 @@ class _ProfilePageState extends State<ProfilePage> {
     final level = context.watch<StudentInfoProvider>().level;
     final semester = context.watch<StudentInfoProvider>().semester;
 
+    String semesterText;
+    if (semester == '1') {
+      semesterText = '1st';
+    } else if (semester == '2') {
+      semesterText = '2nd';
+    } else {
+      semesterText = 'Unknown';
+    }
+
     return AppPageScaffold(
       body: LayoutBuilder(
         builder: (context, constraints) => SingleChildScrollView(
@@ -93,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       value: 'Level $level'),
                                   profileDetailItem(
                                       title: AppStrings.currentSemester,
-                                      value: 'Semester $semester'),
+                                      value: '$semesterText Semester'),
                                   profileDetailItem(
                                       title: AppStrings.stream,
                                       value: AppStrings.sampleStream),
