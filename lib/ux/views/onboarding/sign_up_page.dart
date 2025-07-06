@@ -29,6 +29,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final TextEditingController levelController = TextEditingController();
+  final TextEditingController semesterController = TextEditingController();
 
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
@@ -64,7 +66,6 @@ class _SignUpPageState extends State<SignUpPage> {
             //this shows the loader
             inAsyncCall: showSpinner,
             child: Container(
-              // color: AppColors.defaultColor,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AppImages.backgroundImage,
@@ -118,10 +119,33 @@ class _SignUpPageState extends State<SignUpPage> {
                                     labelText: AppStrings.studentIdNumber,
                                     controller: idNumberController,
                                     keyboardType: TextInputType.visiblePassword,
-                                    hintText: AppStrings.sampleIdNumber,
+                                    hintText: AppStrings.idNumberHintText,
                                     textInputAction: TextInputAction.next,
                                     textCapitalization:
                                         TextCapitalization.characters),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: PrimaryTextFormField(
+                                          labelText: AppStrings.level,
+                                          controller: levelController,
+                                          keyboardType: TextInputType.number,
+                                          hintText: AppStrings.levelHintText,
+                                          textInputAction:
+                                              TextInputAction.next),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: PrimaryTextFormField(
+                                          labelText: AppStrings.semester,
+                                          controller: semesterController,
+                                          keyboardType: TextInputType.number,
+                                          hintText: AppStrings.semesterHintText,
+                                          textInputAction:
+                                              TextInputAction.next),
+                                    ),
+                                  ],
+                                ),
                                 // PrimaryTextFormField(
                                 //   labelText: AppStrings.studentEmail,
                                 //   controller: emailController,

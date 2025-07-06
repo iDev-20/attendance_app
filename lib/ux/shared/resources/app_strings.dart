@@ -20,7 +20,12 @@ class AppStrings {
       'Please enter a valid AIT email address';
   static const signUpFailed = 'Sign up failed';
   static const passwordsDoNotMatch = 'Passwords do not match';
+  static const idNumberHintText = 'e.g. ENG23A000159Y';
   static const login = 'Login';
+  static const level = 'Level';
+  static const semester = 'Semester';
+  static const levelHintText = 'e.g. 100';
+  static const semesterHintText = 'e.g. 1';
 
   //BottomNav
   static const home = 'Home';
@@ -106,7 +111,8 @@ class AppStrings {
   //Face verification
   //Sign Up
   static const cancelFaceRegistration = 'Cancel Face Registration?';
-  static const youreInTheMiddleOfRegistering = 'You’re in the middle of registering your face. If you go back now, you’ll lose progress and may not complete sign-up.';
+  static const youreInTheMiddleOfRegistering =
+      'You’re in the middle of registering your face. If you go back now, you’ll lose progress and may not complete sign-up.';
   static const stay = 'Stay';
   static const yesCancel = 'Yes, cancel';
   //Attendance
