@@ -1,4 +1,5 @@
 import 'package:attendance_app/platform/providers/course_provider.dart';
+import 'package:attendance_app/platform/providers/student_info_provider.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/navigation/navigation_host_page.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
@@ -104,6 +105,18 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final level = context.watch<StudentInfoProvider>().level;
+    final semester = context.watch<StudentInfoProvider>().semester;
+
+    String semesterText;
+    if (semester == '1') {
+      semesterText = '1st';
+    } else if (semester == '2') {
+      semesterText = '2nd';
+    } else {
+      semesterText = 'Unknown';
+    }
+
     return AppPageScaffold(
       hideAppBar: false,
       showBackButton: false,
@@ -116,9 +129,9 @@ class _ConfirmCoursesPageState extends State<ConfirmCoursesPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  '300 1st Semester',
-                  style: TextStyle(
+                Text(
+                  '$level Level, $semesterText Semester',
+                  style: const TextStyle(
                       color: AppColors.defaultColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),

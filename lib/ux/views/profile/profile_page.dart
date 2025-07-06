@@ -1,3 +1,4 @@
+import 'package:attendance_app/platform/providers/student_info_provider.dart';
 import 'package:attendance_app/ux/navigation/navigation.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
 import 'package:attendance_app/ux/shared/bottom_sheets/show_app_bottom_sheet.dart';
@@ -10,6 +11,7 @@ import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:attendance_app/ux/views/profile/edit_phone_number_bottom_sheet.dart';
 import 'package:attendance_app/ux/views/profile/view_profile_image_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -23,6 +25,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final idNumber = context.watch<StudentInfoProvider>().idNumber;
+    final level = context.watch<StudentInfoProvider>().level;
+    final semester = context.watch<StudentInfoProvider>().semester;
+
     return AppPageScaffold(
       body: LayoutBuilder(
         builder: (context, constraints) => SingleChildScrollView(
@@ -81,13 +87,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   profileDetailItem(
                                       title: AppStrings.studentIdNumber,
-                                      value: AppStrings.sampleIdNumber),
+                                      value: idNumber),
                                   profileDetailItem(
                                       title: AppStrings.studentLevel,
-                                      value: AppStrings.sampleStudentLevel),
+                                      value: 'Level $level'),
                                   profileDetailItem(
                                       title: AppStrings.currentSemester,
-                                      value: AppStrings.sampleCurrentSemester),
+                                      value: 'Semester $semester'),
                                   profileDetailItem(
                                       title: AppStrings.stream,
                                       value: AppStrings.sampleStream),

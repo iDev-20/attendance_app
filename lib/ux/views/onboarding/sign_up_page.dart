@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field, use_build_context_synchronously, avoid_print
 
+import 'package:attendance_app/platform/providers/student_info_provider.dart';
 import 'package:attendance_app/ux/shared/components/global_functions.dart';
 import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
@@ -11,6 +12,7 @@ import 'package:attendance_app/ux/views/face_verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:provider/provider.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:attendance_app/ux/shared/components/global_functions.dart';
 
@@ -63,7 +65,6 @@ class _SignUpPageState extends State<SignUpPage> {
           resizeToAvoidBottomInset:
               false, //this stops the background image from moving anytime the keyboard is initiated
           body: ModalProgressHUD(
-            //this shows the loader
             inAsyncCall: showSpinner,
             child: Container(
               decoration: BoxDecoration(
@@ -146,13 +147,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ),
                                   ],
                                 ),
-                                // PrimaryTextFormField(
-                                //   labelText: AppStrings.studentEmail,
-                                //   controller: emailController,
-                                //   keyboardType: TextInputType.emailAddress,
-                                //   hintText: AppStrings.studentEmailHint,
-                                //   textInputAction: TextInputAction.next,
-                                // ),
                                 PrimaryTextFormField(
                                   labelText: AppStrings.password,
                                   hintText: AppStrings.enterAPassword,
@@ -234,6 +228,19 @@ class _SignUpPageState extends State<SignUpPage> {
                                     //   prefs.setString(
                                     //       'email', emailController.text);
                                     //   prefs.setBool('isLoggedIn', true);
+
+                                    final idNumber =
+                                        idNumberController.text.trim();
+                                    final level = levelController.text.trim();
+                                    final semester =
+                                        semesterController.text.trim();
+
+                                    context
+                                        .read<StudentInfoProvider>()
+                                        .setStudentInfo(
+                                            idNumber: idNumber,
+                                            level: level,
+                                            semester: semester);
 
                                     Navigation
                                         .navigateToScreenAndClearAllPrevious(
