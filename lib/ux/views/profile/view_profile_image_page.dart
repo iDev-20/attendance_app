@@ -1,15 +1,9 @@
-import 'dart:io';
-
-import 'package:attendance_app/ux/shared/utils/image_utils.dart';
 import 'package:attendance_app/ux/shared/components/app_material.dart';
-import 'package:attendance_app/ux/shared/bottom_sheets/show_app_bottom_sheet.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_images.dart';
-import 'package:attendance_app/ux/shared/bottom_sheets/choose_photo_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:attendance_app/ux/shared/resources/app_page.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ViewProfileImagePage extends StatefulWidget {
   const ViewProfileImagePage({super.key});
@@ -24,18 +18,18 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
     super.initState();
   }
 
-  Future selectNewProfilePhoto() async {
-    ImageSource? imageSource = await showAppBottomSheet(
-      context: context,
-      title: AppStrings.changePicture,
-      child: const ChoosePhotoBottomSheet(),
-    );
-    if (imageSource != null) {
-      File? newProfileImage =
-          await ImageUtils.selectAndCropImageFromSource(source: imageSource);
-      //Complete the image changing logic
-    }
-  }
+  // Future selectNewProfilePhoto() async {
+  //   ImageSource? imageSource = await showAppBottomSheet(
+  //     context: context,
+  //     title: AppStrings.changePicture,
+  //     child: const ChoosePhotoBottomSheet(),
+  //   );
+  //   if (imageSource != null) {
+  //     File? newProfileImage =
+  //         await ImageUtils.selectAndCropImageFromSource(source: imageSource);
+  //     //Complete the image changing logic
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +74,7 @@ class ViewProfileImagePageState extends State<ViewProfileImagePage> {
                 AppMaterial(
                   inkwellBorderRadius: BorderRadius.circular(10),
                   onTap: () {
-                    selectNewProfilePhoto();
+                    // selectNewProfilePhoto();
                   },
                   child: Container(
                     padding: const EdgeInsets.all(7),

@@ -104,9 +104,15 @@ class AppStrings {
       "We'll let you know when there will be something to update you";
 
   //Face verification
-  static const cancelVerification = 'Cancel Verification';
-  static const areYouSureYouWantToCancelVerification =
-      'Are you sure you want to cancel the verification process?';
+  //Sign Up
+  static const cancelFaceRegistration = 'Cancel Face Registration?';
+  static const youreInTheMiddleOfRegistering = 'You’re in the middle of registering your face. If you go back now, you’ll lose progress and may not complete sign-up.';
+  static const stay = 'Stay';
+  static const yesCancel = 'Yes, cancel';
+  //Attendance
+  static const cancelFaceVerification = 'Cancel Face Verification?';
+  static const ifYouExitNowYourAttendanceWont =
+      'If you exit now, your attendance won’t be marked. Are you sure you want to cancel?';
   static const registerFace = 'Register Face';
   static const verifyFace = 'Verify Face';
 

@@ -8,6 +8,7 @@ import 'package:attendance_app/ux/shared/resources/app_buttons.dart';
 import 'package:attendance_app/ux/shared/resources/app_colors.dart';
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
 import 'package:attendance_app/ux/views/onboarding/confirm_courses_page.dart';
+import 'package:attendance_app/ux/views/onboarding/sign_up_page.dart';
 import 'package:attendance_app/ux/views/verification_success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -83,20 +84,20 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
     }
   }
 
-  Future<void> showCancelDialog() async {
+  Future<void> showAttendanceCancelDialog() async {
     final result = await showAdaptiveDialog(
         context: context,
         builder: (context) {
           return AppAlertDialog(
-            title: AppStrings.cancelVerification,
-            desc: AppStrings.areYouSureYouWantToCancelVerification,
-            firstOption: 'No',
-            secondOption: 'Yes, Cancel',
+            title: AppStrings.cancelFaceVerification,
+            desc: AppStrings.ifYouExitNowYourAttendanceWont,
+            firstOption: AppStrings.yesCancel,
+            secondOption: 'No',
             onFirstOptionTap: () {
-              Navigation.back(context: context, result: false);
+              Navigation.back(context: context, result: true);
             },
             onSecondOptionTap: () {
-              Navigation.back(context: context, result: true);
+              Navigation.back(context: context, result: false);
             },
           );
         });
@@ -106,6 +107,33 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
       if (mounted) {
         Navigation.navigateToScreen(
             context: context, screen: const NavigationHostPage());
+      }
+    }
+  }
+
+  Future<void> showSignUpCancelDialog() async {
+    final result = await showAdaptiveDialog(
+        context: context,
+        builder: (context) {
+          return AppAlertDialog(
+            title: AppStrings.cancelFaceRegistration,
+            desc: AppStrings.youreInTheMiddleOfRegistering,
+            firstOption: AppStrings.yesCancel,
+            secondOption: AppStrings.stay,
+            onFirstOptionTap: () {
+              Navigation.back(context: context, result: true);
+            },
+            onSecondOptionTap: () {
+              Navigation.back(context: context, result: false);
+            },
+          );
+        });
+    if (result == true) {
+      await cameraController?.dispose();
+      cameraController = null;
+      if (mounted) {
+        Navigation.navigateToScreen(
+            context: context, screen: const SignUpPage());
       }
     }
   }
@@ -122,7 +150,11 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
     final previewSize = cameraController?.value.previewSize;
     return WillPopScope(
       onWillPop: () async {
-        await showCancelDialog();
+        if (widget.mode == FaceVerificationMode.signUp) {
+          await showSignUpCancelDialog();
+        } else {
+          await showAttendanceCancelDialog();
+        }
         return false;
       },
       child: Scaffold(
@@ -155,7 +187,11 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
                   inkwellBorderRadius: BorderRadius.circular(10),
                   onTap: widget.onExit ??
                       () {
-                        showCancelDialog();
+                        if (widget.mode == FaceVerificationMode.signUp) {
+                          showSignUpCancelDialog();
+                        } else {
+                          showAttendanceCancelDialog();
+                        }
                       },
                   child: Container(
                     width: 85,
