@@ -66,6 +66,18 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+  
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/images/app_logo.png"
+  image_path_ios: "assets/images/app_logo_ios.png"
+  ios: true
+  remove_alpha_ios: true
+  min_sdk_android: 21
+  adaptive_icon_foreground: "assets/images/attendance_app_logo.png"
+  adaptive_icon_background: "#FF263238"
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

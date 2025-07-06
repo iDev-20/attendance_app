@@ -6,7 +6,7 @@ class AppImages {
 
   //Images
   static AssetImage appLogo =
-      const AssetImage('assets/images/attendance_app_logo.png');
+      const AssetImage('assets/images/app_logo.png');
   static AssetImage backgroundImage =
       const AssetImage('assets/images/background_image.png');
   static AssetImage sampleProfilePhoto =
