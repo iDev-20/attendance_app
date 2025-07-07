@@ -151,20 +151,12 @@ class _FaceVerificationPageState extends State<FaceVerificationPage> {
     return PopScope(
       canPop: false,
       onPopInvoked: (result) {
-          if (widget.mode == FaceVerificationMode.signUp) {
-            showSignUpCancelDialog();
-          } else {
-            showAttendanceCancelDialog();
-          }
+        if (widget.mode == FaceVerificationMode.signUp) {
+          showSignUpCancelDialog();
+        } else {
+          showAttendanceCancelDialog();
+        }
       },
-      // onWillPop: () async {
-      //   if (widget.mode == FaceVerificationMode.signUp) {
-      //     await showSignUpCancelDialog();
-      //   } else {
-      //     await showAttendanceCancelDialog();
-      //   }
-      //   return false;
-      // },
       child: Scaffold(
         body: Stack(
           children: [

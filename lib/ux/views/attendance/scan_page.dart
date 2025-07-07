@@ -83,10 +83,6 @@ class _ScanPageState extends State<ScanPage> {
       onPopInvoked: (didPop) {
         controller?.stopCamera();
       },
-      // onWillPop: () async {
-      //   await controller?.stopCamera();
-      //   return true;
-      // },
       child: Scaffold(
         body: Stack(
           children: [
