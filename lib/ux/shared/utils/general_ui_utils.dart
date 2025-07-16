@@ -1,5 +1,4 @@
 import 'package:attendance_app/ux/shared/resources/app_strings.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class UiUtils {
   static String getGreetingTitle(String name) {
@@ -26,15 +25,15 @@ class UiUtils {
     }
   }
 
-  static void showToast(
-      {String message = "", Toast toastLength = Toast.LENGTH_SHORT}) {
-    Fluttertoast.showToast(
-      msg: message,
-      toastLength: toastLength,
-    );
-  }
+  // static void showToast(
+  //     {String message = "", Toast toastLength = Toast.LENGTH_SHORT}) {
+  //   Fluttertoast.showToast(
+  //     msg: message,
+  //     toastLength: toastLength,
+  //   );
+  // }
 
-  static void showPullToRefreshToast() {
-    showToast(message: 'Pull to refresh');
-  }
+  // static void showPullToRefreshToast() {
+  //   showToast(message: 'Pull to refresh');
+  // }
 }
